@@ -31,24 +31,30 @@ public class RegistroActivity extends AppCompatActivity {
         String usuario = campoUsuario.getText().toString();
         String contraseña = campoContraseña.getText().toString();
 
-        Pattern pattern = Pattern.compile("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+");
+        //Comprobamos que el todos los campos tengan texto
+        if (!correo.equals("") && !usuario.equals("") && !contraseña.equals("")) {
+            Pattern pattern = Pattern.compile("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+");
+            Matcher mather = pattern.matcher(correo);
 
-        Matcher mather = pattern.matcher(correo);
+            //Comprobamos que el mail sea correcto
+            if (mather.find()) {
+                //Cargamos los datos en el SharedPreferences de la Main Activity
+                MainActivity.editor.putString("mail", correo);
+                MainActivity.editor.putString("user", usuario);
+                MainActivity.editor.putString("pass", contraseña);
+                MainActivity.editor.commit();
 
-        if (mather.find() == true && usuario != null && contraseña != null) {
-            SharedPreferences preferences = getSharedPreferences("registro", Context.MODE_PRIVATE);
-
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString("mail", correo);
-            editor.putString("user", usuario);
-            editor.putString("pass", contraseña);
-            editor.commit();
-            Toast toast = Toast.makeText(getApplicationContext(),"Usuario registrado correctamente", Toast.LENGTH_SHORT);
-            toast.show();
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+                //Mostramos un toast y cargamos la MainActivity
+                Toast toast = Toast.makeText(getApplicationContext(), "Usuario registrado correctamente", Toast.LENGTH_SHORT);
+                toast.show();
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+            } else {
+                Toast toast = Toast.makeText(getApplicationContext(), "El correo no es correcto", Toast.LENGTH_SHORT);
+                toast.show();
+            }
         } else {
-            Toast toast = Toast.makeText(getApplicationContext(),"El correo no es correcto", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), "Hay campos vacios", Toast.LENGTH_SHORT);
             toast.show();
         }
     }
