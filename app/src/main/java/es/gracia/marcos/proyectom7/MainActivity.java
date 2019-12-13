@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,11 +32,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void iniciarSesion(View view) {
-        usuario.setText(preferences.getString("user", "No hay usuario"));
-        contraseña.setText(preferences.getString("pass", "No hay contraseña"));
+        if (!usuario.getText().toString().equals("") && !contraseña.getText().toString().equals("")) {
+            if (usuario.getText().toString().equals(preferences.getString("user", "No hay usuario")) && contraseña.getText().toString().equals(preferences.getString("user", "No hay contraseña"))) {
+                usuario.setText(preferences.getString("user", "No hay usuario"));
+                contraseña.setText(preferences.getString("pass", "No hay contraseña"));
+            } else {
+
+                Toast toast = Toast.makeText(getApplicationContext(), "Usuario y/o contraseña incorrectos", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        } else {
+            Toast toast = Toast.makeText(getApplicationContext(), "Hay campos vacíos.", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     public void abrirAsistencia(View view) {
+
     }
 
     public void abrirRegistro(View view) {
