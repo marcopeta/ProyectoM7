@@ -32,12 +32,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void iniciarSesion(View view) {
-        if (!usuario.getText().toString().equals("") && !contraseña.getText().toString().equals("")) {
-            if (usuario.getText().toString().equals(preferences.getString("user", "No hay usuario")) && contraseña.getText().toString().equals(preferences.getString("user", "No hay contraseña"))) {
-                usuario.setText(preferences.getString("user", "No hay usuario"));
-                contraseña.setText(preferences.getString("pass", "No hay contraseña"));
+        if (!usuario.getText().toString().equals("") || !contraseña.getText().toString().equals("")) {
+            if (usuario.getText().toString().equals(preferences.getString("user", "No hay usuario")) && contraseña.getText().toString().equals(preferences.getString("pass", "No hay contraseña"))) {
+                Intent intent = new Intent(this, InicioActivity.class);
+                startActivity(intent);
             } else {
-
                 Toast toast = Toast.makeText(getApplicationContext(), "Usuario y/o contraseña incorrectos", Toast.LENGTH_SHORT);
                 toast.show();
             }
