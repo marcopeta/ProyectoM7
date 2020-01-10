@@ -71,8 +71,4 @@ public class InicioActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
 }
