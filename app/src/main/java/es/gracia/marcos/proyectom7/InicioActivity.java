@@ -1,5 +1,6 @@
 package es.gracia.marcos.proyectom7;
 
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.core.view.GravityCompat;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -23,7 +25,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 
-public class InicioActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class InicioActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -69,20 +71,8 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
                 || super.onSupportNavigateUp();
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item){
-        int id = item.getItemId();
+    public void onFragmentInteraction(Uri uri) {
 
-        if (id == R.id.nav_gallery){
-
-        }else if (id == R.id.nav_share){
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
-
 }
