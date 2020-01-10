@@ -23,7 +23,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 
-public class InicioActivity extends AppCompatActivity {
+public class InicioActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private AppBarConfiguration mAppBarConfiguration;
 
