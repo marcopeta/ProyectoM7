@@ -21,6 +21,7 @@ public class RegistroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
+        getSupportActionBar().hide();
         campoCorreo = (EditText) findViewById(R.id.et_correoRegistro);
         campoUsuario = (EditText) findViewById(R.id.et_usuarioRegistro);
         campoContraseña = (EditText) findViewById(R.id.et_contraseñaRegistro);
