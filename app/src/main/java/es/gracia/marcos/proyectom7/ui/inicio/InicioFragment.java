@@ -16,12 +16,8 @@ import es.gracia.marcos.proyectom7.R;
 
 public class InicioFragment extends Fragment {
 
-    private InicioViewModel inicioViewModel;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        inicioViewModel =
-                ViewModelProviders.of(this).get(InicioViewModel.class);
         View root = inflater.inflate(R.layout.fragment_inicio, container, false);
         final TextView textView = root.findViewById(R.id.text_home);
         return root;
