@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     public void iniciarSesion(View view) {
         if (!usuario.getText().toString().equals("") || !contraseña.getText().toString().equals("")) {
             if (usuario.getText().toString().equals(preferences.getString("user", "No hay usuario")) && contraseña.getText().toString().equals(preferences.getString("pass", "No hay contraseña"))) {
-                Intent intent = new Intent(this, InicioActivity.class);
+                Intent intent = new Intent(this, CajaNavegacionActivity.class);
                 startActivity(intent);
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(), "Usuario y/o contraseña incorrectos", Toast.LENGTH_SHORT);

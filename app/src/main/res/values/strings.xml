@@ -12,9 +12,6 @@
     <string name="menu_gallery">Alimentos</string>
     <string name="menu_slideshow">Calendario</string>
     <string name="menu_tools">Configuración</string>
-    <string name="menu_share">Rutinas</string>
-    <string name="menu_send">Calculadora IGC</string>
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Marcos pon el color que te guste</string>
 </resources>
