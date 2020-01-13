@@ -21,7 +21,7 @@ import es.gracia.marcos.proyectom7.R;
 
 public class AlimentosFragment extends Fragment {
 
-    private final LinkedList<String> listaAlimentos = new LinkedList<String>();
+    private final LinkedList<String> listaAlimentos = new LinkedList<>();
     private RecyclerView recyclerAlimentos;
     private AdapterAlimentos aAdapter;
 
@@ -31,19 +31,20 @@ public class AlimentosFragment extends Fragment {
         llenarLista();
 
         recyclerAlimentos = root.findViewById(R.id.listadoAlimentos);
-        recyclerAlimentos.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        AdapterAlimentos adapter = new AdapterAlimentos(getContext(), listaAlimentos);
-        recyclerAlimentos.setAdapter(adapter);
+        aAdapter = new AdapterAlimentos(getContext(), listaAlimentos);
+        recyclerAlimentos.setAdapter(aAdapter);
         recyclerAlimentos.setLayoutManager(new LinearLayoutManager(getContext()));
         
         return root;
     }
 
     private void llenarLista() {
-        listaAlimentos.add("Papaya");
-        listaAlimentos.add("Platano");
-        listaAlimentos.add("Manzana");
-        listaAlimentos.add("Pepino");
+        listaAlimentos.add("A");
+        listaAlimentos.add("B");
+        listaAlimentos.addLast("C");
+        listaAlimentos.addFirst("D");
+        listaAlimentos.add(2, "E");
+        listaAlimentos.add("F");
+        listaAlimentos.add("G");
     }
 }
