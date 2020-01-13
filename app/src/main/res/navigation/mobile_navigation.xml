@@ -8,24 +8,30 @@
     <fragment
         android:id="@+id/nav_inicio"
         android:name="es.gracia.marcos.proyectom7.ui.inicio.InicioFragment"
-        android:label="@string/menu_home"
+        android:label="@string/inicio_fragment"
         tools:layout="@layout/fragment_inicio" />
 
     <fragment
         android:id="@+id/nav_alimentos"
         android:name="es.gracia.marcos.proyectom7.ui.alimentos.AlimentosFragment"
-        android:label="@string/menu_gallery"
+        android:label="@string/alimentos_fragment"
         tools:layout="@layout/fragment_alimentos" />
 
     <fragment
         android:id="@+id/nav_calendario"
         android:name="es.gracia.marcos.proyectom7.ui.calendario.CalendarioFragment"
-        android:label="@string/menu_slideshow"
+        android:label="@string/calendario_fragment"
         tools:layout="@layout/fragment_calendario" />
+
+    <fragment
+        android:id="@+id/nav_calculadora"
+        android:name="es.gracia.marcos.proyectom7.ui.calculadora.CalculadoraFragment"
+        android:label="@string/calculadora_fragment"
+        tools:layout="@layout/fragment_calculadora" />
 
     <fragment
         android:id="@+id/nav_configuracion"
         android:name="es.gracia.marcos.proyectom7.ui.configuracion.ConfiguracionFragment"
-        android:label="@string/menu_tools"
+        android:label="@string/configuracion_fragment"
         tools:layout="@layout/fragment_configuracion" />
 </navigation>

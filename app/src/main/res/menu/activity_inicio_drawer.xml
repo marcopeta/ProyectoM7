@@ -7,19 +7,23 @@
         <item
             android:id="@+id/nav_inicio"
             android:icon="@drawable/ic_inicio"
-            android:title="@string/menu_home" />
+            android:title="@string/inicio_fragment" />
         <item
             android:id="@+id/nav_alimentos"
             android:icon="@drawable/ic_alimentos"
-            android:title="@string/menu_gallery" />
+            android:title="@string/alimentos_fragment" />
         <item
             android:id="@+id/nav_calendario"
             android:icon="@drawable/ic_calendario"
-            android:title="@string/menu_slideshow" />
+            android:title="@string/calendario_fragment" />
+        <item
+            android:id="@+id/nav_calculadora"
+            android:icon="@drawable/ic_calculadora"
+            android:title="@string/calculadora_fragment" />
         <item
             android:id="@+id/nav_configuracion"
             android:icon="@drawable/ic_configuracion"
-            android:title="@string/menu_tools" />
+            android:title="@string/configuracion_fragment" />
     </group>
 
     <!--item android:title="Communicate">

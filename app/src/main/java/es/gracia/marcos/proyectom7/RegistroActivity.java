@@ -59,7 +59,7 @@ public class RegistroActivity extends AppCompatActivity {
             Matcher mather = pattern.matcher(correo);
 
             //Comprobamos que el mail sea correcto
-            if (mather.find() || telefono.length() > 9) {
+            if (mather.find() && telefono.length() == 9) {
                 //Cargamos los datos en el SharedPreferences de la Main Activity
                 MainActivity.editor.putString("mail", correo);
                 MainActivity.editor.putString("user", usuario);
