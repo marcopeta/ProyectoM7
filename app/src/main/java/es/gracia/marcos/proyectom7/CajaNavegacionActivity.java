@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.TextView;
 
 public class CajaNavegacionActivity extends AppCompatActivity {
 
@@ -51,6 +52,10 @@ public class CajaNavegacionActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        TextView usuario = findViewById(R.id.tv_usuario);
+        TextView correo = findViewById(R.id.tv_correo);
+        String usuarios = "hola";
+        //usuario.set;
     }
 
     @Override
