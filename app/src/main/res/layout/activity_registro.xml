@@ -9,11 +9,11 @@
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/fondo"
-        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="16dp" />
 
     <ImageView
@@ -31,13 +31,13 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/txt_view_cuadrado_blanco"
         android:hint="Correo"
-        android:inputType="text"
+        android:inputType="text|textEmailAddress"
         android:paddingLeft="20dp"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/gray"
         android:textColorHint="#BEFFFFFF"
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,13 +49,13 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/txt_view_cuadrado_blanco"
         android:hint="Usuario"
         android:inputType="text"
         android:paddingLeft="20dp"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/gray"
         android:textColorHint="#BEFFFFFF"
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,14 +67,14 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/txt_view_cuadrado_blanco"
         android:fontFamily="sans-serif"
         android:hint="Contraseña"
         android:inputType="text|textPassword"
         android:paddingLeft="20dp"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/gray"
         android:textColorHint="#BEFFFFFF"
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,12 +82,47 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_usuarioRegistro"></EditText>
 
+    <EditText
+        android:id="@+id/et_telefonoRegistro"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/txt_view_cuadrado_blanco"
+        android:fontFamily="sans-serif"
+        android:hint="Telefono"
+        android:inputType="text|textPassword|phone"
+        android:paddingLeft="20dp"
+        android:textColor="@color/gray"
+        android:textColorHint="#BEFFFFFF"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_contraseñaRegistro"></EditText>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="40dp"
+        android:text="Sufres algun tipo de transtorno?"
+        android:textAlignment="viewStart"
+        android:textColor="@color/gray"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_telefonoRegistro" />
+
     <Button
         android:id="@+id/button3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="25dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/btn_redondeado_white"
         android:onClick="registrarUsuario"
@@ -97,6 +132,59 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_contraseñaRegistro" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2"
+        tools:ignore="MissingConstraints" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup2"
+        android:layout_width="0dp"
+        android:layout_height="136dp"
+        android:layout_marginStart="58dp"
+        android:layout_marginEnd="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <RadioButton
+            android:id="@+id/rb_anorexia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Anorexia"
+            android:textAlignment="viewStart"
+            android:textColor="@color/gray"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rb_bulimia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bulimia"
+            android:textAlignment="viewStart"
+            android:textColor="@color/gray"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rb_sobrepeso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sobrepeso"
+            android:textAlignment="viewStart"
+            android:textColor="@color/gray"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rb_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="No / Prefiero no contestar"
+            android:textAlignment="viewStart"
+            android:textColor="@color/gray"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
