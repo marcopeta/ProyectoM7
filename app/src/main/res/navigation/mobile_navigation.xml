@@ -13,19 +13,19 @@
 
     <fragment
         android:id="@+id/nav_alimentos"
-        android:name="es.gracia.marcos.proyectom7.ui.gallery.GalleryFragment"
+        android:name="es.gracia.marcos.proyectom7.ui.alimentos.AlimentosFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_alimentos" />
 
     <fragment
         android:id="@+id/nav_calendario"
-        android:name="es.gracia.marcos.proyectom7.ui.slideshow.SlideshowFragment"
+        android:name="es.gracia.marcos.proyectom7.ui.calendario.CalendarioFragment"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_calendario" />
 
     <fragment
         android:id="@+id/nav_configuracion"
-        android:name="es.gracia.marcos.proyectom7.ui.tools.ToolsFragment"
+        android:name="es.gracia.marcos.proyectom7.ui.configuracion.ConfiguracionFragment"
         android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
+        tools:layout="@layout/fragment_configuracion" />
 </navigation>

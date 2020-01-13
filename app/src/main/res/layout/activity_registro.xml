@@ -12,7 +12,9 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/fondo" />
+        app:srcCompat="@drawable/fondo"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -58,7 +60,7 @@
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_contraseñaRegistro"></EditText>
+        app:layout_constraintTop_toBottomOf="@+id/et_correoRegistro"></EditText>
 
     <EditText
         android:id="@+id/et_contraseñaRegistro"
@@ -76,10 +78,12 @@
         android:textColorHint="#BEFFFFFF"
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_correoRegistro"></EditText>
+        app:layout_constraintTop_toBottomOf="@+id/et_usuarioRegistro"></EditText>
 
     <Button
+        android:id="@+id/button3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -91,7 +95,8 @@
         android:textColor="@color/green"
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_usuarioRegistro" />
+        app:layout_constraintTop_toBottomOf="@+id/et_contraseñaRegistro" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
