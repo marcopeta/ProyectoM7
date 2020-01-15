@@ -39,12 +39,9 @@ public class AlimentosFragment extends Fragment {
     }
 
     private void llenarLista() {
-        listaAlimentos.add("A");
-        listaAlimentos.add("B");
-        listaAlimentos.addLast("C");
-        listaAlimentos.addFirst("D");
-        listaAlimentos.add(2, "E");
-        listaAlimentos.add("F");
-        listaAlimentos.add("G");
+        listaAlimentos.add("Papaya");
+        listaAlimentos.add("Platano");
+        listaAlimentos.addLast("Manzana");
+        listaAlimentos.addFirst("McFlurry");
     }
 }
