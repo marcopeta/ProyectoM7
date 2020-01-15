@@ -11,29 +11,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.LinkedList;
 
-public class AdapterAlimentos extends RecyclerView.Adapter<AdapterAlimentos.ViewHolderAlimentos> {
-    private final LinkedList<String> listaAlimentos;
-    private LayoutInflater mInflater;
+import es.gracia.marcos.proyectom7.ui.alimentos.Alimento;
 
-    public AdapterAlimentos(Context context,
-                           LinkedList<String> listaAlimentos) {
-        mInflater = LayoutInflater.from(context);
+public class AdapterAlimentos extends RecyclerView.Adapter<AdapterAlimentos.ViewHolderAlimentos> {
+    private final LinkedList<Alimento> listaAlimentos;
+    private Context context;
+
+    public AdapterAlimentos(Context context, LinkedList<Alimento> listaAlimentos) {
+        this.context = context;
         this.listaAlimentos = listaAlimentos;
     }
 
-    @NonNull
     @Override
-    public ViewHolderAlimentos onCreateViewHolder(ViewGroup parent,
-                                             int viewType) {
-        View mItemView = mInflater.inflate(R.layout.item_list_alimentos,
-                parent, false);
-        return new ViewHolderAlimentos(mItemView, this);
+    public AdapterAlimentos.ViewHolderAlimentos onCreateViewHolder(ViewGroup parent,
+                                                                   int viewType) {
+        return new ViewHolderAlimentos(LayoutInflater.from(context).
+                inflate(R.layout.item_list_alimentos, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(ViewHolderAlimentos holder, int position) {
-        String mCurrent = listaAlimentos.get(position);
-        holder.AlimentoItemView.setText(mCurrent);
+    public void onBindViewHolder(AdapterAlimentos.ViewHolderAlimentos holder, int position) {
+        Alimento currentAlimento = listaAlimentos.get(position);
+        holder.bindTo(currentAlimento);
     }
 
     @Override
@@ -44,13 +43,19 @@ public class AdapterAlimentos extends RecyclerView.Adapter<AdapterAlimentos.View
     class ViewHolderAlimentos extends RecyclerView.ViewHolder
             /*implements View.OnClickListener*/ {
         public final TextView AlimentoItemView;
-        final AdapterAlimentos mAdapter;
+        public final TextView CaloriasItemView;
 
-        public ViewHolderAlimentos(View itemView, AdapterAlimentos adapter) {
+        ViewHolderAlimentos(View itemView) {
             super(itemView);
             AlimentoItemView = itemView.findViewById(R.id.idAlimento);
-            this.mAdapter = adapter;
+            CaloriasItemView = itemView.findViewById(R.id.idCalorias);
+            //this.mAdapter = adapter;
             /*itemView.setOnClickListener(this);*/
+        }
+
+        void bindTo(Alimento currentAlimento) {
+            AlimentoItemView.setText(currentAlimento.getNombre());
+            CaloriasItemView.setText("Calorias: " + Integer.toString(currentAlimento.getCalorias()));
         }
 
         /*@Override
