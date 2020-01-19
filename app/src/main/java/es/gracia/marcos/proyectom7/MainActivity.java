@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     public static SharedPreferences preferences;
     public static SharedPreferences.Editor editor;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +31,11 @@ public class MainActivity extends AppCompatActivity {
         //Le damos un valor a las SharedPreferences
         preferences = getSharedPreferences("registro", Context.MODE_PRIVATE);
         editor = preferences.edit();
+
+
+
+
+
     }
 
     public void iniciarSesion(View view) {
