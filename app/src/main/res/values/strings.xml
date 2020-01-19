@@ -14,5 +14,4 @@
     <string name="calendario_fragment">Calendario</string>
     <string name="configuracion_fragment">Configuración</string>
     <string name="calculadora_fragment">Calculadora IMC</string>
-    <string name="textview">IMC</string>
 </resources>
