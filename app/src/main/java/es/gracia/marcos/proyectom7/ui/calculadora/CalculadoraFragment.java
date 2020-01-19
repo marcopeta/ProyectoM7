@@ -51,18 +51,32 @@ public class CalculadoraFragment extends Fragment implements AdapterView.OnItemS
                     @Override
                     public void onProgressChanged(SeekBar seekBar,
                                                   int progress, boolean fromUser) {
-                        mostrarPorcentajeAltura.setText(String.valueOf(progress) + "cm");
-                        String peso = (String) mostrarPorcentajePeso.getText();
-                        peso = peso.substring(0,(peso.length() - 2));
-                        String altura = (String) mostrarPorcentajeAltura.getText();
-                        altura = altura.substring(0,(altura.length() - 2));
-                        double calculo = Integer.parseInt(peso)/((Integer.parseInt(altura)*0.01)*(Integer.parseInt(altura)*0.01));
+                        if (textoSistema.equals("Sistema Ingles")) {
+                            mostrarPorcentajeAltura.setText(String.valueOf(progress) + "in");
+                            String peso = (String) mostrarPorcentajePeso.getText();
+                            peso = peso.substring(0, (peso.length() - 2));
+                            String altura = (String) mostrarPorcentajeAltura.getText();
+                            altura = altura.substring(0, (altura.length() - 2));
+                            double calculo = (Integer.parseInt(peso) / Math.pow(Double.parseDouble(altura), 2)) * 703;
 
-                        DecimalFormat df = new DecimalFormat("#.00");
-                        resultado.setText(String.valueOf(df.format(calculo) + " ICM"));
+                            DecimalFormat df = new DecimalFormat("#.00");
+                            resultado.setText(String.valueOf(df.format(calculo) + " ICM"));
+                        } else {
+                            mostrarPorcentajeAltura.setText(String.valueOf(progress) + "cm");
+                            String peso = (String) mostrarPorcentajePeso.getText();
+                            peso = peso.substring(0, (peso.length() - 2));
+                            String altura = (String) mostrarPorcentajeAltura.getText();
+                            altura = altura.substring(0, (altura.length() - 2));
+                            double calculo = Integer.parseInt(peso) / Math.pow(Double.parseDouble(altura)*0.01, 2);
+
+                            DecimalFormat df = new DecimalFormat("#.00");
+                            resultado.setText(String.valueOf(df.format(calculo) + " ICM"));
+                        }
                     }
+
                     public void onStartTrackingTouch(SeekBar seekBar) {
                     }
+
                     public void onStopTrackingTouch(SeekBar seekBar) {
                     }
                 });
@@ -72,15 +86,27 @@ public class CalculadoraFragment extends Fragment implements AdapterView.OnItemS
                     @Override
                     public void onProgressChanged(SeekBar seekBar,
                                                   int progress, boolean fromUser) {
-                        mostrarPorcentajePeso.setText(String.valueOf(progress) + "kg");
-                        String peso = (String) mostrarPorcentajePeso.getText();
-                        peso = peso.substring(0,(peso.length() - 2));
-                        String altura = (String) mostrarPorcentajeAltura.getText();
-                        altura = altura.substring(0,(altura.length() - 2));
-                        double calculo = Integer.parseInt(peso)/((Integer.parseInt(altura)*0.01)*(Integer.parseInt(altura)*0.01));
+                        if (textoSistema.equals("Sistema Ingles")) {
+                            mostrarPorcentajePeso.setText(String.valueOf(progress) + "lb");
+                            String peso = (String) mostrarPorcentajePeso.getText();
+                            peso = peso.substring(0,(peso.length() - 2));
+                            String altura = (String) mostrarPorcentajeAltura.getText();
+                            altura = altura.substring(0,(altura.length() - 2));
+                            double calculo = (Integer.parseInt(peso) / Math.pow(Double.parseDouble(altura), 2)) * 703;
 
-                        DecimalFormat df = new DecimalFormat("#.00");
-                        resultado.setText(String.valueOf(df.format(calculo) + " ICM"));
+                            DecimalFormat df = new DecimalFormat("#.00");
+                            resultado.setText(String.valueOf(df.format(calculo) + " ICM"));
+                        } else {
+                            mostrarPorcentajePeso.setText(String.valueOf(progress) + "kg");
+                            String peso = (String) mostrarPorcentajePeso.getText();
+                            peso = peso.substring(0,(peso.length() - 2));
+                            String altura = (String) mostrarPorcentajeAltura.getText();
+                            altura = altura.substring(0,(altura.length() - 2));
+                            double calculo = Integer.parseInt(peso)/Math.pow(Double.parseDouble(altura)*0.01, 2);
+
+                            DecimalFormat df = new DecimalFormat("#.00");
+                            resultado.setText(String.valueOf(df.format(calculo) + " ICM"));
+                        }
                     }
                     public void onStartTrackingTouch(SeekBar seekBar) {
                     }
@@ -94,28 +120,47 @@ public class CalculadoraFragment extends Fragment implements AdapterView.OnItemS
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         textoSistema = parent.getItemAtPosition(position).toString();
-        if (textoSistema.equals("Sistema Ingles")){
-            String peso = (String) mostrarPorcentajePeso.getText();
-            peso = peso.substring(0,(peso.length() - 2));
-            peso += "lb";
+        if (textoSistema.equals("Sistema Ingles")) {
             String altura = (String) mostrarPorcentajeAltura.getText();
-            altura = altura.substring(0,(altura.length() - 2));
-            altura += "in";
-            mostrarPorcentajePeso.setText(peso);
-            seekBar2.setMax(440);
-            mostrarPorcentajeAltura.setText(altura);
-            seekBar.setMax(86);
+            String peso = (String) mostrarPorcentajePeso.getText();
+
+            if (altura.charAt((altura.length() - 1)) == 'm') {
+                altura = altura.substring(0, (altura.length() - 2));
+                int progresAltura = (int) (Integer.parseInt(altura) / 2.54);
+                altura += "in";
+
+                peso = peso.substring(0, (peso.length() - 2));
+                int progresPeso = (int) (Integer.parseInt(peso) * 2.205);
+                peso += "lb";
+
+                mostrarPorcentajeAltura.setText(altura);
+                seekBar.setMax(86);
+                seekBar.setProgress(progresAltura);
+                mostrarPorcentajePeso.setText(peso);
+                seekBar2.setMax(440);
+                seekBar2.setProgress(progresPeso);
+            }
+
         } else {
-            String peso = (String) mostrarPorcentajePeso.getText();
-            peso = peso.substring(0,(peso.length() - 2));
-            peso += "kg";
             String altura = (String) mostrarPorcentajeAltura.getText();
-            altura = altura.substring(0,(altura.length() - 2));
-            altura += "cm";
-            mostrarPorcentajePeso.setText(peso);
-            seekBar2.setMax(200);
-            mostrarPorcentajeAltura.setText(altura);
-            seekBar.setMax(220);
+            String peso = (String) mostrarPorcentajePeso.getText();
+
+            if (altura.charAt((altura.length() - 1)) == 'n') {
+                altura = altura.substring(0, (altura.length() - 2));
+                int progresAltura = (int) (Integer.parseInt(altura) * 2.54);
+                altura += "cm";
+
+                peso = peso.substring(0, (peso.length() - 2));
+                int progresPeso = (int) (Integer.parseInt(peso) / 2.205);
+                peso += "kg";
+
+                mostrarPorcentajeAltura.setText(altura);
+                seekBar.setMax(220);
+                seekBar.setProgress(progresAltura);
+                mostrarPorcentajePeso.setText(peso);
+                seekBar2.setMax(200);
+                seekBar2.setProgress(progresPeso);
+            }
         }
     }
 
