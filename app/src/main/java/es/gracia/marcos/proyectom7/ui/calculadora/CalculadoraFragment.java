@@ -21,6 +21,11 @@ public class CalculadoraFragment extends Fragment {
     private TextView mostrarPorcentajeAltura, mostrarPorcentajePeso, resultado;
     private SeekBar seekBar, seekBar2;
 
+    private int pesoN;
+    private int estaturaN;
+
+
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
