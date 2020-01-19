@@ -12,54 +12,20 @@
         android:layout_marginTop="5dp"
         android:text="80kg"
         android:textAlignment="center"
-        android:textSize="14dp"
+        android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekBar2" />
 
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="46dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sp_sistema" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="200px"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="3dp"
-        android:text="Hombre"
-        android:textAlignment="textEnd"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/switch1"
-        app:layout_constraintTop_toTopOf="@+id/switch1" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="200px"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="10dp"
-        android:text="Mujer"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/switch1"
-        app:layout_constraintTop_toTopOf="@+id/switch1" />
-
     <Spinner
         android:id="@+id/sp_sistema"
-        android:layout_width="0dp"
-        android:layout_height="24dp"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
         android:layout_marginStart="90dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="70dp"
         android:layout_marginEnd="90dp"
         android:dropDownWidth="match_parent"
+        android:minWidth="30dp"
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,7 +64,7 @@
         android:layout_marginTop="5dp"
         android:text="175cm"
         android:textAlignment="center"
-        android:textSize="14dp"
+        android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekBar" />
@@ -109,11 +75,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="Altura"
-        android:textSize="16dp"
+        android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch1" />
+        app:layout_constraintTop_toBottomOf="@+id/sp_sistema" />
 
     <TextView
         android:id="@+id/textView7"
@@ -121,7 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="Peso"
-        android:textSize="16dp"
+        android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -133,8 +99,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="Resultado"
-        android:textAllCaps="true"
-        android:textSize="16dp"
+        android:textAllCaps="false"
+        android:textSize="22dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -147,7 +113,7 @@
         android:layout_marginTop="5dp"
         android:text="26 IMC"
         android:textAlignment="center"
-        android:textSize="14dp"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
