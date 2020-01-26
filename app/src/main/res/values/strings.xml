@@ -1,12 +1,11 @@
 <resources>
     <string name="app_name">Calories Pointer</string>
     <string name="title_activity_inicio">InicioActivity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_close">Cierra navigation drawer</string>
     <string name="nav_header_title">1234</string>
     <string name="nav_header_subtitle">dimonibdnsaba13@gmail.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="nav_header_desc">Encabezado del navegador</string>
+    <string name="action_settings">Ajustes</string>
 
 
     <string name="inicio_fragment">Inicio</string>
@@ -14,4 +13,5 @@
     <string name="calendario_fragment">Calendario</string>
     <string name="configuracion_fragment">Configuración</string>
     <string name="calculadora_fragment">Calculadora IMC</string>
+    <string name="navigation_drawer_open">Abre navigation drawer</string>
 </resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Calories Pointer</string>
+    <string name="action_settings">Ajustament</string>
+    <string name="alimentos_fragment">Aliments</string>
+    <string name="calculadora_fragment">Calculadora IMC</string>
+    <string name="calendario_fragment">Calendari</string>
+    <string name="configuracion_fragment">Configuració</string>
+    <string name="inicio_fragment">Inici</string>
+    <string name="navigation_drawer_close">Tanca navigation drawer</string>
+    <string name="navigation_drawer_open">Obre navigation drawer</string>
+    <string name="nav_header_desc">Encapçalat del navegador</string>
+    <string name="title_activity_inicio">IniciActivity</string>
+</resources>
