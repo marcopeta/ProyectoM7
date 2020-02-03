@@ -15,7 +15,7 @@
     <string name="iniciar_sessi">Iniciar Sesión</string>
     <string name="mantenir_sessi_iniciada">Mantener Sesión iniciada</string>
     <string name="contra_olvidada">Have you forgotten your password?</string>
-    <string name="registrar">Get Registered</string>
+    <string name="registrar">Sign Up</string>
     <string name="icon">CaloriesPointer Logo</string>
     <string name="password">Password</string>
 </resources>
