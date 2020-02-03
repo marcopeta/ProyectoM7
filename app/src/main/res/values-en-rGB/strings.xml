@@ -11,4 +11,11 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="title_activity_inicio">StartActivity</string>
+    <string name="user">Username</string>
+    <string name="iniciar_sessi">Iniciar Sesión</string>
+    <string name="mantenir_sessi_iniciada">Mantener Sesión iniciada</string>
+    <string name="contra_olvidada">Have you forgotten your password?</string>
+    <string name="registrar">Get Registered</string>
+    <string name="icon">CaloriesPointer Logo</string>
+    <string name="password">Password</string>
 </resources>

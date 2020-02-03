@@ -1,17 +1,30 @@
 <resources>
     <string name="app_name">Calories Pointer</string>
-    <string name="title_activity_inicio">InicioActivity</string>
-    <string name="navigation_drawer_close">Cierra navigation drawer</string>
+    <string name="title_activity_inicio">IniciActivity</string>
+    <string name="navigation_drawer_close">Tanca navigation drawer</string>
     <string name="nav_header_title">1234</string>
     <string name="nav_header_subtitle">dimonibdnsaba13@gmail.com</string>
-    <string name="nav_header_desc">Encabezado del navegador</string>
-    <string name="action_settings">Ajustes</string>
+    <string name="nav_header_desc">Encapçalat del navegador</string>
+    <string name="action_settings">Ajustament</string>
 
 
-    <string name="inicio_fragment">Inicio</string>
-    <string name="alimentos_fragment">Alimentos</string>
-    <string name="calendario_fragment">Calendario</string>
-    <string name="configuracion_fragment">Configuración</string>
+    <string name="inicio_fragment">Inici</string>
+    <string name="alimentos_fragment">Aliments</string>
+    <string name="calendario_fragment">Calendari</string>
+    <string name="configuracion_fragment">Configuració</string>
     <string name="calculadora_fragment">Calculadora IMC</string>
-    <string name="navigation_drawer_open">Abre navigation drawer</string>
+    <string name="navigation_drawer_open">Obre navigation drawer</string>
+    <string name="user">Nom d\'usuari</string>
+    <string name="password">Contrasenya</string>
+    <string name="iniciar_sessi">Iniciar Sessió</string>
+    <string name="mantenir_sessi_iniciada">Mantenir Sessió iniciada</string>
+    <string name="contra_olvidada">Has oblidat la contrasenya?</string>
+    <string name="registrar">Registrar-se</string>
+    <string name="icon">Logo caloriesPointer</string>
+
+
+
+
+
+
 </resources>

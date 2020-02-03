@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Calories Pointer</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="alimentos_fragment">Alimentos</string>
+    <string name="calculadora_fragment">Calculadora IMC</string>
+    <string name="calendario_fragment">Calendario</string>
+    <string name="configuracion_fragment">Configuración</string>
+    <string name="inicio_fragment">Inicio</string>
+    <string name="nav_header_desc">Encabezado del navegador</string>
+    <string name="navigation_drawer_close">Cierra navigation drawer</string>
+    <string name="navigation_drawer_open">Abre navigation drawer</string>
+    <string name="title_activity_inicio">InicioActivity</string>
+    <string name="user">Nombre de usuario</string>
+    <string name="iniciar_sessi">Start Session</string>
+    <string name="mantenir_sessi_iniciada">Keep Session started</string>
+    <string name="contra_olvidada">Has olvidado tu contraseña?</string>
+    <string name="registrar">Registrarse</string>
+    <string name="icon">Logo caloriesPointer</string>
+    <string name="password">Contraseña</string>
+</resources>

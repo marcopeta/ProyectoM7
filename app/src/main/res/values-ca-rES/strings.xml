@@ -11,4 +11,11 @@
     <string name="navigation_drawer_open">Obre navigation drawer</string>
     <string name="nav_header_desc">Encapçalat del navegador</string>
     <string name="title_activity_inicio">IniciActivity</string>
+    <string name="user">Nom d\'usuari</string>
+    <string name="iniciar_sessi">Iniciar Sessió</string>
+    <string name="mantenir_sessi_iniciada">Mantenir Sessió iniciada</string>
+    <string name="contra_olvidada">Has oblidat la teva contrasenya?</string>
+    <string name="registrar">Registrar-se</string>
+    <string name="icon">Logo caloriesPointer</string>
+    <string name="password">Contrasenya</string>
 </resources>
