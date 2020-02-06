@@ -12,10 +12,10 @@
     <string name="navigation_drawer_open">Abre navigation drawer</string>
     <string name="title_activity_inicio">InicioActivity</string>
     <string name="user">Nombre de usuario</string>
-    <string name="iniciar_sessi">Start Session</string>
-    <string name="mantenir_sessi_iniciada">Keep Session started</string>
     <string name="contra_olvidada">Has olvidado tu contraseña?</string>
     <string name="registrar">Registrarse</string>
     <string name="icon">Logo caloriesPointer</string>
     <string name="password">Contraseña</string>
+    <string name="iniciar_sessi">Iniciar Sesión</string>
+    <string name="mantenir_sessi_iniciada">Mantener Sesión iniciada</string>
 </resources>
