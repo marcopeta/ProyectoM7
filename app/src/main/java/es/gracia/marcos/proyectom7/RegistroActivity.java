@@ -37,8 +37,7 @@ public class RegistroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registro);
         getSupportActionBar().hide();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("nombre/");
-        myRef.setValue("ivan");
+        DatabaseReference myRef = database.getReference();
         campoCorreo = (EditText) findViewById(R.id.et_correoRegistro);
         campoUsuario = (EditText) findViewById(R.id.et_usuarioRegistro);
         campoContraseña = (EditText) findViewById(R.id.et_contraseñaRegistro);
@@ -48,6 +47,18 @@ public class RegistroActivity extends AppCompatActivity {
         rb_bulimia = (RadioButton) findViewById(R.id.rb_bulimia);
         rb_sobrepeso = (RadioButton) findViewById(R.id.rb_sobrepeso);
         rb_no = (RadioButton) findViewById(R.id.rb_no);
+
+        myRef.child("usuario1").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String nombre = dataSnapshot.child("nombre").getValue().toString();
+                campoUsuario.setText(nombre);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+            }
+        });
     }
 
     public void registrarUsuario(View view) {
