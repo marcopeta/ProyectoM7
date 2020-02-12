@@ -6,11 +6,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,6 +36,9 @@ public class RegistroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
         getSupportActionBar().hide();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("nombre/");
+        myRef.setValue("ivan");
         campoCorreo = (EditText) findViewById(R.id.et_correoRegistro);
         campoUsuario = (EditText) findViewById(R.id.et_usuarioRegistro);
         campoContraseña = (EditText) findViewById(R.id.et_contraseñaRegistro);
@@ -40,16 +55,25 @@ public class RegistroActivity extends AppCompatActivity {
         String usuario = campoUsuario.getText().toString();
         String contraseña = campoContraseña.getText().toString();
         String telefono = campoTelefono.getText().toString();
-        String enfermedad;
+        String trastorno;
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("correo", correo);
+        map.put("usuario", usuario);
+        map.put("contraseña", contraseña);
+        map.put("telefono", telefono);
+        map.put("trastorno", 0);
+        map.put("idioma", "e");
+
 
         if (rb_anorexia.isChecked() == true) {
-            enfermedad = "Anorexia";
+            trastorno = "Anorexia";
         } else if (rb_bulimia.isChecked() == true) {
-            enfermedad = "Bulimia";
+            trastorno = "Bulimia";
         } else if (rb_sobrepeso.isChecked() == true) {
-            enfermedad = "Sobrepeso";
+            trastorno = "Sobrepeso";
         } else {
-            enfermedad = "No";
+            trastorno = "No";
         }
 
 
@@ -65,7 +89,7 @@ public class RegistroActivity extends AppCompatActivity {
                 MainActivity.editor.putString("user", usuario);
                 MainActivity.editor.putString("pass", contraseña);
                 MainActivity.editor.putString("tel", telefono);
-                MainActivity.editor.putString("enf", enfermedad);
+                MainActivity.editor.putString("enf", trastorno);
                 MainActivity.editor.commit();
 
                 //Mostramos un toast y cargamos la MainActivity

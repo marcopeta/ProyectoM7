@@ -12,6 +12,10 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText usuario, contraseña;
@@ -31,11 +35,6 @@ public class MainActivity extends AppCompatActivity {
         //Le damos un valor a las SharedPreferences
         preferences = getSharedPreferences("registro", Context.MODE_PRIVATE);
         editor = preferences.edit();
-
-
-
-
-
     }
 
     public void iniciarSesion(View view) {
