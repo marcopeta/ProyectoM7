@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_settings">Ajustament</string>
+    <string name="alimentos_fragment">Aliments</string>
+    <string name="app_name">Calories Pointer</string>
+    <string name="calculadora_fragment">Calculadora IMC</string>
+    <string name="calendario_fragment">Calendari</string>
+    <string name="configuracion_fragment">Configuracio</string>
+    <string name="contra_olvidada">Has oblidat la teva contraseña?</string>
+    <string name="icon">Logo caloriesPointer</string>
+    <string name="iniciar_sessi">Iniciar Sessió</string>
+    <string name="inicio_fragment">Inici</string>
+    <string name="mantenir_sessi_iniciada">Mantenir Sessió Iniciada</string>
+    <string name="nav_header_desc">Encapçalat del navegador</string>
+    <string name="navigation_drawer_close">Tanca navigation drawe</string>
+    <string name="navigation_drawer_open">Obre navigation drawe</string>
+    <string name="password">Contraseña</string>
+    <string name="registrar">Registrar-se</string>
+    <string name="title_activity_inicio">IniciActivity</string>
+    <string name="user">Nom d\'usuari</string>
+</resources>
