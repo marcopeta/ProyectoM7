@@ -39,7 +39,7 @@
         android:autofillHints=""
         android:background="@drawable/txt_view_cuadrado_blanco"
         android:contentDescription="@string/user"
-        android:hint="Usuario"
+        android:hint="Correo"
         android:inputType="text"
         android:paddingLeft="20dp"
         android:textColor="#191919"
@@ -70,7 +70,7 @@
         app:layout_constraintTop_toBottomOf="@+id/et_usuario"></EditText>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnIniciarSesion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -121,7 +121,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/btnIniciarSesion" />
 
     <CheckBox
         android:id="@+id/cb_keepSesion"
@@ -131,6 +131,6 @@
         android:text="@string/mantenir_sessi_iniciada"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/btnIniciarSesion" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

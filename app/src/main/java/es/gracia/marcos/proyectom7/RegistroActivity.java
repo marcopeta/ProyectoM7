@@ -1,10 +1,6 @@
 package es.gracia.marcos.proyectom7;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,14 +8,17 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,18 +27,23 @@ import java.util.regex.Pattern;
 
 public class RegistroActivity extends AppCompatActivity {
 
-    EditText campoCorreo, campoUsuario, campoContraseña, campoTelefono;
+    EditText campoCorreo, campoNombre, campoContraseña, campoTelefono;
     RadioButton rb_anorexia, rb_bulimia, rb_sobrepeso, rb_no;
+    private static final String TAG = "MainActivity";
+    private FirebaseAuth mAuth;
+    FirebaseUser currentUser;
+    private DatabaseReference mDatabase;
+    Map<String, Object> map = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
         getSupportActionBar().hide();
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference();
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference("Users");
         campoCorreo = (EditText) findViewById(R.id.et_correoRegistro);
-        campoUsuario = (EditText) findViewById(R.id.et_usuarioRegistro);
+        campoNombre = (EditText) findViewById(R.id.et_usuarioRegistro);
         campoContraseña = (EditText) findViewById(R.id.et_contraseñaRegistro);
         campoTelefono = (EditText) findViewById(R.id.et_telefonoRegistro);
 
@@ -47,35 +51,14 @@ public class RegistroActivity extends AppCompatActivity {
         rb_bulimia = (RadioButton) findViewById(R.id.rb_bulimia);
         rb_sobrepeso = (RadioButton) findViewById(R.id.rb_sobrepeso);
         rb_no = (RadioButton) findViewById(R.id.rb_no);
-
-        myRef.child("usuario1").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String nombre = dataSnapshot.child("nombre").getValue().toString();
-                campoUsuario.setText(nombre);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-            }
-        });
     }
 
     public void registrarUsuario(View view) {
         String correo = campoCorreo.getText().toString();
-        String usuario = campoUsuario.getText().toString();
+        final String nombre = campoNombre.getText().toString();
         String contraseña = campoContraseña.getText().toString();
-        String telefono = campoTelefono.getText().toString();
-        String trastorno;
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("correo", correo);
-        map.put("usuario", usuario);
-        map.put("contraseña", contraseña);
-        map.put("telefono", telefono);
-        map.put("trastorno", 0);
-        map.put("idioma", "e");
-
+        final String telefono = campoTelefono.getText().toString();
+        final String trastorno;
 
         if (rb_anorexia.isChecked() == true) {
             trastorno = "Anorexia";
@@ -89,25 +72,43 @@ public class RegistroActivity extends AppCompatActivity {
 
 
         //Comprobamos que el todos los campos tengan texto
-        if (!correo.equals("") && !usuario.equals("") && !contraseña.equals("") && !telefono.equals("")) {
+        if (!correo.equals("") && !nombre.equals("") && !contraseña.equals("") && !telefono.equals("")) {
             Pattern pattern = Pattern.compile("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+");
             Matcher mather = pattern.matcher(correo);
 
             //Comprobamos que el mail sea correcto
             if (mather.find() && telefono.length() == 9) {
-                //Cargamos los datos en el SharedPreferences de la Main Activity
-                MainActivity.editor.putString("mail", correo);
-                MainActivity.editor.putString("user", usuario);
-                MainActivity.editor.putString("pass", contraseña);
-                MainActivity.editor.putString("tel", telefono);
-                MainActivity.editor.putString("enf", trastorno);
-                MainActivity.editor.commit();
-
-                //Mostramos un toast y cargamos la MainActivity
-                Toast toast = Toast.makeText(getApplicationContext(), "Usuario registrado correctamente", Toast.LENGTH_SHORT);
-                toast.show();
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+                if (contraseña.length() > 6) {
+                    mAuth.createUserWithEmailAndPassword(correo, contraseña)
+                            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        Log.d(TAG, "createUserWithEmail:success");
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        map.put("nombre", nombre);
+                                        map.put("telefono", telefono);
+                                        map.put("trastorno", trastorno);
+                                        updateUI(user);
+                                    } else {
+                                        Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                        Toast.makeText(RegistroActivity.this, "No se ha podido crear el usuario",
+                                                Toast.LENGTH_SHORT).show();
+                                        updateUI(null);
+                                    }
+                                }
+                            });
+                    //mDatabase.child("user4").setValue(map);
+                    //mDatabase.child(currentUser.getUid()).setValue("hola");
+                    mDatabase.child("user3").setValue("adios");
+                    Toast toast = Toast.makeText(getApplicationContext(), "Usuario registrado correctamente", Toast.LENGTH_SHORT);
+                    toast.show();
+                    Intent intent = new Intent(this, MainActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast toast = Toast.makeText(getApplicationContext(), "La contraseña ha de tener mas de seis caracteres", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(), "El correo/telefono no es correcto", Toast.LENGTH_SHORT);
                 toast.show();
@@ -117,4 +118,8 @@ public class RegistroActivity extends AppCompatActivity {
             toast.show();
         }
     }
+
+    private void updateUI(FirebaseUser currentUser) {
+    }
+
 }
