@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
@@ -29,11 +30,10 @@ public class RegistroActivity extends AppCompatActivity {
 
     EditText campoCorreo, campoNombre, campoContraseña, campoTelefono;
     RadioButton rb_anorexia, rb_bulimia, rb_sobrepeso, rb_no;
+    Button btnRegistrar;
     private static final String TAG = "MainActivity";
     private FirebaseAuth mAuth;
-    FirebaseUser currentUser;
     private DatabaseReference mDatabase;
-    Map<String, Object> map = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +51,15 @@ public class RegistroActivity extends AppCompatActivity {
         rb_bulimia = (RadioButton) findViewById(R.id.rb_bulimia);
         rb_sobrepeso = (RadioButton) findViewById(R.id.rb_sobrepeso);
         rb_no = (RadioButton) findViewById(R.id.rb_no);
+
+        btnRegistrar = findViewById(R.id.btnRegistrar);
     }
 
     public void registrarUsuario(View view) {
-        String correo = campoCorreo.getText().toString();
+        btnRegistrar.setEnabled(false);
+        final String correo = campoCorreo.getText().toString();
         final String nombre = campoNombre.getText().toString();
-        String contraseña = campoContraseña.getText().toString();
+        final String contraseña = campoContraseña.getText().toString();
         final String telefono = campoTelefono.getText().toString();
         final String trastorno;
 
@@ -86,25 +89,26 @@ public class RegistroActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         Log.d(TAG, "createUserWithEmail:success");
                                         FirebaseUser user = mAuth.getCurrentUser();
+                                        Map<String, String> map = new HashMap<>();
                                         map.put("nombre", nombre);
                                         map.put("telefono", telefono);
                                         map.put("trastorno", trastorno);
-                                        updateUI(user);
+                                        map.put("correo", correo);
+                                        mDatabase.child(user.getUid()).setValue(map);
+                                        Toast toast = Toast.makeText(getApplicationContext(), "Usuario registrado correctamente", Toast.LENGTH_SHORT);
+                                        toast.show();
+                                        Intent intent = new Intent(RegistroActivity.this, MainActivity.class);
+                                        startActivity(intent);
+                                        btnRegistrar.setEnabled(true);
+
                                     } else {
                                         Log.w(TAG, "createUserWithEmail:failure", task.getException());
                                         Toast.makeText(RegistroActivity.this, "No se ha podido crear el usuario",
                                                 Toast.LENGTH_SHORT).show();
-                                        updateUI(null);
+                                        btnRegistrar.setEnabled(true);
                                     }
                                 }
                             });
-                    //mDatabase.child("user4").setValue(map);
-                    //mDatabase.child(currentUser.getUid()).setValue("hola");
-                    mDatabase.child("user3").setValue("adios");
-                    Toast toast = Toast.makeText(getApplicationContext(), "Usuario registrado correctamente", Toast.LENGTH_SHORT);
-                    toast.show();
-                    Intent intent = new Intent(this, MainActivity.class);
-                    startActivity(intent);
                 } else {
                     Toast toast = Toast.makeText(getApplicationContext(), "La contraseña ha de tener mas de seis caracteres", Toast.LENGTH_SHORT);
                     toast.show();

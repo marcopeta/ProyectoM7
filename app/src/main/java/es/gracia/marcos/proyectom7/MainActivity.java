@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void iniciarSesion(View view) {
+        btnIniciarSesion.setEnabled(false);
         mAuth.signInWithEmailAndPassword(correo.getText().toString().trim(), contraseña.getText().toString().trim())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -60,14 +61,13 @@ public class MainActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            btnIniciarSesion.setEnabled(false);
                             Intent intent = new Intent(MainActivity.this, CajaNavegacionActivity.class);
                             startActivity(intent);
                             btnIniciarSesion.setEnabled(true);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
+                            Toast.makeText(MainActivity.this, "Usuario/Contraseña incorrecto",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -75,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void abrirAsistencia(View view) {
-
+        Intent intent = new Intent(this, RecuperarContrasenaActivity.class);
+        startActivity(intent);
     }
 
     public void abrirRegistro(View view) {
