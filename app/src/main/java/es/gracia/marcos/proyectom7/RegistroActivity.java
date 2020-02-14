@@ -112,14 +112,17 @@ public class RegistroActivity extends AppCompatActivity {
                 } else {
                     Toast toast = Toast.makeText(getApplicationContext(), "La contraseña ha de tener mas de seis caracteres", Toast.LENGTH_SHORT);
                     toast.show();
+                    btnRegistrar.setEnabled(true);
                 }
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(), "El correo/telefono no es correcto", Toast.LENGTH_SHORT);
                 toast.show();
+                btnRegistrar.setEnabled(true);
             }
         } else {
             Toast toast = Toast.makeText(getApplicationContext(), "Hay campos vacios", Toast.LENGTH_SHORT);
             toast.show();
+            btnRegistrar.setEnabled(true);
         }
     }
 

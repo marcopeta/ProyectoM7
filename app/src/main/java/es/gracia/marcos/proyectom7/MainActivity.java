@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -28,6 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class MainActivity extends AppCompatActivity {
 
     EditText correo, contraseña;
+    CheckBox sesionInciada;
     Button btnIniciarSesion;
 
     //Inicializamos las SharedPreferences
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         correo = (EditText) findViewById(R.id.et_usuario);
         contraseña = (EditText) findViewById(R.id.et_contraseña);
         btnIniciarSesion = findViewById(R.id.btnIniciarSesion);
+        sesionInciada = findViewById(R.id.cb_keepSesion);
         //Le damos un valor a las SharedPreferences
         preferences = getSharedPreferences("registro", Context.MODE_PRIVATE);
         editor = preferences.edit();
@@ -61,6 +64,13 @@ public class MainActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            if (sesionInciada.isChecked()) {
+                                editor.putString("checked", "true");
+                                editor.commit();
+                            } else {
+                                editor.putString("checked", "false");
+                                editor.commit();
+                            }
                             Intent intent = new Intent(MainActivity.this, CajaNavegacionActivity.class);
                             startActivity(intent);
                             btnIniciarSesion.setEnabled(true);

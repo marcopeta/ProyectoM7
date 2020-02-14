@@ -18,4 +18,5 @@
     <string name="password">Contraseña</string>
     <string name="iniciar_sessi">Iniciar Sesión</string>
     <string name="mantenir_sessi_iniciada">Mantener Sesión iniciada</string>
+    <string name="progreso_fragment">Progreso</string>
 </resources>

@@ -18,4 +18,5 @@
     <string name="registrar">Registrar-se</string>
     <string name="icon">Logo caloriesPointer</string>
     <string name="password">Contrasenya</string>
+    <string name="progreso_fragment">Progres</string>
 </resources>

@@ -18,4 +18,5 @@
     <string name="registrar">Sign Up</string>
     <string name="icon">CaloriesPointer Logo</string>
     <string name="password">Password</string>
+    <string name="progreso_fragment">Progress</string>
 </resources>
