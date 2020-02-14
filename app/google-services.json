@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "889396290279",
+    "firebase_url": "https://calories-pointer.firebaseio.com",
+    "project_id": "calories-pointer",
+    "storage_bucket": "calories-pointer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889396290279:android:0e56931e45d70eff387842",
+        "android_client_info": {
+          "package_name": "es.gracia.marcos.proyectom7"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "889396290279-jtj045hhl2bir5tsiohsl9j93pg9sbmi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "es.gracia.marcos.proyectom7",
+            "certificate_hash": "6e9e13492ebae7f704ffc8b56069d1d9428c3b35"
+          }
+        },
+        {
+          "client_id": "889396290279-bkkldae4pm1lpfofudtqjsu33bar2ok3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDerX1kbl5n-feIMkwK_Y7dCEuR88OsfL4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "889396290279-bkkldae4pm1lpfofudtqjsu33bar2ok3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

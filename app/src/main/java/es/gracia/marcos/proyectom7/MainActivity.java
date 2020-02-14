@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(MainActivity.this, "Usuario/Contraseña incorrecto",
                                     Toast.LENGTH_SHORT).show();
+                            btnIniciarSesion.setEnabled(true);
                         }
                     }
                 });
