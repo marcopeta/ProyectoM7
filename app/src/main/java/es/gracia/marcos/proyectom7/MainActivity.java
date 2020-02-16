@@ -36,7 +36,11 @@ public class MainActivity extends AppCompatActivity {
     public static SharedPreferences preferences;
     public static SharedPreferences.Editor editor;
     private static final String TAG = "MainActivity.this";
-    private FirebaseAuth mAuth;
+    private static FirebaseAuth mAuth;
+
+    public static FirebaseUser getCurrentUser() {
+        return mAuth.getCurrentUser();
+    }
 
 
     @Override
