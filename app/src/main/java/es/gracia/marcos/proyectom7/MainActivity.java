@@ -65,23 +65,13 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            if (sesionInciada.isChecked()) {
-                                editor.putString("checked", "true");
-                                editor.commit();
-                            } else {
-                                editor.putString("checked", "false");
-                                editor.commit();
-                            }
                             Intent intent = new Intent(MainActivity.this, CajaNavegacionActivity.class);
                             startActivity(intent);
                             btnIniciarSesion.setEnabled(true);
                         } else {
-                            // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Usuario/Contraseña incorrecto",
+                            Toast.makeText(MainActivity.this, "Correo/Contraseña incorrecto",
                                     Toast.LENGTH_SHORT).show();
                             btnIniciarSesion.setEnabled(true);
                         }
