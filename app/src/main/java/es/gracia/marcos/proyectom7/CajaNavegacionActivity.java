@@ -45,7 +45,11 @@ public class CajaNavegacionActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
-    public FirebaseUser user;
+    public static FirebaseUser user;
+
+    public static FirebaseUser getUser() {
+        return user;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,14 +61,6 @@ public class CajaNavegacionActivity extends AppCompatActivity {
         correo = findViewById(R.id.tv_correo);
         user = MainActivity.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        /*FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -93,11 +89,6 @@ public class CajaNavegacionActivity extends AppCompatActivity {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
-
-
-        /*Asi se cambia el color ded la tool bar
-        Window window = getWindow();
-        window.setStatusBarColor(Color.parseColor("#8e24aa"));*/
     }
 
     @Override
