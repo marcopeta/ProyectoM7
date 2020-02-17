@@ -211,6 +211,7 @@ public class progresoFragment extends Fragment {
                     barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
                     BarData theData = new BarData(barDataSet);
                     barChart.setData(theData);
+                    barChart.zoom(1f,1f,1f,1f);
                     switch(contador){
                         case 5:
                             barChart.zoom(1.3f,1f,2f,1f);
@@ -268,6 +269,7 @@ public class progresoFragment extends Fragment {
                     description.setEnabled(false);
 
                     barChart.animateY(2000);
+                    barChart.invalidate();
                 } else {
                     barChart.setNoDataText("Aun no hay info");
                 }
