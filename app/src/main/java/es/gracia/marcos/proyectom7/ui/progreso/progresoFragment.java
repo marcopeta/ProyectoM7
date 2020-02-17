@@ -80,7 +80,8 @@ public class progresoFragment extends Fragment {
                                 if (dataSnapshot.child("progreso").exists()) {
                                     boolean existe = true;
                                     int contador = 0;
-                                    String datosDia = dataSnapshot.child("progreso").child("0").child("dia").getValue().toString();
+                                    long indice = dataSnapshot.child("progreso").getChildrenCount() - 1;
+                                    String datosDia = dataSnapshot.child("progreso").child(indice+"").child("dia").getValue().toString();
                                     Toast.makeText(getContext(), datosDia + " = " + (currentTime.get(Calendar.DAY_OF_MONTH) + "/" + (currentTime.get(Calendar.MONTH) + 1) + "/" + currentTime.get(Calendar.YEAR)), Toast.LENGTH_SHORT).show();
                                     if (datosDia.equals(currentTime.get(Calendar.DAY_OF_MONTH) + "/" + (currentTime.get(Calendar.MONTH) + 1) + "/" + currentTime.get(Calendar.YEAR))) {
                                         mDatabase.child("progreso").child((dataSnapshot.child("progreso").getChildrenCount()-1)+"").child("imc").setValue(parseFloat(etIMC.getText().toString()));
@@ -240,9 +241,11 @@ public class progresoFragment extends Fragment {
         xAxis.setValueFormatter(new IndexAxisValueFormatter(theDates));
 
         YAxis yAxis = barChart.getAxisLeft();
-        yAxis.setAxisMaximum(ultimoNum + 10);
-        yAxis.setAxisMinimum(ultimoNum - 10);
-        yAxis.setLabelCount(20);
+        yAxis.setAxisMaximum(55);
+        yAxis.setAxisMinimum(10);
+        yAxis.setAxisMaxValue(ultimoNum + 10);
+        yAxis.setAxisMinValue(ultimoNum - 10);
+        yAxis.setLabelCount(10);
         yAxis.setTextSize(15);
 
         YAxis rightAxis = barChart.getAxisRight();

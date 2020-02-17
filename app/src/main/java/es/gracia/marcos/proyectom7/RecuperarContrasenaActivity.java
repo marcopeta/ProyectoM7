@@ -56,7 +56,7 @@ public class RecuperarContrasenaActivity extends AppCompatActivity {
                     toastCorreo.show();
                 } else {
                     mDialog.dismiss();
-                    Toast toastCorreo = Toast.makeText(getApplicationContext(), "No se ha podido enviar el correo", Toast.LENGTH_SHORT);
+                    Toast toastCorreo = Toast.makeText(getApplicationContext(), "No se ha podido enviar el correo, comprueba  que este bien escrito", Toast.LENGTH_SHORT);
                     toastCorreo.show();
                 }
             }
