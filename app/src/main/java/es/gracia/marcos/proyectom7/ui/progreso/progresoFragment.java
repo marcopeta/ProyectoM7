@@ -85,6 +85,7 @@ public class progresoFragment extends Fragment {
                                     //Toast.makeText(getContext(), datosDia + " = " + (currentTime.get(Calendar.DAY_OF_MONTH) + "/" + (currentTime.get(Calendar.MONTH) + 1) + "/" + currentTime.get(Calendar.YEAR)), Toast.LENGTH_SHORT).show();
                                     if (datosDia.equals(currentTime.get(Calendar.DAY_OF_MONTH) + "/" + (currentTime.get(Calendar.MONTH) + 1) + "/" + currentTime.get(Calendar.YEAR))) {
                                         mDatabase.child("progreso").child((dataSnapshot.child("progreso").getChildrenCount()-1)+"").child("imc").setValue(parseFloat(etIMC.getText().toString()));
+                                        mostrarMensaje(etIMC.getText().toString());
                                         etIMC.setText("");
                                         cargarTabla();
                                     } else {
@@ -136,6 +137,7 @@ public class progresoFragment extends Fragment {
                     imc = parseFloat(etIMC.getText().toString());
                     mDatabase.child("progreso").child("" + (14)).child("dia").setValue(dia);
                     mDatabase.child("progreso").child("" + (14)).child("imc").setValue(imc);
+                    mostrarMensaje(etIMC.getText().toString());
                     etIMC.setText("");
 
 
@@ -143,6 +145,7 @@ public class progresoFragment extends Fragment {
                     Map<String, String> map = new HashMap<>();
                     map.put("dia", currentTime.get(Calendar.DAY_OF_MONTH) + "/" + (currentTime.get(Calendar.MONTH) + 1) + "/" + currentTime.get(Calendar.YEAR));
                     map.put("imc", etIMC.getText().toString());
+                    mostrarMensaje(etIMC.getText().toString());
                     etIMC.setText("");
                     long indice = dataSnapshot.child("progreso").getChildrenCount();
                     mDatabase.child("progreso").child(indice + "").setValue(map);
@@ -257,5 +260,28 @@ public class progresoFragment extends Fragment {
 
         barChart.animateY(2000);
         barChart.invalidate();
+    }
+
+    private void mostrarMensaje(String sImc){
+        Float imc = parseFloat(sImc);
+        String mensaje = "";
+        if (imc > 18.5 && imc < 25) {
+            mensaje = "Estas en un IMC correcto, enhorabuena!";
+        } else {
+            if (imc < 18.5) {
+                if (imc > 16){
+                    mensaje = "Tu IMC esta un poco por debajo de lo normal, pero no es un problema";
+                } else {
+                    mensaje = "Tu IMC esta por debajo de lo normal, deberias intentar comer mas Hidratos de Carbono";
+                }
+            } else {
+                if (imc < 35) {
+                    mensaje = "Tu IMC esta por encima de lo normal, deberia controlar los alimentos hipocaloricos que puedas consumir";
+                } else {
+                    mensaje = "Tu IMC esta muy por encima de lo normal, deberias acudir a un especialista";
+                }
+            }
+        }
+        Toast.makeText(getContext(), mensaje, Toast.LENGTH_LONG).show();
     }
 }
