@@ -1,5 +1,6 @@
 package es.gracia.marcos.proyectom7;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ public class RegistroActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
+    private ProgressDialog mDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +57,14 @@ public class RegistroActivity extends AppCompatActivity {
         rb_no = (RadioButton) findViewById(R.id.rb_no);
 
         btnRegistrar = findViewById(R.id.btnRegistrar);
+        mDialog = new ProgressDialog(this);
     }
 
     public void registrarUsuario(View view) {
         btnRegistrar.setEnabled(false);
+        mDialog.setMessage("Espera un momento...");
+        mDialog.setCanceledOnTouchOutside(false);
+        mDialog.show();
         final String correo = campoCorreo.getText().toString();
         final String nombre = campoNombre.getText().toString();
         final String contraseña = campoContraseña.getText().toString();
@@ -97,13 +103,14 @@ public class RegistroActivity extends AppCompatActivity {
                                         map.put("trastorno", trastorno);
                                         map.put("correo", correo);
                                         mDatabase.child(user.getUid()).setValue(map);
+                                        mDialog.dismiss();
                                         Toast toast = Toast.makeText(getApplicationContext(), "Usuario registrado correctamente", Toast.LENGTH_SHORT);
                                         toast.show();
                                         Intent intent = new Intent(RegistroActivity.this, MainActivity.class);
                                         startActivity(intent);
                                         btnRegistrar.setEnabled(true);
-
                                     } else {
+                                        mDialog.dismiss();
                                         Log.w(TAG, "createUserWithEmail:failure", task.getException());
                                         Toast.makeText(RegistroActivity.this, "No se ha podido crear el usuario",
                                                 Toast.LENGTH_SHORT).show();

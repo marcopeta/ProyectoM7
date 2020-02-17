@@ -3,6 +3,7 @@ package es.gracia.marcos.proyectom7;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -31,13 +32,14 @@ public class MainActivity extends AppCompatActivity {
 
     EditText correo, contraseña;
     CheckBox sesionInciada;
-    Button btnIniciarSesion;
+    Button btnIniciarSesion, btnAbrirRegistro, BtnAbrirAsistencia;
 
     //Inicializamos las SharedPreferences
     public static SharedPreferences preferences;
     public static SharedPreferences.Editor editor;
     private static final String TAG = "MainActivity.this";
     private static FirebaseAuth mAuth;
+    private ProgressDialog mDialog;
 
     public static FirebaseUser getCurrentUser() {
         return mAuth.getCurrentUser();
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         contraseña = (EditText) findViewById(R.id.et_contraseña);
         btnIniciarSesion = findViewById(R.id.btnIniciarSesion);
         sesionInciada = findViewById(R.id.cb_keepSesion);
+        mDialog = new ProgressDialog(this);
         //Le damos un valor a las SharedPreferences
         preferences = getSharedPreferences("registro", Context.MODE_PRIVATE);
         editor = preferences.edit();
@@ -62,25 +65,28 @@ public class MainActivity extends AppCompatActivity {
 
     public void iniciarSesion(View view) {
         try {
-            btnIniciarSesion.setEnabled(false);
+            mDialog.setMessage("Espera un momento...");
+            mDialog.setCanceledOnTouchOutside(false);
+            mDialog.show();
             mAuth.signInWithEmailAndPassword(correo.getText().toString().trim(), contraseña.getText().toString().trim())
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+                                mDialog.dismiss();
                                 Log.d(TAG, "signInWithEmail:success");
                                 Intent intent = new Intent(MainActivity.this, CajaNavegacionActivity.class);
                                 startActivity(intent);
-                                btnIniciarSesion.setEnabled(true);
                             } else {
+                                mDialog.dismiss();
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
                                 Toast.makeText(MainActivity.this, "Correo/Contraseña incorrecto",
                                         Toast.LENGTH_SHORT).show();
-                                btnIniciarSesion.setEnabled(true);
                             }
                         }
                     });
         } catch (Exception e){
+            mDialog.dismiss();
             Toast.makeText(this, "Algo ha salido mal...", Toast.LENGTH_SHORT).show();
         }
     }

@@ -87,10 +87,11 @@
         app:layout_constraintTop_toBottomOf="@+id/et_contraseña" />
 
     <Button
+        android:id="@+id/btnAbrirRegistro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="48dp"
         android:background="@drawable/btn_redondeado_white"
         android:contentDescription="@string/registrar"
@@ -99,12 +100,12 @@
         android:textColor="@color/green"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAbrirAsistencia" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnAbrirAsistencia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
