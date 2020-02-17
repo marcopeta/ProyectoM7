@@ -1,6 +1,7 @@
 package es.gracia.marcos.proyectom7;
 
 import android.app.Dialog;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -57,6 +58,7 @@ public class CajaNavegacionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_caja_navegacion);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         usuario = findViewById(R.id.tv_usuario);
         correo = findViewById(R.id.tv_correo);
         user = MainActivity.getCurrentUser();
