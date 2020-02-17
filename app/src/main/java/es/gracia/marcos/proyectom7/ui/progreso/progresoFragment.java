@@ -80,23 +80,10 @@ public class progresoFragment extends Fragment {
                                 if (dataSnapshot.child("progreso").exists()) {
                                     boolean existe = true;
                                     int contador = 0;
-                                    while (existe) {
-                                        if (contador <= 14) {
-                                            if (dataSnapshot.child("progreso").child("" + contador).exists()) {
-                                                contador++;
-                                            } else {
-                                                contador--;
-                                                existe = false;
-                                            }
-                                        } else {
-                                            contador = 14;
-                                            existe = false;
-                                        }
-                                    }
-                                    String datosDia = dataSnapshot.child("progreso").child("" + contador).child("dia").getValue().toString();
-                                    //Toast.makeText(getContext(), currentTime.get(Calendar.DAY_OF_MONTH)+"/"+(currentTime.get(Calendar.MONTH)+1)+"/"+currentTime.get(Calendar.YEAR), Toast.LENGTH_SHORT).show();
+                                    String datosDia = dataSnapshot.child("progreso").child("0").child("dia").getValue().toString();
+                                    Toast.makeText(getContext(), datosDia + " = " + (currentTime.get(Calendar.DAY_OF_MONTH) + "/" + (currentTime.get(Calendar.MONTH) + 1) + "/" + currentTime.get(Calendar.YEAR)), Toast.LENGTH_SHORT).show();
                                     if (datosDia.equals(currentTime.get(Calendar.DAY_OF_MONTH) + "/" + (currentTime.get(Calendar.MONTH) + 1) + "/" + currentTime.get(Calendar.YEAR))) {
-                                        mDatabase.child("progreso").child(contador + "").child("imc").setValue(parseFloat(etIMC.getText().toString()));
+                                        mDatabase.child("progreso").child((dataSnapshot.child("progreso").getChildrenCount()-1)+"").child("imc").setValue(parseFloat(etIMC.getText().toString()));
                                         etIMC.setText("");
                                         cargarTabla();
                                     } else {
@@ -135,45 +122,31 @@ public class progresoFragment extends Fragment {
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("progreso").exists()) {
-                    boolean existe = true;
-                    int contador = 0;
+                if (dataSnapshot.child("progreso").getChildrenCount() > 14) {
                     String dia;
                     Float imc;
-                    while (existe) {
-                        if (dataSnapshot.child("progreso").child("" + contador).exists()) {
-                            contador++;
-                        } else if (contador > 14) {
-                            for (int i = 1; i <= 14; i++) {
-                                dia = dataSnapshot.child("progreso").child("" + i).child("dia").getValue().toString();
-                                imc = parseFloat(dataSnapshot.child("progreso").child("" + i).child("imc").getValue().toString());
-                                mDatabase.child("progreso").child("" + (i - 1)).child("dia").setValue(dia);
-                                mDatabase.child("progreso").child("" + (i - 1)).child("imc").setValue(imc);
-                            }
-                            dia = currentTime.get(Calendar.DAY_OF_MONTH)+"/"+(currentTime.get(Calendar.MONTH)+1)+"/"+currentTime.get(Calendar.YEAR);
-                            imc = parseFloat(etIMC.getText().toString());
-                            mDatabase.child("progreso").child("" + (14)).child("dia").setValue(dia);
-                            mDatabase.child("progreso").child("" + (14)).child("imc").setValue(imc);
-                            etIMC.setText("");
-                            existe = false;
-                        } else {
-                            dia = currentTime.get(Calendar.DAY_OF_MONTH)+"/"+(currentTime.get(Calendar.MONTH)+1)+"/"+currentTime.get(Calendar.YEAR);
-                            imc = parseFloat(etIMC.getText().toString());
-                            mDatabase.child("progreso").child(""+(contador)).child("dia").setValue(dia);
-                            mDatabase.child("progreso").child(""+(contador)).child("imc").setValue(imc);
-                            etIMC.setText("");
-                            existe = false;
-                        }
+                    for (int i = 1; i <= 14; i++) {
+                        dia = dataSnapshot.child("progreso").child("" + i).child("dia").getValue().toString();
+                        imc = parseFloat(dataSnapshot.child("progreso").child("" + i).child("imc").getValue().toString());
+                        mDatabase.child("progreso").child("" + (i - 1)).child("dia").setValue(dia);
+                        mDatabase.child("progreso").child("" + (i - 1)).child("imc").setValue(imc);
                     }
-                    cargarTabla();
+                    dia = currentTime.get(Calendar.DAY_OF_MONTH) + "/" + (currentTime.get(Calendar.MONTH) + 1) + "/" + currentTime.get(Calendar.YEAR);
+                    imc = parseFloat(etIMC.getText().toString());
+                    mDatabase.child("progreso").child("" + (14)).child("dia").setValue(dia);
+                    mDatabase.child("progreso").child("" + (14)).child("imc").setValue(imc);
+                    etIMC.setText("");
+
+
                 } else {
                     Map<String, String> map = new HashMap<>();
-                    map.put("dia", currentTime.get(Calendar.DAY_OF_MONTH)+"/"+(currentTime.get(Calendar.MONTH)+1)+"/"+currentTime.get(Calendar.YEAR));
+                    map.put("dia", currentTime.get(Calendar.DAY_OF_MONTH) + "/" + (currentTime.get(Calendar.MONTH) + 1) + "/" + currentTime.get(Calendar.YEAR));
                     map.put("imc", etIMC.getText().toString());
                     etIMC.setText("");
-                    mDatabase.child("progreso").child("" + 0).setValue(map);
-                    cargarTabla();
+                    long indice = dataSnapshot.child("progreso").getChildrenCount();
+                    mDatabase.child("progreso").child(indice + "").setValue(map);
                 }
+                cargarTabla();
             }
 
             @Override
@@ -191,85 +164,17 @@ public class progresoFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
-                    boolean existe = true;
-                    int contador = 0;
                     Float ultimoNum = 0f;
-                    while(existe){
-                        try {
-                            String dia = dataSnapshot.child(""+contador).child("dia").getValue().toString();
-                            Float imc = parseFloat(dataSnapshot.child(""+contador).child("imc").getValue().toString());
-                            theDates.add(dia);
-                            barEntries.add(new BarEntry(contador, imc));
-                            ultimoNum = imc;
-                            contador++;
-                        } catch (Exception e){
-                            existe = false;
-                        }
+
+                    for (int i = 0; i < dataSnapshot.getChildrenCount(); i++){
+                        String dia = dataSnapshot.child(i+"").child("dia").getValue().toString();
+                        Float imc = parseFloat(dataSnapshot.child(i+"").child("imc").getValue().toString());
+                        theDates.add(dia);
+                        barEntries.add(new BarEntry(i, imc));
+                        ultimoNum = imc;
                     }
-                    BarDataSet barDataSet = new BarDataSet(barEntries,"IMCs");
-                    barDataSet.setValueTextSize(15);
-                    barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-                    BarData theData = new BarData(barDataSet);
-                    barChart.setData(theData);
-                    barChart.zoom(1f,1f,1f,1f);
-                    switch(contador){
-                        case 5:
-                            barChart.zoom(1.3f,1f,2f,1f);
-                            break;
-                        case 6:
-                            barChart.zoom(1.4f,1f,2f,1f);
-                            break;
-                        case 7:
-                            barChart.zoom(1.5f,1f,2f,1f);
-                            break;
-                        case 8:
-                            barChart.zoom(1.6f,1f,2f,1f);
-                            break;
-                        case 9:
-                            barChart.zoom(1.7f,1f,2f,1f);
-                            break;
-                        case 10:
-                            barChart.zoom(1.8f,1f,2f,1f);
-                            break;
-                        case 11:
-                            barChart.zoom(1.9f,1f,2f,1f);
-                            break;
-                        case 12:
-                            barChart.zoom(2f,1f,2f,1f);
-                            break;
-                        case 13:
-                            barChart.zoom(2.2f,1f,2f,1f);
-                            break;
-                        case 14:
-                            barChart.zoom(2.25f,1f,2f,1f);
-                            break;
-                        case 15:
-                            barChart.zoom(2.5f,1f,2f,1f);
-                            break;
 
-                    }
-                    XAxis xAxis = barChart.getXAxis();
-                    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-                    xAxis.setDrawGridLines(false);
-                    xAxis.setDrawAxisLine(false);
-                    xAxis.setGranularity(1);
-                    xAxis.setValueFormatter(new IndexAxisValueFormatter(theDates));
-
-                    YAxis yAxis = barChart.getAxisLeft();
-                    yAxis.setAxisMaximum(ultimoNum + 10);
-                    yAxis.setAxisMinimum(ultimoNum - 10);
-                    yAxis.setLabelCount(20);
-                    yAxis.setTextSize(15);
-
-                    YAxis rightAxis = barChart.getAxisRight();
-                    rightAxis.setEnabled(false);
-                    Legend legend = barChart.getLegend();
-                    legend.setEnabled(false);
-                    Description description = barChart.getDescription();
-                    description.setEnabled(false);
-
-                    barChart.animateY(2000);
-                    barChart.invalidate();
+                    formatoTabla(dataSnapshot, ultimoNum);
                 } else {
                     barChart.setNoDataText("Aun no hay info");
                 }
@@ -280,5 +185,74 @@ public class progresoFragment extends Fragment {
                 barChart.setNoDataText("Aun no hay info");
             }
         });
+    }
+
+    private void formatoTabla(DataSnapshot dataSnapshot, Float ultimoNum) {
+        BarDataSet barDataSet = new BarDataSet(barEntries,"IMCs");
+        barDataSet.setValueTextSize(15);
+        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        BarData theData = new BarData(barDataSet);
+        barChart.setData(theData);
+        barChart.zoom(1f,1f,1f,1f);
+
+        switch((int) dataSnapshot.getChildrenCount() - 1){
+            case 5:
+                barChart.zoom(1.3f,1f,2f,1f);
+                break;
+            case 6:
+                barChart.zoom(1.4f,1f,2f,1f);
+                break;
+            case 7:
+                barChart.zoom(1.5f,1f,2f,1f);
+                break;
+            case 8:
+                barChart.zoom(1.6f,1f,2f,1f);
+                break;
+            case 9:
+                barChart.zoom(1.7f,1f,2f,1f);
+                break;
+            case 10:
+                barChart.zoom(1.8f,1f,2f,1f);
+                break;
+            case 11:
+                barChart.zoom(1.9f,1f,2f,1f);
+                break;
+            case 12:
+                barChart.zoom(2f,1f,2f,1f);
+                break;
+            case 13:
+                barChart.zoom(2.2f,1f,2f,1f);
+                break;
+            case 14:
+                barChart.zoom(2.25f,1f,2f,1f);
+                break;
+            case 15:
+                barChart.zoom(2.5f,1f,2f,1f);
+                break;
+
+        }
+
+        XAxis xAxis = barChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setDrawGridLines(false);
+        xAxis.setDrawAxisLine(false);
+        xAxis.setGranularity(1);
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(theDates));
+
+        YAxis yAxis = barChart.getAxisLeft();
+        yAxis.setAxisMaximum(ultimoNum + 10);
+        yAxis.setAxisMinimum(ultimoNum - 10);
+        yAxis.setLabelCount(20);
+        yAxis.setTextSize(15);
+
+        YAxis rightAxis = barChart.getAxisRight();
+        rightAxis.setEnabled(false);
+        Legend legend = barChart.getLegend();
+        legend.setEnabled(false);
+        Description description = barChart.getDescription();
+        description.setEnabled(false);
+
+        barChart.animateY(2000);
+        barChart.invalidate();
     }
 }

@@ -59,24 +59,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void iniciarSesion(View view) {
-        btnIniciarSesion.setEnabled(false);
-        mAuth.signInWithEmailAndPassword(correo.getText().toString().trim(), contraseña.getText().toString().trim())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "signInWithEmail:success");
-                            Intent intent = new Intent(MainActivity.this, CajaNavegacionActivity.class);
-                            startActivity(intent);
-                            btnIniciarSesion.setEnabled(true);
-                        } else {
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Correo/Contraseña incorrecto",
-                                    Toast.LENGTH_SHORT).show();
-                            btnIniciarSesion.setEnabled(true);
+        try {
+            btnIniciarSesion.setEnabled(false);
+            mAuth.signInWithEmailAndPassword(correo.getText().toString().trim(), contraseña.getText().toString().trim())
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Log.d(TAG, "signInWithEmail:success");
+                                Intent intent = new Intent(MainActivity.this, CajaNavegacionActivity.class);
+                                startActivity(intent);
+                                btnIniciarSesion.setEnabled(true);
+                            } else {
+                                Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                Toast.makeText(MainActivity.this, "Correo/Contraseña incorrecto",
+                                        Toast.LENGTH_SHORT).show();
+                                btnIniciarSesion.setEnabled(true);
+                            }
                         }
-                    }
-                });
+                    });
+        } catch (Exception e){
+            Toast.makeText(this, "Algo ha salido mal...", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void abrirAsistencia(View view) {

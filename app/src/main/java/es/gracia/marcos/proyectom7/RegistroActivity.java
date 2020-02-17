@@ -64,13 +64,13 @@ public class RegistroActivity extends AppCompatActivity {
         final String trastorno;
 
         if (rb_anorexia.isChecked() == true) {
-            trastorno = "Anorexia";
+            trastorno = "1";
         } else if (rb_bulimia.isChecked() == true) {
-            trastorno = "Bulimia";
+            trastorno = "2";
         } else if (rb_sobrepeso.isChecked() == true) {
-            trastorno = "Sobrepeso";
+            trastorno = "3";
         } else {
-            trastorno = "No";
+            trastorno = "0";
         }
 
 
