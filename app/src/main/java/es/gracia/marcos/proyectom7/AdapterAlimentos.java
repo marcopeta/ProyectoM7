@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.LinkedList;
@@ -43,11 +42,19 @@ public class AdapterAlimentos extends RecyclerView.Adapter<AdapterAlimentos.View
     class ViewHolderAlimentos extends RecyclerView.ViewHolder
             /*implements View.OnClickListener*/ {
         public final TextView AlimentoItemView;
+        public final TextView CantidadItemView;
+        public final TextView GrasasItemView;
+        public final TextView HidratosItemView;
+        public final TextView ProteinasItemView;
         public final TextView CaloriasItemView;
 
         ViewHolderAlimentos(View itemView) {
             super(itemView);
             AlimentoItemView = itemView.findViewById(R.id.idAlimento);
+            CantidadItemView = itemView.findViewById(R.id.idCantidad);
+            GrasasItemView = itemView.findViewById(R.id.idGrasas);
+            HidratosItemView = itemView.findViewById(R.id.idHidratos);
+            ProteinasItemView = itemView.findViewById(R.id.idProteinas);
             CaloriasItemView = itemView.findViewById(R.id.idCalorias);
             //this.mAdapter = adapter;
             /*itemView.setOnClickListener(this);*/
@@ -55,7 +62,11 @@ public class AdapterAlimentos extends RecyclerView.Adapter<AdapterAlimentos.View
 
         void bindTo(Alimento currentAlimento) {
             AlimentoItemView.setText(currentAlimento.getNombre());
-            CaloriasItemView.setText("Calorias: " + Integer.toString(currentAlimento.getCalorias()));
+            CantidadItemView.setText(currentAlimento.getCantidad() + currentAlimento.getUnidad());
+            GrasasItemView.setText("G: "+currentAlimento.getGrasas());
+            HidratosItemView.setText("Ch: "+currentAlimento.getHidratos());
+            ProteinasItemView.setText("P: "+currentAlimento.getProteinas());
+            CaloriasItemView.setText("Kc: "+currentAlimento.getCalorias());
         }
 
         /*@Override
