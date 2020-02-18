@@ -42,8 +42,9 @@ public class MainActivity extends AppCompatActivity {
     private static FirebaseAuth mAuth;
     private ProgressDialog mDialog;
     private boolean activado;
-    private static final String STRING_PREFERENCES = "es.gracia.marcos.proyectom7";
-    private static final String PREFERENCE_STATE = "estado.checkbox.sesion";
+    public static final String STRING_PREFERENCES = "es.gracia.marcos.proyectom7";
+    public static final String PREFERENCE_STATE = "estado.checkbox.sesion";
+    public static final String PREFERENCE_USER = "user.login";
 
     public static FirebaseUser getCurrentUser() {
         return mAuth.getCurrentUser();
@@ -122,6 +123,10 @@ public class MainActivity extends AppCompatActivity {
     /*public void iniciarSesion(View view) {
         iniciadoSesion();
     }*/
+
+    public static void changeState(Context c, boolean b){
+        SharedPreferences p = c.getSharedPreferences(STRING_PREFERENCES, MODE_PRIVATE);
+        p.edit().putBoolean(PREFERENCE_STATE, b).apply();    }
 
     public void keepSession() {
         SharedPreferences p = getSharedPreferences(STRING_PREFERENCES, MODE_PRIVATE);
