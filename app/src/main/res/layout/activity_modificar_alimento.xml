@@ -31,7 +31,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/etAnadirNombre"
+                android:id="@+id/etModificarNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -42,7 +42,7 @@
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/etAnadirMarca"
+                android:id="@+id/etModificarMarca"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -59,7 +59,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/etAnadirCantidad"
+                    android:id="@+id/etModificarCantidad"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -70,7 +70,7 @@
                     android:inputType="number" />
 
                 <EditText
-                    android:id="@+id/etAnadirUnidad"
+                    android:id="@+id/etModificarUnidad"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -82,79 +82,138 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="Grasas:"
+                android:textSize="20sp" />
+
             <EditText
-                android:id="@+id/etAnadirGrasas"
+                android:id="@+id/etModificarGrasas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
                 android:ems="10"
-                android:hint="Grasas"
                 android:inputType="number|numberDecimal" />
 
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="Hidratos de Carbono:"
+                android:textSize="20sp" />
+
             <EditText
-                android:id="@+id/etAnadirHidratos"
+                android:id="@+id/etModificarHidratos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
                 android:ems="10"
-                android:hint="Hidratos de Carbono"
                 android:inputType="numberDecimal" />
 
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="Proteinas:"
+                android:textSize="20sp" />
+
             <EditText
-                android:id="@+id/etAnadirProteinas"
+                android:id="@+id/etModificarProteinas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="50dp"
                 android:ems="10"
-                android:hint="Proteinas"
                 android:inputType="numberDecimal" />
 
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="Calorias:"
+                android:textSize="20sp" />
+
             <EditText
-                android:id="@+id/etAnadirCalorias"
+                android:id="@+id/etModificarCalorias"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="40dp"
-                android:hint="Calorias"
                 android:inputType="number" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="horizontal"
                 android:paddingLeft="10dp">
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/fabDenegarAlimento"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|start"
-                    android:layout_margin="@dimen/fab_margin"
-                    android:layout_marginStart="339dp"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    app:backgroundTint="#EB0202"
-                    app:fabSize="normal"
-                    app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+                    android:layout_weight="0.5"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp">
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/fabAceptarAlimento"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    android:layout_margin="@dimen/fab_margin"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    app:backgroundTint="#76C91B"
-                    app:fabSize="normal"
-                    app:srcCompat="@android:drawable/ic_menu_save" />
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fabDenegarModificacionAlimento"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|start"
+                        android:layout_margin="@dimen/fab_margin"
+                        android:layout_marginStart="339dp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        app:backgroundTint="#EB0202"
+                        app:fabSize="normal"
+                        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fabAceptarModificacionAlimento"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|end"
+                        android:layout_margin="@dimen/fab_margin"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        app:backgroundTint="#76C91B"
+                        app:fabSize="normal"
+                        app:srcCompat="@android:drawable/ic_menu_save" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:orientation="horizontal"
+                    android:paddingRight="10dp">
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fabEliminarAlimento"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|end"
+                        android:layout_margin="@dimen/fab_margin"
+                        android:layout_marginStart="339dp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        app:backgroundTint="#EB0202"
+                        app:fabSize="normal"
+                        app:srcCompat="@android:drawable/ic_menu_delete" />
+
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>

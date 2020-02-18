@@ -1,6 +1,7 @@
 package es.gracia.marcos.proyectom7;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,6 +74,8 @@ public class AdapterAlimentos extends RecyclerView.Adapter<AdapterAlimentos.View
         @Override
         public void onClick(View v) {
             //this.itemClickListener.onItemClickListener(v, getLayoutPosition());
+            Intent intent = new Intent(v.getContext(), ModificarAlimentoActivity.class);
+            v.getContext().startActivity(intent);
         }
 
         public void setItemClickListener(ItemClickListener ic) {

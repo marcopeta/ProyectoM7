@@ -86,11 +86,8 @@ public class AnadirAlimentoActivity extends AppCompatActivity {
                                     mDatabase.child("alimentos").child(posicion + "").child("proteinas").setValue(etProteinas.getText().toString());
                                     mDatabase.child("alimentos").child(posicion + "").child("calorias").setValue(etCalorias.getText().toString());
 
-                                    AlimentosFragment someFragment= new AlimentosFragment();
-                                    FragmentTransaction transaction = someFragment.getFragmentManager().beginTransaction();
-                                    transaction.replace(R.id.nav_host_fragment, someFragment );
-                                    transaction.addToBackStack(null);
-                                    transaction.commit();
+                                    backEnabled = true;
+                                    onBackPressed();
                                 }
                             } else {
                                 Toast.makeText(AnadirAlimentoActivity.this, "La unidad no es correcta", Toast.LENGTH_SHORT).show();
