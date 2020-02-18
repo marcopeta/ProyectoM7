@@ -34,6 +34,39 @@ public class AdapterAlimentos extends RecyclerView.Adapter<AdapterAlimentos.View
     public void onBindViewHolder(AdapterAlimentos.ViewHolderAlimentos holder, int position) {
         Alimento currentAlimento = listaAlimentos.get(position);
         holder.bindTo(currentAlimento);
+
+        holder.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onItemClickListener(View v, int position) {
+                String alimento = listaAlimentos.get(position).getNombre();
+                String marca = listaAlimentos.get(position).getMarca();
+                Float cantidad = listaAlimentos.get(position).getCantidad();
+                String unidad = listaAlimentos.get(position).getUnidad();
+                Float grasas = listaAlimentos.get(position).getGrasas();
+                Float hidratos = listaAlimentos.get(position).getHidratos();
+                Float proteinas = listaAlimentos.get(position).getProteinas();
+                int calorias = listaAlimentos.get(position).getCalorias();
+
+                Intent intent = new Intent(v.getContext(), ModificarAlimentoActivity.class);
+                intent.putExtra("nombre", alimento);
+                intent.putExtra("marca", marca);
+                intent.putExtra("cantidad", cantidad);
+                intent.putExtra("unidad", unidad);
+                intent.putExtra("grasas", grasas);
+                intent.putExtra("hidratos", hidratos);
+                intent.putExtra("proteinas", proteinas);
+                intent.putExtra("calorias", calorias);
+                intent.putExtra("posicion", position);
+                v.getContext().startActivity(intent);
+            }
+        });
+
+        /*holder.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onItemClickListener(View v, int position) {
+
+            }
+        });*/
     }
 
     @Override
@@ -68,14 +101,14 @@ public class AdapterAlimentos extends RecyclerView.Adapter<AdapterAlimentos.View
             GrasasItemView.setText("G: "+currentAlimento.getGrasas());
             HidratosItemView.setText("Ch: "+currentAlimento.getHidratos());
             ProteinasItemView.setText("P: "+currentAlimento.getProteinas());
-            CaloriasItemView.setText("Kc: "+currentAlimento.getCalorias());
+            CaloriasItemView.setText("Kcal: "+currentAlimento.getCalorias());
         }
 
         @Override
         public void onClick(View v) {
-            //this.itemClickListener.onItemClickListener(v, getLayoutPosition());
-            Intent intent = new Intent(v.getContext(), ModificarAlimentoActivity.class);
-            v.getContext().startActivity(intent);
+            this.itemClickListener.onItemClickListener(v, getLayoutPosition());
+            //Intent intent = new Intent(v.getContext(), ModificarAlimentoActivity.class);
+            //v.getContext().startActivity(intent);
         }
 
         public void setItemClickListener(ItemClickListener ic) {

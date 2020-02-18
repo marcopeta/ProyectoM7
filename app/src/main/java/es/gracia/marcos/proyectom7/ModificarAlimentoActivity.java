@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -31,6 +32,7 @@ public class ModificarAlimentoActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     EditText etNombre, etMarca, etUnidad, etCantidad, etGrasas, etHidratos, etProteinas, etCalorias;
     private boolean backEnabled = false;
+    private int posicion;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +48,21 @@ public class ModificarAlimentoActivity extends AppCompatActivity {
         etHidratos = findViewById(R.id.etModificarHidratos);
         etProteinas = findViewById(R.id.etModificarProteinas);
         etCalorias = findViewById(R.id.etModificarCalorias);
+
+        Intent intent = getIntent();
+
+        etNombre.setText(intent.getStringExtra("nombre"));
+        etMarca.setText(intent.getStringExtra("marca"));
+        etUnidad.setText(intent.getStringExtra("unidad"));
+        etCantidad.setText(intent.getFloatExtra("cantidad", 0)+"");
+        etGrasas.setText(intent.getFloatExtra("grasas", 0)+"");
+        etHidratos.setText(intent.getFloatExtra("hidratos", 0)+"");
+        etProteinas.setText(intent.getFloatExtra("proteinas", 0)+"");
+        etCalorias.setText(intent.getIntExtra("calorias", 0)+"");
+
+        posicion = intent.getIntExtra("posicion", 0);
+
+
 
 
         FloatingActionButton fab1 = (FloatingActionButton) findViewById(R.id.fabAceptarModificacionAlimento);
