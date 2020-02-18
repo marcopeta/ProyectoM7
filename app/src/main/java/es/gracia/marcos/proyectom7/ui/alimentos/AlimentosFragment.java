@@ -26,7 +26,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 import es.gracia.marcos.proyectom7.AdapterAlimentos;
+import es.gracia.marcos.proyectom7.AnadirAlimentoActivity;
 import es.gracia.marcos.proyectom7.CajaNavegacionActivity;
+import es.gracia.marcos.proyectom7.MainActivity;
 import es.gracia.marcos.proyectom7.R;
 
 import static java.lang.Float.parseFloat;
@@ -88,11 +90,8 @@ public class AlimentosFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AnadirAlimentoFragment someFragment= new AnadirAlimentoFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.nav_host_fragment, someFragment ); // give your fragment container id in first parameter
-                transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
-                transaction.commit();
+                Intent intent = new Intent(getActivity(), AnadirAlimentoActivity.class);
+                getActivity().startActivity(intent);
             }
         });
         

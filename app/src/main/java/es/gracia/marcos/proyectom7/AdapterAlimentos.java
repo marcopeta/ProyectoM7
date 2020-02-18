@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.LinkedList;
 
 import es.gracia.marcos.proyectom7.ui.alimentos.Alimento;
+import es.gracia.marcos.proyectom7.ui.alimentos.ItemClickListener;
 
 public class AdapterAlimentos extends RecyclerView.Adapter<AdapterAlimentos.ViewHolderAlimentos> {
     private final LinkedList<Alimento> listaAlimentos;
@@ -39,14 +40,14 @@ public class AdapterAlimentos extends RecyclerView.Adapter<AdapterAlimentos.View
         return listaAlimentos.size();
     }
 
-    class ViewHolderAlimentos extends RecyclerView.ViewHolder
-            /*implements View.OnClickListener*/ {
+    class ViewHolderAlimentos extends RecyclerView.ViewHolder implements View.OnClickListener{
         public final TextView AlimentoItemView;
         public final TextView CantidadItemView;
         public final TextView GrasasItemView;
         public final TextView HidratosItemView;
         public final TextView ProteinasItemView;
         public final TextView CaloriasItemView;
+        ItemClickListener itemClickListener;
 
         ViewHolderAlimentos(View itemView) {
             super(itemView);
@@ -57,7 +58,7 @@ public class AdapterAlimentos extends RecyclerView.Adapter<AdapterAlimentos.View
             ProteinasItemView = itemView.findViewById(R.id.idProteinas);
             CaloriasItemView = itemView.findViewById(R.id.idCalorias);
             //this.mAdapter = adapter;
-            /*itemView.setOnClickListener(this);*/
+            itemView.setOnClickListener(this);
         }
 
         void bindTo(Alimento currentAlimento) {
@@ -67,6 +68,15 @@ public class AdapterAlimentos extends RecyclerView.Adapter<AdapterAlimentos.View
             HidratosItemView.setText("Ch: "+currentAlimento.getHidratos());
             ProteinasItemView.setText("P: "+currentAlimento.getProteinas());
             CaloriasItemView.setText("Kc: "+currentAlimento.getCalorias());
+        }
+
+        @Override
+        public void onClick(View v) {
+            //this.itemClickListener.onItemClickListener(v, getLayoutPosition());
+        }
+
+        public void setItemClickListener(ItemClickListener ic) {
+            this.itemClickListener = ic;
         }
 
         /*@Override

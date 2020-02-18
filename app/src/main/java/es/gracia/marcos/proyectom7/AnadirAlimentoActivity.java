@@ -1,4 +1,4 @@
-package es.gracia.marcos.proyectom7.ui.alimentos;
+package es.gracia.marcos.proyectom7;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,10 +8,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -23,46 +21,42 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.LinkedList;
 
-import es.gracia.marcos.proyectom7.AdapterAlimentos;
-import es.gracia.marcos.proyectom7.CajaNavegacionActivity;
-import es.gracia.marcos.proyectom7.R;
-import io.grpc.internal.LongCounter;
+import es.gracia.marcos.proyectom7.ui.alimentos.Alimento;
+import es.gracia.marcos.proyectom7.ui.alimentos.AlimentosFragment;
 
-import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
 
-public class AnadirAlimentoFragment extends Fragment {
+public class AnadirAlimentoActivity extends AppCompatActivity {
 
     private final LinkedList<Alimento> listaAlimentos = new LinkedList<>();
     private RecyclerView recyclerAlimentos;
     private AdapterAlimentos aAdapter;
     private DatabaseReference mDatabase;
-    View root;
     EditText etNombre, etMarca, etUnidad, etCantidad, etGrasas, etHidratos, etProteinas, etCalorias;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        root = inflater.inflate(R.layout.fragment_anadir_alimento, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_anadir_alimento);
         mDatabase = FirebaseDatabase.getInstance().getReference("Users/" + CajaNavegacionActivity.getUser().getUid());
-        etNombre = root.findViewById(R.id.etAnadirNombre);
-        etMarca = root.findViewById(R.id.etAnadirMarca);
-        etUnidad = root.findViewById(R.id.etAnadirUnidad);
-        etCantidad = root.findViewById(R.id.etAnadirCantidad);
-        etGrasas = root.findViewById(R.id.etAnadirGrasas);
-        etHidratos = root.findViewById(R.id.etAnadirHidratos);
-        etProteinas = root.findViewById(R.id.etAnadirProteinas);
-        etCalorias = root.findViewById(R.id.etAnadirCalorias);
+        etNombre = findViewById(R.id.etAnadirNombre);
+        etMarca = findViewById(R.id.etAnadirMarca);
+        etUnidad = findViewById(R.id.etAnadirUnidad);
+        etCantidad = findViewById(R.id.etAnadirCantidad);
+        etGrasas = findViewById(R.id.etAnadirGrasas);
+        etHidratos = findViewById(R.id.etAnadirHidratos);
+        etProteinas = findViewById(R.id.etAnadirProteinas);
+        etCalorias = findViewById(R.id.etAnadirCalorias);
 
 
-        FloatingActionButton fab1 = (FloatingActionButton) root.findViewById(R.id.fabAceptarAlimento);
+        FloatingActionButton fab1 = (FloatingActionButton) findViewById(R.id.fabAceptarAlimento);
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (true /*comprobar que los campos contengan texto*/) {
-                            if (true /*comprobar que la unidad sea correcta*/) {
+                        if (!etNombre.getText().toString().isEmpty() && !etMarca.getText().toString().isEmpty() && !etUnidad.getText().toString().isEmpty() && !etCantidad.getText().toString().isEmpty() && !etGrasas.getText().toString().isEmpty() && !etHidratos.getText().toString().isEmpty() && !etProteinas.getText().toString().isEmpty() && !etCalorias.getText().toString().isEmpty()) {
+                            if (etUnidad.getText().toString().length() <= 2) {
                                 Boolean existe = false;
                                 Long posicion = dataSnapshot.child("alimentos").getChildrenCount();
                                 Long acaba = dataSnapshot.child("alimentos").getChildrenCount();
@@ -72,7 +66,7 @@ public class AnadirAlimentoFragment extends Fragment {
                                         acaba++;
                                     } else {
                                         if (etNombre.getText().toString().equals(dataSnapshot.child("alimentos").child(i + "").child("nombre").getValue().toString())) {
-                                            Toast.makeText(getContext(), "Este alimento ya esta en la lista", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(AnadirAlimentoActivity.this, "Este alimento ya esta en la lista", Toast.LENGTH_SHORT).show();
                                             existe = true;
                                             break;
                                         }
@@ -82,23 +76,23 @@ public class AnadirAlimentoFragment extends Fragment {
                                     mDatabase.child("alimentos").child(posicion + "").child("nombre").setValue(etNombre.getText().toString());
                                     mDatabase.child("alimentos").child(posicion + "").child("marca").setValue(etMarca.getText().toString());
                                     mDatabase.child("alimentos").child(posicion + "").child("cantidad").setValue(etCantidad.getText().toString());
-                                    mDatabase.child("alimentos").child(posicion + "").child("unidad").setValue(etUnidad.getText().toString());
+                                    mDatabase.child("alimentos").child(posicion + "").child("unidad").setValue(etUnidad.getText().toString().toLowerCase());
                                     mDatabase.child("alimentos").child(posicion + "").child("grasas").setValue(etGrasas.getText().toString());
                                     mDatabase.child("alimentos").child(posicion + "").child("hidratos").setValue(etHidratos.getText().toString());
                                     mDatabase.child("alimentos").child(posicion + "").child("proteinas").setValue(etProteinas.getText().toString());
                                     mDatabase.child("alimentos").child(posicion + "").child("calorias").setValue(etCalorias.getText().toString());
 
                                     AlimentosFragment someFragment= new AlimentosFragment();
-                                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                    FragmentTransaction transaction = someFragment.getFragmentManager().beginTransaction();
                                     transaction.replace(R.id.nav_host_fragment, someFragment );
                                     transaction.addToBackStack(null);
                                     transaction.commit();
                                 }
                             } else {
-                                Toast.makeText(getContext(), "La unidad no es correcta", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AnadirAlimentoActivity.this, "La unidad no es correcta", Toast.LENGTH_SHORT).show();
                             }
                         } else {
-                            Toast.makeText(getContext(), "Hay campos vacios", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AnadirAlimentoActivity.this, "Hay campos vacios", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -110,18 +104,16 @@ public class AnadirAlimentoFragment extends Fragment {
             }
         });
 
-        FloatingActionButton fab2 = (FloatingActionButton) root.findViewById(R.id.fabDenegarAlimento);
+        FloatingActionButton fab2 = (FloatingActionButton) findViewById(R.id.fabDenegarAlimento);
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlimentosFragment someFragment= new AlimentosFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                FragmentTransaction transaction = someFragment.getFragmentManager().beginTransaction();
                 transaction.replace(R.id.nav_host_fragment, someFragment );
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
         });
-        
-        return root;
     }
 }

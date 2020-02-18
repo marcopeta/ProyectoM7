@@ -1,6 +1,7 @@
 package es.gracia.marcos.proyectom7;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -105,6 +106,11 @@ public class CajaNavegacionActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public void  abrirNuevoAlimento(){
+        Intent intent = new Intent(CajaNavegacionActivity.this, AnadirAlimentoActivity.class);
+        startActivity(intent);
     }
 
 }
