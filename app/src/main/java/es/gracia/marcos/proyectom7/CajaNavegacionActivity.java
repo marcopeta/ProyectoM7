@@ -81,9 +81,7 @@ public class CajaNavegacionActivity extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     String fbNombre = dataSnapshot.child("nombre").getValue().toString();
                     String fbCorreo = dataSnapshot.child("correo").getValue().toString();
-                    //Peta  porque usuario y correo no existen en el layout asociado a esta activity
-                    //usuario.setText(fbNombre);
-                    //correo.setText(fbCorreo);
+
                 }
             }
 
@@ -106,11 +104,6 @@ public class CajaNavegacionActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
-    }
-
-    public void  abrirNuevoAlimento(){
-        Intent intent = new Intent(CajaNavegacionActivity.this, AnadirAlimentoActivity.class);
-        startActivity(intent);
     }
 
 }

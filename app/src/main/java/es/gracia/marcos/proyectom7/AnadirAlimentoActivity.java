@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,10 +34,13 @@ public class AnadirAlimentoActivity extends AppCompatActivity {
     private AdapterAlimentos aAdapter;
     private DatabaseReference mDatabase;
     EditText etNombre, etMarca, etUnidad, etCantidad, etGrasas, etHidratos, etProteinas, etCalorias;
+    private boolean backEnabled = false;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anadir_alimento);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        getSupportActionBar().setTitle("Añadir Alimento");
         mDatabase = FirebaseDatabase.getInstance().getReference("Users/" + CajaNavegacionActivity.getUser().getUid());
         etNombre = findViewById(R.id.etAnadirNombre);
         etMarca = findViewById(R.id.etAnadirMarca);
@@ -108,12 +112,16 @@ public class AnadirAlimentoActivity extends AppCompatActivity {
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlimentosFragment someFragment= new AlimentosFragment();
-                FragmentTransaction transaction = someFragment.getFragmentManager().beginTransaction();
-                transaction.replace(R.id.nav_host_fragment, someFragment );
-                transaction.addToBackStack(null);
-                transaction.commit();
+                backEnabled = true;
+                onBackPressed();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (backEnabled) {
+            super.onBackPressed();
+        }
     }
 }
