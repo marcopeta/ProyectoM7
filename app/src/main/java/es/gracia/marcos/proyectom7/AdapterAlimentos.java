@@ -60,13 +60,6 @@ public class AdapterAlimentos extends RecyclerView.Adapter<AdapterAlimentos.View
                 v.getContext().startActivity(intent);
             }
         });
-
-        /*holder.setItemClickListener(new ItemClickListener() {
-            @Override
-            public void onItemClickListener(View v, int position) {
-
-            }
-        });*/
     }
 
     @Override
@@ -107,25 +100,10 @@ public class AdapterAlimentos extends RecyclerView.Adapter<AdapterAlimentos.View
         @Override
         public void onClick(View v) {
             this.itemClickListener.onItemClickListener(v, getLayoutPosition());
-            //Intent intent = new Intent(v.getContext(), ModificarAlimentoActivity.class);
-            //v.getContext().startActivity(intent);
         }
 
         public void setItemClickListener(ItemClickListener ic) {
             this.itemClickListener = ic;
         }
-
-        /*@Override
-        public void onClick(View v) {
-            // Get the position of the item that was clicked.
-            int mPosition = getLayoutPosition();
-            // Use that to access the affected item in listaAlimentos.
-            String element = listaAlimentos.get(mPosition);
-            // Change the word in the listaAlimentos.
-            listaAlimentos.set(mPosition, "COMPRADO! " + element);
-            // Notify the adapter, that the data has changed so it can
-            // update the RecyclerView to display the data.
-            mAdapter.notifyDataSetChanged();
-        }*/
     }
 }
