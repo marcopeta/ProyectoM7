@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     EditText correo, contraseña;
     CheckBox sesionInciada;
     Button btnIniciarSesion, btnAbrirRegistro, BtnAbrirAsistencia;
+    CheckBox cbKeep;
 
     //Inicializamos las SharedPreferences
     public static SharedPreferences preferences;
@@ -40,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity.this";
     private static FirebaseAuth mAuth;
     private ProgressDialog mDialog;
+    private boolean activado;
+    private static final String STRING_PREFERENCES = "es.gracia.marcos.proyectom7";
+    private static final String PREFERENCE_STATE = "estado.checkbox.sesion";
 
     public static FirebaseUser getCurrentUser() {
         return mAuth.getCurrentUser();
@@ -50,6 +54,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (getStateSession()) {
+            Intent intent = new Intent(MainActivity.this, CajaNavegacionActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
         getSupportActionBar().hide();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         correo = (EditText) findViewById(R.id.et_usuario);
@@ -57,13 +68,28 @@ public class MainActivity extends AppCompatActivity {
         btnIniciarSesion = findViewById(R.id.btnIniciarSesion);
         sesionInciada = findViewById(R.id.cb_keepSesion);
         mDialog = new ProgressDialog(this);
+        cbKeep = findViewById(R.id.cb_keepSesion);
+        activado = cbKeep.isChecked();
+        cbKeep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (activado) cbKeep.setChecked(false);
+                activado = cbKeep.isChecked();
+            }
+        });
         //Le damos un valor a las SharedPreferences
         preferences = getSharedPreferences("registro", Context.MODE_PRIVATE);
         editor = preferences.edit();
         mAuth = FirebaseAuth.getInstance();
+        btnIniciarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iniciadoSesion();
+            }
+        });
     }
 
-    public void iniciarSesion(View view) {
+    public void iniciadoSesion() {
         try {
             mDialog.setMessage("Espera un momento...");
             mDialog.setCanceledOnTouchOutside(false);
@@ -73,10 +99,12 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+                                keepSession();
                                 mDialog.dismiss();
                                 Log.d(TAG, "signInWithEmail:success");
                                 Intent intent = new Intent(MainActivity.this, CajaNavegacionActivity.class);
                                 startActivity(intent);
+                                if  (getStateSession()) finish();
                             } else {
                                 mDialog.dismiss();
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
@@ -85,10 +113,24 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     });
-        } catch (Exception e){
+        } catch (Exception e) {
             mDialog.dismiss();
             Toast.makeText(this, "Algo ha salido mal...", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    /*public void iniciarSesion(View view) {
+        iniciadoSesion();
+    }*/
+
+    public void keepSession() {
+        SharedPreferences p = getSharedPreferences(STRING_PREFERENCES, MODE_PRIVATE);
+        p.edit().putBoolean(PREFERENCE_STATE, cbKeep.isChecked()).apply();
+    }
+
+    public boolean getStateSession() {
+        SharedPreferences p = getSharedPreferences(STRING_PREFERENCES, MODE_PRIVATE);
+        return p.getBoolean(PREFERENCE_STATE, false);
     }
 
     public void abrirAsistencia(View view) {

@@ -19,4 +19,6 @@
     <string name="icon">Logo caloriesPointer</string>
     <string name="password">Contrasenya</string>
     <string name="progreso_fragment">Progres</string>
+    <string name="logout">Tancar sessió</string>
+
 </resources>

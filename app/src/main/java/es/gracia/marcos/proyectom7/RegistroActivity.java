@@ -89,7 +89,7 @@ public class RegistroActivity extends AppCompatActivity {
 
             //Comprobamos que el mail sea correcto
             if (mather.find() && telefono.length() == 9) {
-                if (contraseña.length() > 6) {
+                if (contraseña.length() >= 6) {
                     mAuth.createUserWithEmailAndPassword(correo, contraseña)
                             .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                                 @Override
