@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                                 Log.d(TAG, "signInWithEmail:success");
                                 Intent intent = new Intent(MainActivity.this, CajaNavegacionActivity.class);
                                 startActivity(intent);
-                                if  (getStateSession()) finish();
+                                finish();
                             } else {
                                 mDialog.dismiss();
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
