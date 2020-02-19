@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -30,7 +31,8 @@ public class ModificarAlimentoActivity extends AppCompatActivity {
     private RecyclerView recyclerAlimentos;
     private AdapterAlimentos aAdapter;
     private DatabaseReference mDatabase;
-    EditText etNombre, etMarca, etUnidad, etCantidad, etGrasas, etHidratos, etProteinas, etCalorias;
+    EditText etUnidad, etCantidad, etGrasas, etHidratos, etProteinas, etCalorias;
+    TextView etNombre, etMarca;
     private boolean backEnabled = false;
     private int posicion;
 
@@ -40,8 +42,8 @@ public class ModificarAlimentoActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         getSupportActionBar().setTitle("Modificar Alimento");
         mDatabase = FirebaseDatabase.getInstance().getReference("Users/" + CajaNavegacionActivity.getUser().getUid());
-        etNombre = findViewById(R.id.etModificarNombre);
-        etMarca = findViewById(R.id.etModificarMarca);
+        etNombre = findViewById(R.id.tvModificarNombre);
+        etMarca = findViewById(R.id.tvModificarMarca);
         etUnidad = findViewById(R.id.etModificarUnidad);
         etCantidad = findViewById(R.id.etModificarCantidad);
         etGrasas = findViewById(R.id.etModificarGrasas);
@@ -72,8 +74,26 @@ public class ModificarAlimentoActivity extends AppCompatActivity {
                 mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        backEnabled = true;
-                        onBackPressed();
+                        Boolean existe = false;
+                        Long acaba = dataSnapshot.child("alimentos").getChildrenCount();
+                        for (Long i = 0l; i <= posicion; i++) {
+                            if (!dataSnapshot.child("alimentos").child(i + "").exists()) {
+                                posicion++;
+                            }
+                        }
+
+                        if (!existe){
+                            mDatabase.child("alimentos").child(posicion + "").child("cantidad").setValue(etCantidad.getText().toString());
+                            mDatabase.child("alimentos").child(posicion + "").child("unidad").setValue(etUnidad.getText().toString().toLowerCase());
+                            mDatabase.child("alimentos").child(posicion + "").child("grasas").setValue(etGrasas.getText().toString());
+                            mDatabase.child("alimentos").child(posicion + "").child("hidratos").setValue(etHidratos.getText().toString());
+                            mDatabase.child("alimentos").child(posicion + "").child("proteinas").setValue(etProteinas.getText().toString());
+                            mDatabase.child("alimentos").child(posicion + "").child("calorias").setValue(etCalorias.getText().toString());
+
+                            backEnabled = true;
+                            onBackPressed();
+                        }
+
                     }
 
                     @Override
@@ -97,8 +117,27 @@ public class ModificarAlimentoActivity extends AppCompatActivity {
         fab3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                backEnabled = true;
-                onBackPressed();
+                mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Long acaba = dataSnapshot.child("alimentos").getChildrenCount();
+                        for (Long i = 0l; i <= posicion; i++) {
+                            if (!dataSnapshot.child("alimentos").child(i + "").exists()) {
+                                posicion++;
+                            }
+                        }
+
+                        mDatabase.child("alimentos").child(posicion + "").removeValue();
+
+                        backEnabled = true;
+                        onBackPressed();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
     }

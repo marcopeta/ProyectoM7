@@ -1,5 +1,6 @@
 package es.gracia.marcos.proyectom7;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,7 +52,6 @@ public class AnadirAlimentoActivity extends AppCompatActivity {
         etProteinas = findViewById(R.id.etAnadirProteinas);
         etCalorias = findViewById(R.id.etAnadirCalorias);
 
-
         FloatingActionButton fab1 = (FloatingActionButton) findViewById(R.id.fabAceptarAlimento);
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +85,15 @@ public class AnadirAlimentoActivity extends AppCompatActivity {
                                     mDatabase.child("alimentos").child(posicion + "").child("hidratos").setValue(etHidratos.getText().toString());
                                     mDatabase.child("alimentos").child(posicion + "").child("proteinas").setValue(etProteinas.getText().toString());
                                     mDatabase.child("alimentos").child(posicion + "").child("calorias").setValue(etCalorias.getText().toString());
+
+                                    /*CajaNavegacionActivity c = new CajaNavegacionActivity();
+                                    c = CajaNavegacionActivity.obtenerCaja();
+
+                                    AlimentosFragment someFragment = new AlimentosFragment();
+                                    FragmentTransaction transaction = CajaNavegacionActivity.getFragmentManager().beginTransaction();
+                                    transaction.replace(R.id.nav_host_fragment, someFragment);
+                                    transaction.addToBackStack(null);
+                                    transaction.commit();*/
 
                                     backEnabled = true;
                                     onBackPressed();

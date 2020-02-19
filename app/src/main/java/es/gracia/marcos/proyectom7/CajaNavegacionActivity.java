@@ -106,4 +106,8 @@ public class CajaNavegacionActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+    /*public static CajaNavegacionActivity obtenerCaja(){
+        return this;
+    }*/
+
 }

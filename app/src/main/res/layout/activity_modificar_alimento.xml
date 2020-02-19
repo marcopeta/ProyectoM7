@@ -30,27 +30,23 @@
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/etModificarNombre"
+            <TextView
+                android:id="@+id/tvModificarNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp"
-                android:ems="10"
-                android:hint="Nombre"
-                android:inputType="textPersonName" />
+                android:paddingBottom="20dp"
+                android:text="Nombre"
+                android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/etModificarMarca"
+            <TextView
+                android:id="@+id/tvModificarMarca"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="50dp"
-                android:ems="10"
-                android:hint="Marca"
-                android:inputType="textPersonName" />
+                android:paddingBottom="50dp"
+                android:text="Marca"
+                android:textSize="20sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
