@@ -20,5 +20,6 @@
     <string name="password">Contrasenya</string>
     <string name="progreso_fragment">Progres</string>
     <string name="logout">Tancar sessió</string>
+    <string name="consejos_fragment">Consells</string>
 
 </resources>
