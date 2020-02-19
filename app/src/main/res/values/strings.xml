@@ -15,7 +15,7 @@
     <string name="nav_header_desc">Encapçalat del navegador</string>
     <string name="navigation_drawer_close">Tanca navigation drawer</string>
     <string name="navigation_drawer_open">Obre navigation drawer</string>
-    <string name="password">Contraseña</string>
+    <string name="password">Contrasenya</string>
     <string name="registrar">Registrar-se</string>
     <string name="title_activity_inicio">IniciActivity</string>
     <string name="user">Nom d\'usuari</string>
