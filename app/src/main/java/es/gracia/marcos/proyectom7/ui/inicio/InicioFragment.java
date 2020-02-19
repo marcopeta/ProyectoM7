@@ -33,9 +33,9 @@ public class InicioFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 MainActivity.changeState(getActivity(),false);
+                getActivity().finish();
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
-                getActivity().finish();
             }
         });
 
