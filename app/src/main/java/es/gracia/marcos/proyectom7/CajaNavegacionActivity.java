@@ -74,7 +74,7 @@ public class CajaNavegacionActivity extends AppCompatActivity {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_inicio, R.id.nav_alimentos, R.id.nav_calendario,
-                R.id.nav_progreso, R.id.nav_calculadora, R.id.nav_configuracion)
+                R.id.nav_progreso, R.id.nav_calculadora, R.id.nav_consejos, R.id.nav_configuracion)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

@@ -25,6 +25,10 @@
             android:icon="@drawable/ic_calculadora"
             android:title="@string/calculadora_fragment" />
         <item
+            android:id="@+id/nav_consejos"
+            android:icon="@drawable/ic_calculadora"
+            android:title="@string/consejos_fragment" />
+        <item
             android:id="@+id/nav_configuracion"
             android:icon="@drawable/ic_configuracion"
             android:title="@string/configuracion_fragment" />

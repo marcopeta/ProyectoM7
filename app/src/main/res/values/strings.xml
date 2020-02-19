@@ -20,5 +20,6 @@
     <string name="title_activity_inicio">IniciActivity</string>
     <string name="user">Nom d\'usuari</string>
     <string name="logout">Tancar sessió</string>
+    <string name="consejos_fragment">Consejos</string>
 
 </resources>
