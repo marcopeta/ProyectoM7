@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import es.gracia.marcos.proyectom7.R;
 
 public class ConsejosFragment extends Fragment {
+
     View root;
 
     public View onCreateView(@NonNull LayoutInflater inflater,

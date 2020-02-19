@@ -36,6 +36,12 @@
         tools:layout="@layout/fragment_calculadora" />
 
     <fragment
+        android:id="@+id/nav_consejos"
+        android:name="es.gracia.marcos.proyectom7.ui.consejos.ConsejosFragment"
+        android:label="@string/consejos_fragment"
+        tools:layout="@layout/fragment_consejos" />
+
+    <fragment
         android:id="@+id/nav_configuracion"
         android:name="es.gracia.marcos.proyectom7.ui.configuracion.ConfiguracionFragment"
         android:label="@string/configuracion_fragment"
