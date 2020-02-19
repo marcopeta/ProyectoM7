@@ -1,6 +1,7 @@
 package es.gracia.marcos.proyectom7;
 
 import android.app.Dialog;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
@@ -38,6 +39,8 @@ import android.view.Menu;
 import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import es.gracia.marcos.proyectom7.ui.alimentos.AlimentosFragment;
 
 public class CajaNavegacionActivity extends AppCompatActivity {
 
@@ -108,9 +111,5 @@ public class CajaNavegacionActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
-    /*public static CajaNavegacionActivity obtenerCaja(){
-        return this;
-    }*/
 
 }
