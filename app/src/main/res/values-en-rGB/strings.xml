@@ -20,4 +20,5 @@
     <string name="password">Password</string>
     <string name="progreso_fragment">Progress</string>
     <string name="logout">Log out</string>
+    <string name="consejos_fragment">Advices</string>
 </resources>
