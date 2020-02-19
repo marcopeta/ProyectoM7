@@ -57,15 +57,17 @@ public class CajaNavegacionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_caja_navegacion);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View header = navigationView.getHeaderView(0);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        usuario = findViewById(R.id.tv_usuario);
-        correo = findViewById(R.id.tv_correo);
+        usuario = header.findViewById(R.id.tv_usuario);
+        correo = header.findViewById(R.id.tv_correo);
         user = MainActivity.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_inicio, R.id.nav_alimentos, R.id.nav_calendario,
                 R.id.nav_progreso, R.id.nav_calculadora, R.id.nav_configuracion)
@@ -81,7 +83,8 @@ public class CajaNavegacionActivity extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     String fbNombre = dataSnapshot.child("nombre").getValue().toString();
                     String fbCorreo = dataSnapshot.child("correo").getValue().toString();
-
+                    usuario.setText(fbNombre);
+                    correo.setText(fbCorreo);
                 }
             }
 
