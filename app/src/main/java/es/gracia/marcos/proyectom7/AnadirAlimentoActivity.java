@@ -21,7 +21,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 import es.gracia.marcos.proyectom7.ui.alimentos.Alimento;
 import es.gracia.marcos.proyectom7.ui.alimentos.AlimentosFragment;
@@ -77,23 +79,17 @@ public class AnadirAlimentoActivity extends AppCompatActivity {
                                     }
                                 }
                                 if (!existe) {
-                                    mDatabase.child("alimentos").child(posicion + "").child("nombre").setValue(etNombre.getText().toString());
-                                    mDatabase.child("alimentos").child(posicion + "").child("marca").setValue(etMarca.getText().toString());
-                                    mDatabase.child("alimentos").child(posicion + "").child("cantidad").setValue(etCantidad.getText().toString());
-                                    mDatabase.child("alimentos").child(posicion + "").child("unidad").setValue(etUnidad.getText().toString().toLowerCase());
-                                    mDatabase.child("alimentos").child(posicion + "").child("grasas").setValue(etGrasas.getText().toString());
-                                    mDatabase.child("alimentos").child(posicion + "").child("hidratos").setValue(etHidratos.getText().toString());
-                                    mDatabase.child("alimentos").child(posicion + "").child("proteinas").setValue(etProteinas.getText().toString());
-                                    mDatabase.child("alimentos").child(posicion + "").child("calorias").setValue(etCalorias.getText().toString());
+                                    Map<String, Object> map = new HashMap<>();
+                                    map.put("nombre", etNombre.getText().toString());
+                                    map.put("marca", etMarca.getText().toString());
+                                    map.put("cantidad", etCantidad.getText().toString());
+                                    map.put("unidad", etUnidad.getText().toString());
+                                    map.put("grasas", etGrasas.getText().toString());
+                                    map.put("hidratos", etHidratos.getText().toString());
+                                    map.put("proteinas", etProteinas.getText().toString());
+                                    map.put("calorias", etCalorias.getText().toString());
 
-                                    /*CajaNavegacionActivity c = new CajaNavegacionActivity();
-                                    c = CajaNavegacionActivity.obtenerCaja();
-
-                                    AlimentosFragment someFragment = new AlimentosFragment();
-                                    FragmentTransaction transaction = CajaNavegacionActivity.getFragmentManager().beginTransaction();
-                                    transaction.replace(R.id.nav_host_fragment, someFragment);
-                                    transaction.addToBackStack(null);
-                                    transaction.commit();*/
+                                    mDatabase.child("alimentos").child(posicion + "").setValue(map);
 
                                     backEnabled = true;
                                     onBackPressed();
