@@ -66,7 +66,6 @@ public class CajaNavegacionActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         usuario = header.findViewById(R.id.tv_usuario);
         correo = header.findViewById(R.id.tv_correo);
         user = MainActivity.getCurrentUser();

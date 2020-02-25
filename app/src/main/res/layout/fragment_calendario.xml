@@ -31,32 +31,33 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/grasasT"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="G:" />
+                    android:text="G: 0.00" />
 
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/hidratosT"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="H:" />
+                    android:text="H: 0.00" />
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/proteinasT"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="P:" />
+                    android:text="P: 0.00" />
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/caloriasT"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Kcal:" />
+                    android:text="Kcal: 0"
+                    android:textAlignment="textEnd" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
