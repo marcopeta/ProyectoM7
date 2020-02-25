@@ -1,17 +1,13 @@
 package es.gracia.marcos.proyectom7.ui.alimentos;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,13 +18,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 import es.gracia.marcos.proyectom7.AdapterAlimentos;
 import es.gracia.marcos.proyectom7.AnadirAlimentoActivity;
 import es.gracia.marcos.proyectom7.CajaNavegacionActivity;
-import es.gracia.marcos.proyectom7.MainActivity;
 import es.gracia.marcos.proyectom7.R;
 
 import static java.lang.Float.parseFloat;
@@ -75,7 +69,7 @@ public class AlimentosFragment extends Fragment {
                         acaba++;
                     }
                 }
-                recyclerAlimentos = root.findViewById(R.id.listadoAlimentos);
+                recyclerAlimentos = root.findViewById(R.id.listadoAlimentosDia);
                 aAdapter = new AdapterAlimentos(getContext(), listaAlimentos);
                 recyclerAlimentos.setAdapter(aAdapter);
                 recyclerAlimentos.setLayoutManager(new LinearLayoutManager(getContext()));
