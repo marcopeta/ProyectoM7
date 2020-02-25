@@ -39,7 +39,9 @@
                     android:layout_marginBottom="10dp"
                     android:ems="10"
                     android:hint="Nombre"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:maxLength="4"
+                    android:selectAllOnFocus="false" />
 
                 <EditText
                     android:id="@+id/etAnadirMarca"
@@ -67,7 +69,8 @@
                         android:layout_weight="1"
                         android:ems="10"
                         android:hint="Cantidad"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:maxLength="4" />
 
                     <EditText
                         android:id="@+id/etAnadirUnidad"
@@ -78,7 +81,8 @@
                         android:layout_weight="1"
                         android:ems="10"
                         android:hint="Unidad"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        android:maxLength="2" />
 
                 </LinearLayout>
 
@@ -91,7 +95,8 @@
                     android:layout_marginBottom="10dp"
                     android:ems="10"
                     android:hint="Grasas"
-                    android:inputType="number|numberDecimal" />
+                    android:inputType="number|numberDecimal"
+                    android:maxLength="6" />
 
                 <EditText
                     android:id="@+id/etAnadirHidratos"
@@ -102,7 +107,8 @@
                     android:layout_marginBottom="10dp"
                     android:ems="10"
                     android:hint="Hidratos de Carbono"
-                    android:inputType="numberDecimal" />
+                    android:inputType="numberDecimal"
+                    android:maxLength="6" />
 
                 <EditText
                     android:id="@+id/etAnadirProteinas"
@@ -113,7 +119,8 @@
                     android:layout_marginBottom="50dp"
                     android:ems="10"
                     android:hint="Proteinas"
-                    android:inputType="numberDecimal" />
+                    android:inputType="numberDecimal"
+                    android:maxLength="6" />
 
                 <EditText
                     android:id="@+id/etAnadirCalorias"
@@ -123,7 +130,8 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="40dp"
                     android:hint="Valor Energetico (Kcal)"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:maxLength="4" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

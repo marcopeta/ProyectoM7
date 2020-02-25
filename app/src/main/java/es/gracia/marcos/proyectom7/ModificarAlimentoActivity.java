@@ -83,16 +83,20 @@ public class ModificarAlimentoActivity extends AppCompatActivity {
                             }
                         }
 
-                        if (!existe){
-                            mDatabase.child("alimentos").child(posicion + "").child("cantidad").setValue(etCantidad.getText().toString());
-                            mDatabase.child("alimentos").child(posicion + "").child("unidad").setValue(etUnidad.getText().toString().toLowerCase());
-                            mDatabase.child("alimentos").child(posicion + "").child("grasas").setValue(etGrasas.getText().toString());
-                            mDatabase.child("alimentos").child(posicion + "").child("hidratos").setValue(etHidratos.getText().toString());
-                            mDatabase.child("alimentos").child(posicion + "").child("proteinas").setValue(etProteinas.getText().toString());
-                            mDatabase.child("alimentos").child(posicion + "").child("calorias").setValue(etCalorias.getText().toString());
+                        if (!etNombre.getText().toString().isEmpty() && !etMarca.getText().toString().isEmpty() && !etUnidad.getText().toString().isEmpty() && !etCantidad.getText().toString().isEmpty() && !etGrasas.getText().toString().isEmpty() && !etHidratos.getText().toString().isEmpty() && !etProteinas.getText().toString().isEmpty() && !etCalorias.getText().toString().isEmpty()) {
+                            if (!existe) {
+                                mDatabase.child("alimentos").child(posicion + "").child("cantidad").setValue(etCantidad.getText().toString());
+                                mDatabase.child("alimentos").child(posicion + "").child("unidad").setValue(etUnidad.getText().toString().toLowerCase());
+                                mDatabase.child("alimentos").child(posicion + "").child("grasas").setValue(etGrasas.getText().toString());
+                                mDatabase.child("alimentos").child(posicion + "").child("hidratos").setValue(etHidratos.getText().toString());
+                                mDatabase.child("alimentos").child(posicion + "").child("proteinas").setValue(etProteinas.getText().toString());
+                                mDatabase.child("alimentos").child(posicion + "").child("calorias").setValue(etCalorias.getText().toString());
 
-                            backEnabled = true;
-                            onBackPressed();
+                                backEnabled = true;
+                                onBackPressed();
+                            }
+                        } else {
+                            Toast.makeText(ModificarAlimentoActivity.this, "Hay campos vacios", Toast.LENGTH_SHORT).show();
                         }
 
                     }

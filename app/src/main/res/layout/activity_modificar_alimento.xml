@@ -63,7 +63,8 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint="Cantidad"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:maxLength="4" />
 
                 <EditText
                     android:id="@+id/etModificarUnidad"
@@ -74,7 +75,8 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint="Unidad"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:maxLength="2" />
 
             </LinearLayout>
 
@@ -94,7 +96,8 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
                 android:ems="10"
-                android:inputType="number|numberDecimal" />
+                android:inputType="number|numberDecimal"
+                android:maxLength="6" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -112,7 +115,8 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
                 android:ems="10"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:maxLength="6" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -130,7 +134,8 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="50dp"
                 android:ems="10"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:maxLength="6" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -147,7 +152,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="40dp"
-                android:inputType="number" />
+                android:inputType="number"
+                android:maxLength="4" />
 
             <LinearLayout
                 android:layout_width="match_parent"
