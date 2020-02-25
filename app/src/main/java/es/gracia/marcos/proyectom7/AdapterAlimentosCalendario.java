@@ -14,52 +14,26 @@ import java.util.LinkedList;
 import es.gracia.marcos.proyectom7.ui.alimentos.Alimento;
 import es.gracia.marcos.proyectom7.ui.alimentos.ItemClickListener;
 
-public class AdapterAlimentos extends RecyclerView.Adapter<AdapterAlimentos.ViewHolderAlimentos> {
+public class AdapterAlimentosCalendario extends RecyclerView.Adapter<AdapterAlimentosCalendario.ViewHolderAlimentos> {
     private final LinkedList<Alimento> listaAlimentos;
     private Context context;
 
-    public AdapterAlimentos(Context context, LinkedList<Alimento> listaAlimentos) {
+    public AdapterAlimentosCalendario(Context context, LinkedList<Alimento> listaAlimentos) {
         this.context = context;
         this.listaAlimentos = listaAlimentos;
     }
 
     @Override
-    public AdapterAlimentos.ViewHolderAlimentos onCreateViewHolder(ViewGroup parent,
-                                                                   int viewType) {
+    public AdapterAlimentosCalendario.ViewHolderAlimentos onCreateViewHolder(ViewGroup parent,
+                                                                             int viewType) {
         return new ViewHolderAlimentos(LayoutInflater.from(context).
                 inflate(R.layout.item_list_alimentos, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(AdapterAlimentos.ViewHolderAlimentos holder, int position) {
+    public void onBindViewHolder(AdapterAlimentosCalendario.ViewHolderAlimentos holder, int position) {
         Alimento currentAlimento = listaAlimentos.get(position);
         holder.bindTo(currentAlimento);
-
-        holder.setItemClickListener(new ItemClickListener() {
-            @Override
-            public void onItemClickListener(View v, int position) {
-                String alimento = listaAlimentos.get(position).getNombre();
-                String marca = listaAlimentos.get(position).getMarca();
-                Float cantidad = listaAlimentos.get(position).getCantidad();
-                String unidad = listaAlimentos.get(position).getUnidad();
-                Float grasas = listaAlimentos.get(position).getGrasas();
-                Float hidratos = listaAlimentos.get(position).getHidratos();
-                Float proteinas = listaAlimentos.get(position).getProteinas();
-                int calorias = listaAlimentos.get(position).getCalorias();
-
-                Intent intent = new Intent(v.getContext(), ModificarAlimentoActivity.class);
-                intent.putExtra("nombre", alimento);
-                intent.putExtra("marca", marca);
-                intent.putExtra("cantidad", cantidad);
-                intent.putExtra("unidad", unidad);
-                intent.putExtra("grasas", grasas);
-                intent.putExtra("hidratos", hidratos);
-                intent.putExtra("proteinas", proteinas);
-                intent.putExtra("calorias", calorias);
-                intent.putExtra("posicion", position);
-                v.getContext().startActivity(intent);
-            }
-        });
     }
 
     @Override
@@ -99,11 +73,6 @@ public class AdapterAlimentos extends RecyclerView.Adapter<AdapterAlimentos.View
 
         @Override
         public void onClick(View v) {
-            this.itemClickListener.onItemClickListener(v, getLayoutPosition());
-        }
-
-        public void setItemClickListener(ItemClickListener ic) {
-            this.itemClickListener = ic;
         }
     }
 }

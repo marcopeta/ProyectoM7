@@ -85,4 +85,18 @@ public class Alimento {
     public void setCalorias(int calorias) {
         this.calorias = calorias;
     }
+
+    @Override
+    public String toString() {
+        return "Alimento{" +
+                "nombre='" + nombre + '\'' +
+                ", marca='" + marca + '\'' +
+                ", cantidad=" + cantidad +
+                ", unidad='" + unidad + '\'' +
+                ", grasas=" + grasas +
+                ", hidratos=" + hidratos +
+                ", proteinas=" + proteinas +
+                ", calorias=" + calorias +
+                '}';
+    }
 }

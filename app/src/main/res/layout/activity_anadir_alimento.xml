@@ -122,7 +122,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="40dp"
-                    android:hint="Calorias"
+                    android:hint="Valor Energetico (Kcal)"
                     android:inputType="number" />
 
                 <LinearLayout
