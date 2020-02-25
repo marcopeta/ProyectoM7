@@ -137,7 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="Calorias:"
+                android:text="Valor Energetico (Kcal):"
                 android:textSize="20sp" />
 
             <EditText
