@@ -21,4 +21,8 @@
     <string name="progreso_fragment">Progress</string>
     <string name="logout">Log out</string>
     <string name="consejos_fragment">Advices</string>
+    <string name="dialog_message">Do you want to remove this aliment?</string>
+    <string name="dialog_title">Food Management</string>
+    <string name="ok">Remove</string>
+    <string name="cancel">Cancel</string>
 </resources>

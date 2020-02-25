@@ -21,5 +21,9 @@
     <string name="progreso_fragment">Progres</string>
     <string name="logout">Tancar sessió</string>
     <string name="consejos_fragment">Consells</string>
+    <string name="dialog_message">Vols eliminar aquest aliment?</string>
+    <string name="dialog_title">Gestió d\'Aliments</string>
+    <string name="ok">Eliminar</string>
+    <string name="cancel">Cancelar</string>
 
 </resources>

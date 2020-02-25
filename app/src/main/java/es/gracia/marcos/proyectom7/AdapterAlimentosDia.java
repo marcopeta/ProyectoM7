@@ -1,6 +1,8 @@
 package es.gracia.marcos.proyectom7;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import java.util.LinkedList;
 
 import es.gracia.marcos.proyectom7.ui.alimentos.Alimento;
 import es.gracia.marcos.proyectom7.ui.alimentos.ItemClickListener;
+import es.gracia.marcos.proyectom7.ui.inicio.InicioFragment;
 
 public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDia.ViewHolderAlimentos> {
     private final LinkedList<Alimento> listaAlimentos;

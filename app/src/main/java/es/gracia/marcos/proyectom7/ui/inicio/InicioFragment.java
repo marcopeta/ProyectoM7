@@ -1,6 +1,8 @@
 package es.gracia.marcos.proyectom7.ui.inicio;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -62,6 +64,8 @@ public class InicioFragment extends Fragment {
         currentTime = Calendar.getInstance();
         diaActual = currentTime.get(Calendar.DAY_OF_MONTH) + "-" + (currentTime.get(Calendar.MONTH) + 1) + "-" + currentTime.get(Calendar.YEAR);
         tvDia.setText(currentTime.get(Calendar.DAY_OF_MONTH) + "/" + (currentTime.get(Calendar.MONTH) + 1) + "/" + currentTime.get(Calendar.YEAR));
+
+
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override

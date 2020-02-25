@@ -1,5 +1,6 @@
 package es.gracia.marcos.proyectom7.ui.calendario;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -56,7 +57,6 @@ public class CalendarioFragment extends Fragment {
         tvHidratos = root.findViewById(R.id.hidratosT);
         tvProteinas = root.findViewById(R.id.proteinasT);
         tvCalorias = root.findViewById(R.id.caloriasT);
-
         calendario.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
