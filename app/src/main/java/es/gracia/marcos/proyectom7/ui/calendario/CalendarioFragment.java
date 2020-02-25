@@ -59,7 +59,7 @@ public class CalendarioFragment extends Fragment {
                 mDialog.setCanceledOnTouchOutside(false);
                 mDialog.show();
                 dia = dayOfMonth + "-" + (month+1) + "-" + year;
-                mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                mDatabase.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         String nombre;
