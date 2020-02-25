@@ -60,8 +60,8 @@ public class InicioFragment extends Fragment {
         tvDia = root.findViewById(R.id.tvDia);
         mDatabase = FirebaseDatabase.getInstance().getReference("Users/" + CajaNavegacionActivity.getUser().getUid());
         currentTime = Calendar.getInstance();
-        diaActual = currentTime.get(Calendar.DAY_OF_MONTH) + "/" + (currentTime.get(Calendar.MONTH) + 1) + "/" + currentTime.get(Calendar.YEAR);
-        tvDia.setText(diaActual);
+        diaActual = currentTime.get(Calendar.DAY_OF_MONTH) + "-" + (currentTime.get(Calendar.MONTH) + 1) + "-" + currentTime.get(Calendar.YEAR);
+        tvDia.setText(currentTime.get(Calendar.DAY_OF_MONTH) + "/" + (currentTime.get(Calendar.MONTH) + 1) + "/" + currentTime.get(Calendar.YEAR));
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -91,16 +91,16 @@ public class InicioFragment extends Fragment {
                         acaba++;
                     }
                 }
-                //recyclerAlimentos = root.findViewById(R.id.listadoAlimentosCalendario);
-                //aAdapter = new AdapterAlimentosDia(getContext(), listadoAlimentosDia);
-                //recyclerAlimentos.setAdapter(aAdapter);
-                //recyclerAlimentos.setLayoutManager(new LinearLayoutManager(getContext()));
+                recyclerAlimentos = root.findViewById(R.id.listadoAlimentosDia);
+                aAdapter = new AdapterAlimentosDia(getContext(), listadoAlimentosDia);
+                recyclerAlimentos.setAdapter(aAdapter);
+                recyclerAlimentos.setLayoutManager(new LinearLayoutManager(getContext()));
                 //mDialog.dismiss();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                mDialog.dismiss();
+                //mDialog.dismiss();
             }
         });
 

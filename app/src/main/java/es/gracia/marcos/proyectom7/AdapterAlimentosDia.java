@@ -72,6 +72,8 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
 
         @Override
         public void onClick(View v) {
+
+
         }
     }
 }
