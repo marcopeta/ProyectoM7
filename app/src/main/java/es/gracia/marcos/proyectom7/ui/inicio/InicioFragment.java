@@ -59,6 +59,7 @@ public class InicioFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_inicio, container, false);
         final TextView textView = root.findViewById(R.id.text_home);
+        mDialog = new ProgressDialog(getContext());
         tvDia = root.findViewById(R.id.tvDia);
         mDatabase = FirebaseDatabase.getInstance().getReference("Users/" + CajaNavegacionActivity.getUser().getUid());
         currentTime = Calendar.getInstance();
@@ -66,6 +67,9 @@ public class InicioFragment extends Fragment {
         tvDia.setText(currentTime.get(Calendar.DAY_OF_MONTH) + "/" + (currentTime.get(Calendar.MONTH) + 1) + "/" + currentTime.get(Calendar.YEAR));
 
 
+        mDialog.setMessage("Espera un momento...");
+        mDialog.setCanceledOnTouchOutside(false);
+        mDialog.show();
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -99,12 +103,12 @@ public class InicioFragment extends Fragment {
                 aAdapter = new AdapterAlimentosDia(getContext(), listadoAlimentosDia);
                 recyclerAlimentos.setAdapter(aAdapter);
                 recyclerAlimentos.setLayoutManager(new LinearLayoutManager(getContext()));
-                //mDialog.dismiss();
+                mDialog.dismiss();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                //mDialog.dismiss();
+                mDialog.dismiss();
             }
         });
 
