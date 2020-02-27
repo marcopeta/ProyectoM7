@@ -29,17 +29,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/editText"
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/configuracionCorreo"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:editable="false"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="ejemplo@ejemplo.ejemplo"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:text="correo"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -52,10 +48,10 @@
                 android:text="Nombre"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText" />
+                app:layout_constraintTop_toBottomOf="@+id/configuracionCorreo" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/configuracionNombre"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -76,10 +72,10 @@
                 android:text="Trastorno"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText2" />
+                app:layout_constraintTop_toBottomOf="@+id/configuracionNombre" />
 
             <RadioGroup
-                android:id="@+id/radioGroup2"
+                android:id="@+id/radioGroupConfiguracion"
                 android:layout_width="0dp"
                 android:layout_height="136dp"
                 android:layout_marginStart="20dp"
@@ -87,7 +83,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView12">
 
                 <RadioButton
-                    android:id="@+id/rb_anorexia"
+                    android:id="@+id/configuracion_rb_anorexia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Anorexia"
@@ -97,7 +93,7 @@
                     android:textStyle="bold" />
 
                 <RadioButton
-                    android:id="@+id/rb_bulimia"
+                    android:id="@+id/configuracion_rb_bulimia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Bulimia"
@@ -107,7 +103,7 @@
                     android:textStyle="bold" />
 
                 <RadioButton
-                    android:id="@+id/rb_sobrepeso"
+                    android:id="@+id/configuracion_rb_sobrepeso"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Sobrepeso"
@@ -117,16 +113,26 @@
                     android:textStyle="bold" />
 
                 <RadioButton
-                    android:id="@+id/rb_no"
+                    android:id="@+id/configuracion_rb_no"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:checked="true"
+                    android:checked="false"
                     android:text="No / Prefiero no contestar"
                     android:textAlignment="viewStart"
                     android:textColor="@color/gray"
                     android:textSize="16dp"
                     android:textStyle="bold" />
             </RadioGroup>
+
+            <Button
+                android:id="@+id/btnGuardarDatos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Guardar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroupConfiguracion" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
