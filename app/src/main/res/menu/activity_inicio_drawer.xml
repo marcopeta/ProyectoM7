@@ -18,7 +18,7 @@
             android:title="@string/calendario_fragment" />
         <item
             android:id="@+id/nav_progreso"
-            android:icon="@drawable/ic_calculadora"
+            android:icon="@drawable/ic_progreso"
             android:title="@string/progreso_fragment" />
         <item
             android:id="@+id/nav_calculadora"
@@ -26,7 +26,7 @@
             android:title="@string/calculadora_fragment" />
         <item
             android:id="@+id/nav_consejos"
-            android:icon="@drawable/ic_calculadora"
+            android:icon="@drawable/ic_consejos"
             android:title="@string/consejos_fragment" />
         <item
             android:id="@+id/nav_configuracion"
