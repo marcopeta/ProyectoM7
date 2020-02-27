@@ -161,6 +161,7 @@ public class CalendarioFragment extends Fragment {
                         acaba++;
                     }
                 }
+                Toast.makeText(getContext(), acaba + " " + diaHoy, Toast.LENGTH_LONG).show();
                 tvGrasas.setText("G: " + grasasTotal.toString());
                 tvHidratos.setText("H: " + hidratosTotal.toString());
                 tvProteinas.setText("P: " + proteinasTotal.toString());
