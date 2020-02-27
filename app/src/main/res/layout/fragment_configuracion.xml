@@ -54,29 +54,68 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="677777777"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="Telefono"
+        android:text="Trastorno"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText2" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup2"
+        android:layout_width="0dp"
+        android:layout_height="136dp"
+        android:layout_marginStart="58dp"
+        android:layout_marginEnd="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12">
+
+        <RadioButton
+            android:id="@+id/rb_anorexia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Anorexia"
+            android:textAlignment="viewStart"
+            android:textColor="@color/gray"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rb_bulimia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bulimia"
+            android:textAlignment="viewStart"
+            android:textColor="@color/gray"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rb_sobrepeso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sobrepeso"
+            android:textAlignment="viewStart"
+            android:textColor="@color/gray"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rb_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="No / Prefiero no contestar"
+            android:textAlignment="viewStart"
+            android:textColor="@color/gray"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+    </RadioGroup>
 
     <TextView
         android:id="@+id/textView6"
@@ -101,5 +140,13 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/botonIdioma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="61dp"
+        tools:layout_editor_absoluteY="429dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

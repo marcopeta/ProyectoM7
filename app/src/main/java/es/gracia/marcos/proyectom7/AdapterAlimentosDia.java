@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,6 +33,7 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
     private static DatabaseReference mDatabase;
     static String diaActual;
     Calendar currentTime;
+    private int posicion;
 
 
 
@@ -59,6 +61,44 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
     public void onBindViewHolder(ViewHolderAlimentos holder, int position) {
         Alimento currentAlimento = listaAlimentos.get(position);
         holder.bindTo(currentAlimento);
+
+        holder.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onItemClickListener(View v, int position) {
+                posicion = position;
+                new AlertDialog.Builder(context)
+                        .setTitle("Gestió d'Aliments")
+                        .setMessage("Vol eliminar aquest Aliment de la llista?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (mDatabase == null) return;
+                                mDatabase.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        for (Long i = 0l; i <= posicion; i++) {
+                                            if (!dataSnapshot.child("calendario").child(diaActual).child(i + "").exists()) {
+                                                posicion++;
+                                            }
+                                        }
+                                        mDatabase.child("calendario").child(diaActual).child(posicion + "").removeValue();
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                                        return;
+                                    }
+                                });                        }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Log.d("HOLA", "Alimento NO eliminado");
+                            }
+                        })
+                        .show();
+            }
+        });
     }
 
     @Override
@@ -99,46 +139,11 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
 
         @Override
         public void onClick(View v) {
-            mostrarDialogo();
+            this.itemClickListener.onItemClickListener(v, getLayoutPosition());
         }
 
-
-        public void mostrarDialogo(){
-            new AlertDialog.Builder(context)
-                    .setTitle("Gestió d'Aliments")
-                    .setMessage("Vol eliminar aquest Aliment de la llista?")
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog,final int which) {
-                            if (mDatabase == null) return;
-                            mDatabase.addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    // Long acaba = dataSnapshot.child("calendario").child(diaActual).getChildrenCount();
-                                    int position =  which;
-                                    for (Long i = 0l; i <= position; i++) {
-                                        if (!dataSnapshot.child("calendario").child(diaActual).child(i + "").exists()) {
-                                            position++;
-                                        }
-                                    }
-                                    mDatabase.child("calendario").child(diaActual).child(position + "").removeValue();
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-                                    return;
-                                }
-                            });                        }
-                    })
-                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Log.d("HOLA", "Alimento NO eliminado");
-                        }
-                    })
-                    .show();
+        public void setItemClickListener(ItemClickListener ic){
+            this.itemClickListener = ic;
         }
-
-
     }
 }
