@@ -30,8 +30,8 @@ import es.gracia.marcos.proyectom7.ui.inicio.InicioFragment;
 public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDia.ViewHolderAlimentos> {
     private final LinkedList<Alimento> listaAlimentos;
     private Context context;
-    private static DatabaseReference mDatabase;
-    static String diaActual;
+    private DatabaseReference mDatabase;
+    String diaActual;
     Calendar currentTime;
     private int posicion;
 
@@ -67,20 +67,26 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
             public void onItemClickListener(View v, int position) {
                 posicion = position;
                 new AlertDialog.Builder(context)
-                        .setTitle("Gestió d'Aliments")
-                        .setMessage("Vol eliminar aquest Aliment de la llista?")
+                        .setTitle(R.string.dialog_title)
+                        .setMessage(R.string.dialog_message)
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                if (mDatabase == null) return;
+                                //if (mDatabase == null) return;
                                 mDatabase.addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        for (Long i = 0l; i <= posicion; i++) {
+                                        /*for (Long i = 0l; i <= posicion; i++) {
+                                            if (!dataSnapshot.child("calendario").child(diaActual).child(i + "").exists()) {
+                                                posicion++;
+                                            }
+                                        }*/
+                                        for (int i = 0; i <= posicion; i++){
                                             if (!dataSnapshot.child("calendario").child(diaActual).child(i + "").exists()) {
                                                 posicion++;
                                             }
                                         }
+
                                         mDatabase.child("calendario").child(diaActual).child(posicion + "").removeValue();
                                     }
 
