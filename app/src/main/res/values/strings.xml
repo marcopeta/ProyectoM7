@@ -22,7 +22,7 @@
     <string name="logout">Tancar sessió</string>
     <string name="consejos_fragment">Consells</string>
     <string name="dialog_message" >Vols eliminar aquest aliment?</string>
-    <string name="dialog_title" />
+    <string name="dialog_title" >Gestió d\'aliments</string>
     <string name="ok" >Eliminar</string>
     <string name="cancel" >Cancel·lar</string>
 

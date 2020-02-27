@@ -30,13 +30,10 @@ import es.gracia.marcos.proyectom7.ui.inicio.InicioFragment;
 public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDia.ViewHolderAlimentos> {
     private final LinkedList<Alimento> listaAlimentos;
     private Context context;
-    private static DatabaseReference mDatabase;
-    static String diaActual;
+    private DatabaseReference mDatabase;
+    String diaActual;
     Calendar currentTime;
-    private int posicion;
-
-
-
+    int pos=0;
 
 
     public AdapterAlimentosDia(Context context, LinkedList<Alimento> listaAlimentos) {
@@ -65,30 +62,41 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
         holder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onItemClickListener(View v, int position) {
-                posicion = position;
+                pos= position;
                 new AlertDialog.Builder(context)
-                        .setTitle("Gestió d'Aliments")
-                        .setMessage("Vol eliminar aquest Aliment de la llista?")
+                        .setTitle(R.string.dialog_title)
+                        .setMessage(R.string.dialog_message)
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                if (mDatabase == null) return;
+                                //if (mDatabase == null) return;
                                 mDatabase.addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        for (Long i = 0l; i <= posicion; i++) {
+                                        int  posicion = pos;
+
+                                        /*for (Long i = 0l; i <= posicion; i++) {
                                             if (!dataSnapshot.child("calendario").child(diaActual).child(i + "").exists()) {
                                                 posicion++;
                                             }
-                                        }
+                                        }*/
+                                        /*for (Long i = 0l; i <= posicion; i++) {
+                                            if (!dataSnapshot.child("calendario").child(diaActual).child(i + "").exists()) {
+                                                posicion++;
+                                            }
+                                        }*/
                                         mDatabase.child("calendario").child(diaActual).child(posicion + "").removeValue();
+                                        //mDatabase.child("calendario").child(diaActual).child(posicion + "").setValue(null);
+
+
                                     }
 
                                     @Override
                                     public void onCancelled(@NonNull DatabaseError databaseError) {
                                         return;
                                     }
-                                });                        }
+                                });
+                            }
                         })
                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                             @Override
@@ -106,7 +114,7 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
         return listaAlimentos.size();
     }
 
-    class ViewHolderAlimentos extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class ViewHolderAlimentos extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public final TextView AlimentoItemView;
         public final TextView CantidadItemView;
@@ -131,10 +139,10 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
         void bindTo(Alimento currentAlimento) {
             AlimentoItemView.setText(currentAlimento.getNombre());
             CantidadItemView.setText(currentAlimento.getCantidad() + currentAlimento.getUnidad());
-            GrasasItemView.setText("G: "+currentAlimento.getGrasas());
-            HidratosItemView.setText("H: "+currentAlimento.getHidratos());
-            ProteinasItemView.setText("P: "+currentAlimento.getProteinas());
-            CaloriasItemView.setText("Kcal: "+currentAlimento.getCalorias());
+            GrasasItemView.setText("G: " + currentAlimento.getGrasas());
+            HidratosItemView.setText("H: " + currentAlimento.getHidratos());
+            ProteinasItemView.setText("P: " + currentAlimento.getProteinas());
+            CaloriasItemView.setText("Kcal: " + currentAlimento.getCalorias());
         }
 
         @Override
@@ -142,7 +150,7 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
             this.itemClickListener.onItemClickListener(v, getLayoutPosition());
         }
 
-        public void setItemClickListener(ItemClickListener ic){
+        public void setItemClickListener(ItemClickListener ic) {
             this.itemClickListener = ic;
         }
     }

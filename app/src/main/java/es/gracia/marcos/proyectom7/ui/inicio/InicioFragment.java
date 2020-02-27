@@ -47,13 +47,13 @@ import static java.lang.Integer.parseInt;
 
 public class InicioFragment extends Fragment {
     private TextView tvDia;
-    private static DatabaseReference mDatabase;
-    private final LinkedList<Alimento> listadoAlimentosDia = new LinkedList<>();
+    private DatabaseReference mDatabase;
+    private final LinkedList<Alimento> listadoAlimentos = new LinkedList<>();
     private RecyclerView recyclerAlimentos;
     private ProgressDialog mDialog;
-    static String diaActual;
+    String diaActual;
     View root;
-    private static int posicion;
+    private  int posicion;
     private AdapterAlimentosDia aAdapter;
 
     Calendar currentTime;
@@ -69,7 +69,6 @@ public class InicioFragment extends Fragment {
         currentTime = Calendar.getInstance();
         diaActual = currentTime.get(Calendar.DAY_OF_MONTH) + "-" + (currentTime.get(Calendar.MONTH) + 1) + "-" + currentTime.get(Calendar.YEAR);
         tvDia.setText(currentTime.get(Calendar.DAY_OF_MONTH) + "/" + (currentTime.get(Calendar.MONTH) + 1) + "/" + currentTime.get(Calendar.YEAR));
-        posicion = 0;
 
         mDialog.setMessage("Espera un momento...");
         mDialog.setCanceledOnTouchOutside(false);
@@ -86,7 +85,7 @@ public class InicioFragment extends Fragment {
                 Float hidratos;
                 Float proteinas;
                 int calorias;
-                listadoAlimentosDia.clear();
+                listadoAlimentos.clear();
                 Long acaba = dataSnapshot.child("calendario").child(diaActual).getChildrenCount();
                 for (int i = 0; i < acaba; i++) {
                     if (dataSnapshot.child("calendario").child(diaActual).child(i + "").exists()) {
@@ -98,13 +97,13 @@ public class InicioFragment extends Fragment {
                         hidratos = parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("hidratos").getValue().toString());
                         proteinas = parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("proteinas").getValue().toString());
                         calorias = parseInt(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("calorias").getValue().toString());
-                        listadoAlimentosDia.add(new Alimento(nombre, marca, cantidad, unidad, grasas, hidratos, proteinas, calorias));
+                        listadoAlimentos.add(new Alimento(nombre, marca, cantidad, unidad, grasas, hidratos, proteinas, calorias));
                     } else {
                         acaba++;
                     }
                 }
                 recyclerAlimentos = root.findViewById(R.id.listadoAlimentosDia);
-                aAdapter = new AdapterAlimentosDia(getContext(), listadoAlimentosDia);
+                aAdapter = new AdapterAlimentosDia(getContext(), listadoAlimentos);
                 recyclerAlimentos.setAdapter(aAdapter);
                 recyclerAlimentos.setLayoutManager(new LinearLayoutManager(getContext()));
                 mDialog.dismiss();
@@ -112,7 +111,7 @@ public class InicioFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                mDialog.dismiss();
+                //mDialog.dismiss();
             }
         });
 
