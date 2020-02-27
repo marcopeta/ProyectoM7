@@ -43,7 +43,6 @@ public class CalendarioFragment extends Fragment {
     private RecyclerView recyclerAlimentos;
     private AdapterAlimentosCalendario aAdapter;
     private DatabaseReference mDatabase;
-    private ProgressDialog mDialog;
     private TextView tvGrasas, tvHidratos, tvProteinas, tvCalorias;
     String dia;
     View root;
@@ -52,7 +51,6 @@ public class CalendarioFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_calendario, container, false);
         calendario = root.findViewById(R.id.calendario);
-        mDialog = new ProgressDialog(getContext());
         mDatabase = FirebaseDatabase.getInstance().getReference("Users/" + CajaNavegacionActivity.getUser().getUid());
         tvGrasas = root.findViewById(R.id.grasasT);
         tvHidratos = root.findViewById(R.id.hidratosT);
@@ -64,9 +62,6 @@ public class CalendarioFragment extends Fragment {
         calendario.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                mDialog.setMessage("Espera un momento...");
-                mDialog.setCanceledOnTouchOutside(false);
-                mDialog.show();
                 dia = dayOfMonth + "-" + (month+1) + "-" + year;
                 mDatabase.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -110,12 +105,10 @@ public class CalendarioFragment extends Fragment {
                         aAdapter = new AdapterAlimentosCalendario(getContext(), listaAlimentos);
                         recyclerAlimentos.setAdapter(aAdapter);
                         recyclerAlimentos.setLayoutManager(new LinearLayoutManager(getContext()));
-                        mDialog.dismiss();
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-                        mDialog.dismiss();
                     }
                 });
             }
@@ -161,7 +154,6 @@ public class CalendarioFragment extends Fragment {
                         acaba++;
                     }
                 }
-                Toast.makeText(getContext(), acaba + " " + diaHoy, Toast.LENGTH_LONG).show();
                 tvGrasas.setText("G: " + grasasTotal.toString());
                 tvHidratos.setText("H: " + hidratosTotal.toString());
                 tvProteinas.setText("P: " + proteinasTotal.toString());
@@ -170,12 +162,11 @@ public class CalendarioFragment extends Fragment {
                 aAdapter = new AdapterAlimentosCalendario(getContext(), listaAlimentos);
                 recyclerAlimentos.setAdapter(aAdapter);
                 recyclerAlimentos.setLayoutManager(new LinearLayoutManager(getContext()));
-                mDialog.dismiss();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                mDialog.dismiss();
+
             }
         });
     }
