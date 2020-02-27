@@ -36,14 +36,12 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
     private int posicion;
 
 
-
-
-
     public AdapterAlimentosDia(Context context, LinkedList<Alimento> listaAlimentos) {
         this.context = context;
         this.listaAlimentos = listaAlimentos;
         mDatabase = FirebaseDatabase.getInstance().getReference("Users/" + CajaNavegacionActivity.getUser().getUid());
         currentTime = Calendar.getInstance();
+        posicion = 0;
 
         diaActual = currentTime.get(Calendar.DAY_OF_MONTH) + "-" + (currentTime.get(Calendar.MONTH) + 1) + "-" + currentTime.get(Calendar.YEAR);
 
@@ -81,12 +79,13 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
                                                 posicion++;
                                             }
                                         }*/
-                                        for (int i = 0; i <= posicion; i++){
+                                        for (Long i = 0l; i <= posicion; i++) {
+
                                             if (!dataSnapshot.child("calendario").child(diaActual).child(i + "").exists()) {
                                                 posicion++;
                                             }
-                                        }
 
+                                        }
                                         mDatabase.child("calendario").child(diaActual).child(posicion + "").removeValue();
                                     }
 
@@ -94,7 +93,8 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
                                     public void onCancelled(@NonNull DatabaseError databaseError) {
                                         return;
                                     }
-                                });                        }
+                                });
+                            }
                         })
                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                             @Override
@@ -112,7 +112,7 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
         return listaAlimentos.size();
     }
 
-    class ViewHolderAlimentos extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class ViewHolderAlimentos extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public final TextView AlimentoItemView;
         public final TextView CantidadItemView;
@@ -137,10 +137,10 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
         void bindTo(Alimento currentAlimento) {
             AlimentoItemView.setText(currentAlimento.getNombre());
             CantidadItemView.setText(currentAlimento.getCantidad() + currentAlimento.getUnidad());
-            GrasasItemView.setText("G: "+currentAlimento.getGrasas());
-            HidratosItemView.setText("H: "+currentAlimento.getHidratos());
-            ProteinasItemView.setText("P: "+currentAlimento.getProteinas());
-            CaloriasItemView.setText("Kcal: "+currentAlimento.getCalorias());
+            GrasasItemView.setText("G: " + currentAlimento.getGrasas());
+            HidratosItemView.setText("H: " + currentAlimento.getHidratos());
+            ProteinasItemView.setText("P: " + currentAlimento.getProteinas());
+            CaloriasItemView.setText("Kcal: " + currentAlimento.getCalorias());
         }
 
         @Override
@@ -148,7 +148,7 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
             this.itemClickListener.onItemClickListener(v, getLayoutPosition());
         }
 
-        public void setItemClickListener(ItemClickListener ic){
+        public void setItemClickListener(ItemClickListener ic) {
             this.itemClickListener = ic;
         }
     }
