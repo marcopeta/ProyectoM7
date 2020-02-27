@@ -53,7 +53,7 @@ public class InicioFragment extends Fragment {
     private ProgressDialog mDialog;
     String diaActual;
     View root;
-    private static int posicion;
+    private  int posicion;
     private AdapterAlimentosDia aAdapter;
 
     Calendar currentTime;

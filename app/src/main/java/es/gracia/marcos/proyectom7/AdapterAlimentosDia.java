@@ -33,7 +33,7 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
     private DatabaseReference mDatabase;
     String diaActual;
     Calendar currentTime;
-    private int posicion;
+    int pos=0;
 
 
     public AdapterAlimentosDia(Context context, LinkedList<Alimento> listaAlimentos) {
@@ -41,7 +41,6 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
         this.listaAlimentos = listaAlimentos;
         mDatabase = FirebaseDatabase.getInstance().getReference("Users/" + CajaNavegacionActivity.getUser().getUid());
         currentTime = Calendar.getInstance();
-        posicion = 0;
 
         diaActual = currentTime.get(Calendar.DAY_OF_MONTH) + "-" + (currentTime.get(Calendar.MONTH) + 1) + "-" + currentTime.get(Calendar.YEAR);
 
@@ -63,7 +62,7 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
         holder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onItemClickListener(View v, int position) {
-                posicion = position;
+                pos= position;
                 new AlertDialog.Builder(context)
                         .setTitle(R.string.dialog_title)
                         .setMessage(R.string.dialog_message)
@@ -74,19 +73,22 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
                                 mDatabase.addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        int  posicion = pos;
+
                                         /*for (Long i = 0l; i <= posicion; i++) {
                                             if (!dataSnapshot.child("calendario").child(diaActual).child(i + "").exists()) {
                                                 posicion++;
                                             }
                                         }*/
-                                        for (Long i = 0l; i <= posicion; i++) {
-
+                                        /*for (Long i = 0l; i <= posicion; i++) {
                                             if (!dataSnapshot.child("calendario").child(diaActual).child(i + "").exists()) {
                                                 posicion++;
                                             }
-
-                                        }
+                                        }*/
                                         mDatabase.child("calendario").child(diaActual).child(posicion + "").removeValue();
+                                        //mDatabase.child("calendario").child(diaActual).child(posicion + "").setValue(null);
+
+
                                     }
 
                                     @Override
