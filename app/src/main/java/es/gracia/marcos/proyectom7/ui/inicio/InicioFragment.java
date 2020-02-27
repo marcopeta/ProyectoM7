@@ -47,7 +47,7 @@ import static java.lang.Integer.parseInt;
 
 public class InicioFragment extends Fragment {
     private TextView tvDia;
-    private static DatabaseReference mDatabase;
+    private DatabaseReference mDatabase;
     private final LinkedList<Alimento> listadoAlimentosDia = new LinkedList<>();
     private RecyclerView recyclerAlimentos;
     private ProgressDialog mDialog;
