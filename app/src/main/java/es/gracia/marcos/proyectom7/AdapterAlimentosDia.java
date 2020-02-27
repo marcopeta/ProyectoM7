@@ -75,20 +75,12 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         int  posicion = pos;
 
-                                        /*for (Long i = 0l; i <= posicion; i++) {
-                                            if (!dataSnapshot.child("calendario").child(diaActual).child(i + "").exists()) {
-                                                posicion++;
-                                            }
-                                        }*/
                                         for (Long i = 0l; i <= posicion; i++) {
                                             if (!dataSnapshot.child("calendario").child(diaActual).child(i + "").exists()) {
                                                 posicion++;
                                             }
                                         }
                                         mDatabase.child("calendario").child(diaActual).child(posicion + "").removeValue();
-                                        //mDatabase.child("calendario").child(diaActual).child(posicion + "").setValue(null);
-
-
                                     }
 
                                     @Override
