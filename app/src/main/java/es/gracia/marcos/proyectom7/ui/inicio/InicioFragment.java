@@ -70,9 +70,9 @@ public class InicioFragment extends Fragment {
         diaActual = currentTime.get(Calendar.DAY_OF_MONTH) + "-" + (currentTime.get(Calendar.MONTH) + 1) + "-" + currentTime.get(Calendar.YEAR);
         tvDia.setText(currentTime.get(Calendar.DAY_OF_MONTH) + "/" + (currentTime.get(Calendar.MONTH) + 1) + "/" + currentTime.get(Calendar.YEAR));
 
-        /*mDialog.setMessage("Espera un momento...");
+        mDialog.setMessage("Espera un momento...");
         mDialog.setCanceledOnTouchOutside(false);
-        mDialog.show();*/
+        mDialog.show();
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -106,7 +106,7 @@ public class InicioFragment extends Fragment {
                 aAdapter = new AdapterAlimentosDia(getContext(), listadoAlimentos);
                 recyclerAlimentos.setAdapter(aAdapter);
                 recyclerAlimentos.setLayoutManager(new LinearLayoutManager(getContext()));
-                //mDialog.dismiss();
+                mDialog.dismiss();
             }
 
             @Override
