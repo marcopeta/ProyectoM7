@@ -13,9 +13,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -35,10 +37,13 @@ import es.gracia.marcos.proyectom7.R;
 import static java.lang.Integer.parseInt;
 
 public class ConfiguracionFragment extends Fragment{
-    private Button idioma;
+    private LinearLayout catalan;
+    private LinearLayout castellano;
+    private LinearLayout ingles;
     private Button guardar;
     private DatabaseReference mDatabase;
     private TextView correo;
+    private TextView cerrarSess;
     private EditText nombre;
     private RadioButton rb_anorexia, rb_bulimia, rb_sobrepeso, rb_no;
     View root;
@@ -148,16 +153,46 @@ public class ConfiguracionFragment extends Fragment{
                         .show();
             }
         });
-        idioma = root.findViewById(R.id.botonIdioma);
-        idioma.setOnClickListener(new View.OnClickListener() {
+        catalan = root.findViewById(R.id.linearLayoutCatalan);
+        catalan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Locale localizacion = new Locale("en", "GB");
+                /*Locale localizacion = new Locale("en", "GB");
 
                 Locale.setDefault(localizacion);
                 Configuration config = new Configuration();
                 config.locale = localizacion;
-                getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
+                getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());*/
+
+                Toast.makeText(getContext(), "catalan", Toast.LENGTH_LONG).show();
+            }
+        });
+        castellano = root.findViewById(R.id.linearLayoutCastellano);
+        castellano.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*Locale localizacion = new Locale("en", "GB");
+
+                Locale.setDefault(localizacion);
+                Configuration config = new Configuration();
+                config.locale = localizacion;
+                getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());*/
+
+                Toast.makeText(getContext(), "castellano", Toast.LENGTH_LONG).show();
+            }
+        });
+        ingles = root.findViewById(R.id.linearLayoutIngles);
+        ingles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*Locale localizacion = new Locale("en", "GB");
+
+                Locale.setDefault(localizacion);
+                Configuration config = new Configuration();
+                config.locale = localizacion;
+                getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());*/
+
+                Toast.makeText(getContext(), "ingles", Toast.LENGTH_LONG).show();
             }
         });
         return root;
