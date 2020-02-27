@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
@@ -38,18 +40,20 @@ import es.gracia.marcos.proyectom7.MainActivity;
 import es.gracia.marcos.proyectom7.R;
 import es.gracia.marcos.proyectom7.RegistroActivity;
 import es.gracia.marcos.proyectom7.ui.alimentos.Alimento;
+import es.gracia.marcos.proyectom7.AdapterAlimentosDia;
 
 import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
 
 public class InicioFragment extends Fragment {
     private TextView tvDia;
-    private DatabaseReference mDatabase;
+    private static DatabaseReference mDatabase;
     private final LinkedList<Alimento> listadoAlimentosDia = new LinkedList<>();
     private RecyclerView recyclerAlimentos;
     private ProgressDialog mDialog;
-    String diaActual;
+    static String diaActual;
     View root;
+    private static int posicion;
     private AdapterAlimentosDia aAdapter;
 
     Calendar currentTime;
@@ -65,7 +69,7 @@ public class InicioFragment extends Fragment {
         currentTime = Calendar.getInstance();
         diaActual = currentTime.get(Calendar.DAY_OF_MONTH) + "-" + (currentTime.get(Calendar.MONTH) + 1) + "-" + currentTime.get(Calendar.YEAR);
         tvDia.setText(currentTime.get(Calendar.DAY_OF_MONTH) + "/" + (currentTime.get(Calendar.MONTH) + 1) + "/" + currentTime.get(Calendar.YEAR));
-
+        posicion = 0;
 
         mDialog.setMessage("Espera un momento...");
         mDialog.setCanceledOnTouchOutside(false);
@@ -84,13 +88,13 @@ public class InicioFragment extends Fragment {
                 int calorias;
                 listadoAlimentosDia.clear();
                 Long acaba = dataSnapshot.child("calendario").child(diaActual).getChildrenCount();
-                for (int i = 0; i < acaba; i++){
-                    if (dataSnapshot.child("calendario").child(diaActual).child(i+"").exists()){
-                        nombre = dataSnapshot.child("calendario").child(diaActual).child(i+"").child("nombre").getValue().toString();
-                        marca = dataSnapshot.child("calendario").child(diaActual).child(i+"").child("marca").getValue().toString();
-                        cantidad = parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i+"").child("cantidad").getValue().toString());
-                        unidad = dataSnapshot.child("calendario").child(diaActual).child(i+"").child("unidad").getValue().toString();
-                        grasas = parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i+"").child("grasas").getValue().toString());
+                for (int i = 0; i < acaba; i++) {
+                    if (dataSnapshot.child("calendario").child(diaActual).child(i + "").exists()) {
+                        nombre = dataSnapshot.child("calendario").child(diaActual).child(i + "").child("nombre").getValue().toString();
+                        marca = dataSnapshot.child("calendario").child(diaActual).child(i + "").child("marca").getValue().toString();
+                        cantidad = parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("cantidad").getValue().toString());
+                        unidad = dataSnapshot.child("calendario").child(diaActual).child(i + "").child("unidad").getValue().toString();
+                        grasas = parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("grasas").getValue().toString());
                         hidratos = parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("hidratos").getValue().toString());
                         proteinas = parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("proteinas").getValue().toString());
                         calorias = parseInt(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("calorias").getValue().toString());
@@ -114,6 +118,29 @@ public class InicioFragment extends Fragment {
 
         return root;
     }
+
+   /* public static void eliminaDato() {
+        int position = 0;
+
+        if (mDatabase == null) return;
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // Long acaba = dataSnapshot.child("calendario").child(diaActual).getChildrenCount();
+                for (Long i = 0l; i <= position; i++) {
+                    if (!dataSnapshot.child("calendario").child(diaActual).child(posicion + "").exists()) {
+                        position++;
+                    }
+                }
+                mDatabase.child("calendario").child(diaActual).child(position + "").removeValue();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                return;
+            }
+        });
+    }*/
 
 
 }
