@@ -53,7 +53,6 @@ public class InicioFragment extends Fragment {
     private ProgressDialog mDialog;
     String diaActual;
     View root;
-    private  int posicion;
     private AdapterAlimentosDia aAdapter;
 
     Calendar currentTime;
@@ -111,35 +110,10 @@ public class InicioFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                //mDialog.dismiss();
+                mDialog.dismiss();
             }
         });
 
         return root;
     }
-
-   /* public static void eliminaDato() {
-        int position = 0;
-
-        if (mDatabase == null) return;
-        mDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // Long acaba = dataSnapshot.child("calendario").child(diaActual).getChildrenCount();
-                for (Long i = 0l; i <= position; i++) {
-                    if (!dataSnapshot.child("calendario").child(diaActual).child(posicion + "").exists()) {
-                        position++;
-                    }
-                }
-                mDatabase.child("calendario").child(diaActual).child(position + "").removeValue();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                return;
-            }
-        });
-    }*/
-
-
 }
