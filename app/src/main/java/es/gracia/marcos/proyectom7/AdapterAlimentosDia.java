@@ -70,7 +70,7 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 //if (mDatabase == null) return;
-                                mDatabase.addValueEventListener(new ValueEventListener() {
+                                mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         int  posicion = pos;
@@ -80,11 +80,11 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
                                                 posicion++;
                                             }
                                         }*/
-                                        /*for (Long i = 0l; i <= posicion; i++) {
+                                        for (Long i = 0l; i <= posicion; i++) {
                                             if (!dataSnapshot.child("calendario").child(diaActual).child(i + "").exists()) {
                                                 posicion++;
                                             }
-                                        }*/
+                                        }
                                         mDatabase.child("calendario").child(diaActual).child(posicion + "").removeValue();
                                         //mDatabase.child("calendario").child(diaActual).child(posicion + "").setValue(null);
 
