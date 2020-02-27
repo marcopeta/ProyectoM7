@@ -5,134 +5,146 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="Correo"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:editable="false"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="ejemplo@ejemplo.ejemplo"
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/botonIdioma"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toTopOf="parent">>
 
-    <TextView
-        android:id="@+id/textView11"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Correo"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:editable="false"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="ejemplo@ejemplo.ejemplo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Nombre"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+            <EditText
+                android:id="@+id/editText2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Ejemplo Ejemplo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Trastorno"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText2" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup2"
+                android:layout_width="0dp"
+                android:layout_height="136dp"
+                android:layout_marginStart="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView12">
+
+                <RadioButton
+                    android:id="@+id/rb_anorexia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Anorexia"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/gray"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/rb_bulimia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Bulimia"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/gray"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/rb_sobrepeso"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sobrepeso"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/gray"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/rb_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="No / Prefiero no contestar"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/gray"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+            </RadioGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/botonIdioma"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="Nombre"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Ejemplo Ejemplo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="Trastorno"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
-
-    <RadioGroup
-        android:id="@+id/radioGroup2"
-        android:layout_width="0dp"
-        android:layout_height="136dp"
-        android:layout_marginStart="58dp"
-        android:layout_marginEnd="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12">
-
-        <RadioButton
-            android:id="@+id/rb_anorexia"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Anorexia"
-            android:textAlignment="viewStart"
-            android:textColor="@color/gray"
-            android:textSize="16dp"
-            android:textStyle="bold" />
-
-        <RadioButton
-            android:id="@+id/rb_bulimia"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Bulimia"
-            android:textAlignment="viewStart"
-            android:textColor="@color/gray"
-            android:textSize="16dp"
-            android:textStyle="bold" />
-
-        <RadioButton
-            android:id="@+id/rb_sobrepeso"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sobrepeso"
-            android:textAlignment="viewStart"
-            android:textColor="@color/gray"
-            android:textSize="16dp"
-            android:textStyle="bold" />
-
-        <RadioButton
-            android:id="@+id/rb_no"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="No / Prefiero no contestar"
-            android:textAlignment="viewStart"
-            android:textColor="@color/gray"
-            android:textSize="16dp"
-            android:textStyle="bold" />
-    </RadioGroup>
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="20dp"
-        android:text="¿Has olvidado la contraseña?"
-        android:textColor="#000000"
-        android:textSize="24sp"
+        android:layout_marginBottom="10dp"
+        android:text="Button"
         app:layout_constraintBottom_toTopOf="@+id/textView8"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
         android:layout_marginStart="20dp"
         android:layout_marginBottom="20dp"
         android:text="Cerrar Sesion"
@@ -140,13 +152,5 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/botonIdioma"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="61dp"
-        tools:layout_editor_absoluteY="429dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

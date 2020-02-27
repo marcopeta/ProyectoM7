@@ -8,6 +8,43 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:889396290279:android:31a616fff59ed5ae387842",
+        "android_client_info": {
+          "package_name": "cat.copernic.calories.pointer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "889396290279-lg9rtv2ri98ofrtnlho8ts8pbt47htlp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cat.copernic.calories.pointer",
+            "certificate_hash": "6e9e13492ebae7f704ffc8b56069d1d9428c3b35"
+          }
+        },
+        {
+          "client_id": "889396290279-bkkldae4pm1lpfofudtqjsu33bar2ok3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDerX1kbl5n-feIMkwK_Y7dCEuR88OsfL4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "889396290279-bkkldae4pm1lpfofudtqjsu33bar2ok3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:889396290279:android:0e56931e45d70eff387842",
         "android_client_info": {
           "package_name": "es.gracia.marcos.proyectom7"
