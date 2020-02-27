@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
 import java.util.LinkedList;
 
 import es.gracia.marcos.proyectom7.AdapterAlimentos;
@@ -57,6 +58,9 @@ public class CalendarioFragment extends Fragment {
         tvHidratos = root.findViewById(R.id.hidratosT);
         tvProteinas = root.findViewById(R.id.proteinasT);
         tvCalorias = root.findViewById(R.id.caloriasT);
+
+        cargarDiaInicio();
+
         calendario.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
@@ -117,5 +121,61 @@ public class CalendarioFragment extends Fragment {
             }
         });
         return root;
+    }
+
+    private void cargarDiaInicio() {
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Calendar currentTime = Calendar.getInstance();
+                String diaHoy = currentTime.get(Calendar.DAY_OF_MONTH) + "-" + (currentTime.get(Calendar.MONTH) + 1) + "-" + currentTime.get(Calendar.YEAR);
+
+                Float grasasTotal = 0.00f, hidratosTotal = 0.00f, proteinasTotal = 0.00f;
+                int caloriasTotal = 0;
+                String nombre;
+                String marca;
+                Float cantidad;
+                String unidad;
+                Float grasas;
+                Float hidratos;
+                Float proteinas;
+                int calorias;
+                listaAlimentos.clear();
+                Long acaba = dataSnapshot.child("calendario").child(diaHoy).getChildrenCount();
+                for (int i = 0; i < acaba; i++){
+                    if (dataSnapshot.child("calendario").child(diaHoy).child(i+"").exists()){
+                        nombre = dataSnapshot.child("calendario").child(diaHoy).child(i+"").child("nombre").getValue().toString();
+                        marca = dataSnapshot.child("calendario").child(diaHoy).child(i+"").child("marca").getValue().toString();
+                        cantidad = parseFloat(dataSnapshot.child("calendario").child(diaHoy).child(i+"").child("cantidad").getValue().toString());
+                        unidad = dataSnapshot.child("calendario").child(diaHoy).child(i+"").child("unidad").getValue().toString();
+                        grasas = parseFloat(dataSnapshot.child("calendario").child(diaHoy).child(i+"").child("grasas").getValue().toString());
+                        hidratos = parseFloat(dataSnapshot.child("calendario").child(diaHoy).child(i + "").child("hidratos").getValue().toString());
+                        proteinas = parseFloat(dataSnapshot.child("calendario").child(diaHoy).child(i + "").child("proteinas").getValue().toString());
+                        calorias = parseInt(dataSnapshot.child("calendario").child(diaHoy).child(i + "").child("calorias").getValue().toString());
+                        grasasTotal += parseFloat(dataSnapshot.child("calendario").child(diaHoy).child(i+"").child("grasas").getValue().toString());
+                        hidratosTotal += parseFloat(dataSnapshot.child("calendario").child(diaHoy).child(i + "").child("hidratos").getValue().toString());
+                        proteinasTotal += parseFloat(dataSnapshot.child("calendario").child(diaHoy).child(i + "").child("proteinas").getValue().toString());
+                        caloriasTotal += parseInt(dataSnapshot.child("calendario").child(diaHoy).child(i + "").child("calorias").getValue().toString());
+                        listaAlimentos.add(new Alimento(nombre, marca, cantidad, unidad, grasas, hidratos, proteinas, calorias));
+                    } else {
+                        acaba++;
+                    }
+                }
+                tvGrasas.setText("G: " + grasasTotal.toString());
+                tvHidratos.setText("H: " + hidratosTotal.toString());
+                tvProteinas.setText("P: " + proteinasTotal.toString());
+                tvCalorias.setText("Kcal: " + caloriasTotal);
+                recyclerAlimentos = root.findViewById(R.id.listadoAlimentosCalendario);
+                aAdapter = new AdapterAlimentosCalendario(getContext(), listaAlimentos);
+                recyclerAlimentos.setAdapter(aAdapter);
+                recyclerAlimentos.setLayoutManager(new LinearLayoutManager(getContext()));
+                mDialog.dismiss();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                mDialog.dismiss();
+            }
+        });
     }
 }
