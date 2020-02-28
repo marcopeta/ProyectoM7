@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ModificarAlimentoActivity"></activity>
+        <activity android:name=".ui.inicio.AnadirAlimentoDiaActivity"></activity>
+        <activity android:name=".ModificarAlimentoActivity" />
         <activity android:name=".RecuperarContrasenaActivity" />
         <activity
             android:name=".CajaNavegacionActivity"

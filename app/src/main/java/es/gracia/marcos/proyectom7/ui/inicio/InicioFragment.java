@@ -1,25 +1,15 @@
 package es.gracia.marcos.proyectom7.ui.inicio;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,22 +18,15 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 import java.util.LinkedList;
 
-import es.gracia.marcos.proyectom7.AdapterAlimentosCalendario;
 import es.gracia.marcos.proyectom7.AdapterAlimentosDia;
-import es.gracia.marcos.proyectom7.AnadirAlimentoActivity;
-import es.gracia.marcos.proyectom7.AnadirAlimentoDiaActivity;
 import es.gracia.marcos.proyectom7.CajaNavegacionActivity;
-import es.gracia.marcos.proyectom7.MainActivity;
 import es.gracia.marcos.proyectom7.R;
-import es.gracia.marcos.proyectom7.RegistroActivity;
 import es.gracia.marcos.proyectom7.ui.alimentos.Alimento;
-import es.gracia.marcos.proyectom7.AdapterAlimentosDia;
 
 import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
