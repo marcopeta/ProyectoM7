@@ -23,6 +23,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +36,8 @@ import java.util.LinkedList;
 
 import es.gracia.marcos.proyectom7.AdapterAlimentosCalendario;
 import es.gracia.marcos.proyectom7.AdapterAlimentosDia;
+import es.gracia.marcos.proyectom7.AnadirAlimentoActivity;
+import es.gracia.marcos.proyectom7.AnadirAlimentoDiaActivity;
 import es.gracia.marcos.proyectom7.CajaNavegacionActivity;
 import es.gracia.marcos.proyectom7.MainActivity;
 import es.gracia.marcos.proyectom7.R;
@@ -93,6 +96,7 @@ public class InicioFragment extends Fragment {
                         cantidad = parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("cantidad").getValue().toString());
                         unidad = dataSnapshot.child("calendario").child(diaActual).child(i + "").child("unidad").getValue().toString();
                         grasas = parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("grasas").getValue().toString());
+
                         hidratos = parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("hidratos").getValue().toString());
                         proteinas = parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("proteinas").getValue().toString());
                         calorias = parseInt(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("calorias").getValue().toString());
@@ -111,6 +115,15 @@ public class InicioFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 mDialog.dismiss();
+            }
+        });
+
+        FloatingActionButton fab = (FloatingActionButton) root.findViewById(R.id.fabAnadirAlimento);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AnadirAlimentoDiaActivity.class);
+                getActivity().startActivity(intent);
             }
         });
 
