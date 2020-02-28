@@ -22,6 +22,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.LinkedList;
 
 import es.gracia.marcos.proyectom7.AdapterAlimentos;
+import es.gracia.marcos.proyectom7.AdapterAlimentosDia;
+import es.gracia.marcos.proyectom7.AdapterAnadirDia;
 import es.gracia.marcos.proyectom7.AnadirAlimentoActivity;
 import es.gracia.marcos.proyectom7.CajaNavegacionActivity;
 import es.gracia.marcos.proyectom7.R;
@@ -35,13 +37,14 @@ public class AnadirAlimentoDiaActivity extends AppCompatActivity {
 
     private final LinkedList<Alimento> listaAlimentos = new LinkedList<>();
     private RecyclerView recyclerAlimentos;
-    private AdapterAlimentos aAdapter;
+    private AdapterAnadirDia aAdapter;
     private DatabaseReference mDatabase;
-    View root;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        root = inflater.inflate(R.layout.activity_anadir_alimento_dia, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_anadir_alimento_dia);
+
+        //View root = inflater.inflate(R.layout.activity_anadir_alimento_dia, container, false);
         mDatabase = FirebaseDatabase.getInstance().getReference("Users/" + CajaNavegacionActivity.getUser().getUid());
 
         mDatabase.addValueEventListener(new ValueEventListener() {
@@ -72,8 +75,8 @@ public class AnadirAlimentoDiaActivity extends AppCompatActivity {
                         acaba++;
                     }
                 }
-                recyclerAlimentos = root.findViewById(R.id.listadoAlimentos);
-                aAdapter = new AdapterAlimentos(AnadirAlimentoDiaActivity.this, listaAlimentos);
+                recyclerAlimentos = findViewById(R.id.listadoAlimentos);
+                aAdapter = new AdapterAnadirDia(AnadirAlimentoDiaActivity.this, listaAlimentos);
                 recyclerAlimentos.setAdapter(aAdapter);
                 recyclerAlimentos.setLayoutManager(new LinearLayoutManager(AnadirAlimentoDiaActivity.this));
             }
@@ -83,8 +86,6 @@ public class AnadirAlimentoDiaActivity extends AppCompatActivity {
 
             }
         });
-
-        return root;
     }
 
 }
