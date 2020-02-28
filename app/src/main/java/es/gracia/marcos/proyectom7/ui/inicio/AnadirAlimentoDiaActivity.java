@@ -39,13 +39,21 @@ public class AnadirAlimentoDiaActivity extends AppCompatActivity {
     private RecyclerView recyclerAlimentos;
     private AdapterAnadirDia aAdapter;
     private DatabaseReference mDatabase;
+    private ProgressDialog mDialog;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anadir_alimento_dia);
+        mDialog = new ProgressDialog(AnadirAlimentoDiaActivity.this);
+
 
         //View root = inflater.inflate(R.layout.activity_anadir_alimento_dia, container, false);
         mDatabase = FirebaseDatabase.getInstance().getReference("Users/" + CajaNavegacionActivity.getUser().getUid());
+
+        mDialog.setMessage("Espera un momento...");
+        mDialog.setCanceledOnTouchOutside(false);
+        mDialog.show();
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -60,20 +68,22 @@ public class AnadirAlimentoDiaActivity extends AppCompatActivity {
                 int calorias;
                 listaAlimentos.clear();
                 Long acaba = dataSnapshot.child("alimentos").getChildrenCount();
-                for (int i = 0; i < acaba; i++){
-                    if (dataSnapshot.child("alimentos").child(i+"").exists()){
-                        nombre = dataSnapshot.child("alimentos").child(i+"").child("nombre").getValue().toString();
-                        marca = dataSnapshot.child("alimentos").child(i+"").child("marca").getValue().toString();
-                        cantidad = parseFloat(dataSnapshot.child("alimentos").child(i+"").child("cantidad").getValue().toString());
-                        unidad = dataSnapshot.child("alimentos").child(i+"").child("unidad").getValue().toString();
-                        grasas = parseFloat(dataSnapshot.child("alimentos").child(i+"").child("grasas").getValue().toString());
+                for (int i = 0; i < acaba; i++) {
+                    if (dataSnapshot.child("alimentos").child(i + "").exists()) {
+                        nombre = dataSnapshot.child("alimentos").child(i + "").child("nombre").getValue().toString();
+                        marca = dataSnapshot.child("alimentos").child(i + "").child("marca").getValue().toString();
+                        cantidad = parseFloat(dataSnapshot.child("alimentos").child(i + "").child("cantidad").getValue().toString());
+                        unidad = dataSnapshot.child("alimentos").child(i + "").child("unidad").getValue().toString();
+                        grasas = parseFloat(dataSnapshot.child("alimentos").child(i + "").child("grasas").getValue().toString());
                         hidratos = parseFloat(dataSnapshot.child("alimentos").child(i + "").child("hidratos").getValue().toString());
                         proteinas = parseFloat(dataSnapshot.child("alimentos").child(i + "").child("proteinas").getValue().toString());
                         calorias = parseInt(dataSnapshot.child("alimentos").child(i + "").child("calorias").getValue().toString());
-                        listaAlimentos.add(new Alimento(nombre,marca,cantidad,unidad,grasas,hidratos,proteinas,calorias));
+                        listaAlimentos.add(new Alimento(nombre, marca, cantidad, unidad, grasas, hidratos, proteinas, calorias));
                     } else {
                         acaba++;
                     }
+                    mDialog.dismiss();
+
                 }
                 recyclerAlimentos = findViewById(R.id.listadoAlimentos);
                 aAdapter = new AdapterAnadirDia(AnadirAlimentoDiaActivity.this, listaAlimentos);
@@ -83,7 +93,7 @@ public class AnadirAlimentoDiaActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                mDialog.dismiss();
             }
         });
     }
