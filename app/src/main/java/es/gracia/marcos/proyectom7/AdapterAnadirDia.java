@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 import java.util.LinkedList;
+import java.util.zip.Inflater;
 
 import es.gracia.marcos.proyectom7.ui.alimentos.Alimento;
 import es.gracia.marcos.proyectom7.ui.alimentos.ItemClickListener;
@@ -40,6 +41,7 @@ public class AdapterAnadirDia extends RecyclerView.Adapter<AdapterAnadirDia.View
         this.listaAlimentos = listaAlimentos;
         mDatabase = FirebaseDatabase.getInstance().getReference("Users/" + CajaNavegacionActivity.getUser().getUid());
         currentTime = Calendar.getInstance();
+
         diaActual = currentTime.get(Calendar.DAY_OF_MONTH) + "-" + (currentTime.get(Calendar.MONTH) + 1) + "-" + currentTime.get(Calendar.YEAR);
     }
 
@@ -56,8 +58,42 @@ public class AdapterAnadirDia extends RecyclerView.Adapter<AdapterAnadirDia.View
         holder.bindTo(currentAlimento);
 
         holder.setItemClickListener(new ItemClickListener() {
+
             @Override
             public void onItemClickListener(View v, int position) {
+                pos= position;
+                View mView = LayoutInflater.from(context).inflate(R.layout.dialog_alimento,null);
+
+                new AlertDialog.Builder(context)
+                        .setTitle(R.string.dialog_title)
+                        .setMessage(R.string.dialog_quantity)
+                        .setView(mView)
+                        //.setMessage(R.string.dialog_message_add)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //if (mDatabase == null) return;
+                                mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        return;
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                                        return;
+                                    }
+                                });
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Log.d("TAG", "Alimento NO eliminado");
+                            }
+                        })
+                        .show();
+
 
             }
         });

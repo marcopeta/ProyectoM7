@@ -41,10 +41,7 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
         this.listaAlimentos = listaAlimentos;
         mDatabase = FirebaseDatabase.getInstance().getReference("Users/" + CajaNavegacionActivity.getUser().getUid());
         currentTime = Calendar.getInstance();
-
         diaActual = currentTime.get(Calendar.DAY_OF_MONTH) + "-" + (currentTime.get(Calendar.MONTH) + 1) + "-" + currentTime.get(Calendar.YEAR);
-
-
     }
 
     @Override

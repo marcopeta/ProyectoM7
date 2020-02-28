@@ -25,4 +25,7 @@
     <string name="dialog_title">Food Management</string>
     <string name="ok">Remove</string>
     <string name="cancel">Cancel</string>
+    <string name="dialog_message_add">Do you want to add this aliment?</string>
+    <string name="quantity">Amount Ingested</string>
+    <string name="dialog_quantity">Introduce amount ingested:</string>
 </resources>
