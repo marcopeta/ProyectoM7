@@ -33,7 +33,6 @@ public class RegistroActivity extends AppCompatActivity {
     EditText campoCorreo, campoNombre, campoContraseña, campoTelefono;
     RadioButton rb_anorexia, rb_bulimia, rb_sobrepeso, rb_no;
     Button btnRegistrar;
-    private static final String TAG = "MainActivity";
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     private ProgressDialog mDialog;

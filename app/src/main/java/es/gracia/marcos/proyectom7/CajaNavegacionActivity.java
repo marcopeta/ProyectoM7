@@ -48,7 +48,6 @@ public class CajaNavegacionActivity extends AppCompatActivity {
 
     TextView usuario, correo;
     private AppBarConfiguration mAppBarConfiguration;
-    private static final String TAG = "MainActivity";
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     public static FirebaseUser user;
@@ -93,7 +92,6 @@ public class CajaNavegacionActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError error) {
-                Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
     }
