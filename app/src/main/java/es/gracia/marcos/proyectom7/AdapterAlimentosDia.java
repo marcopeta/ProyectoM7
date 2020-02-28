@@ -93,7 +93,7 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Log.d("HOLA", "Alimento NO eliminado");
+                                Log.d("TAG", "Alimento NO eliminado");
                             }
                         })
                         .show();
@@ -106,7 +106,7 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
         return listaAlimentos.size();
     }
 
-    class ViewHolderAlimentos extends RecyclerView.ViewHolder implements View.OnClickListener {
+    static class ViewHolderAlimentos extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public final TextView AlimentoItemView;
         public final TextView CantidadItemView;
