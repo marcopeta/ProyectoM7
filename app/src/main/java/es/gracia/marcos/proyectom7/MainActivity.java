@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,6 +29,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText correo, contraseña;
@@ -38,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     //Inicializamos las SharedPreferences
     public static SharedPreferences preferences;
     public static SharedPreferences.Editor editor;
-    private static final String TAG = "MainActivity.this";
     private static FirebaseAuth mAuth;
     private ProgressDialog mDialog;
     private boolean activado;
@@ -55,8 +57,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         if (getStateSession()) {
+            //Mirar si el usuario tiene algun idioma gurdado en el firebase
+            /*Locale localizacion = new Locale("cat", "ES");
+            Locale.setDefault(localizacion);
+            Configuration config = new Configuration();
+            config.locale = localizacion;
+            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+*/
             Intent intent = new Intent(MainActivity.this, CajaNavegacionActivity.class);
             startActivity(intent);
             finish();
@@ -102,13 +110,11 @@ public class MainActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 keepSession();
                                 mDialog.dismiss();
-                                Log.d(TAG, "signInWithEmail:success");
                                 Intent intent = new Intent(MainActivity.this, CajaNavegacionActivity.class);
                                 startActivity(intent);
                                 finish();
                             } else {
                                 mDialog.dismiss();
-                                Log.w(TAG, "signInWithEmail:failure", task.getException());
                                 Toast.makeText(MainActivity.this, "Correo/Contraseña incorrecto",
                                         Toast.LENGTH_SHORT).show();
                             }
