@@ -1,16 +1,16 @@
-package es.gracia.marcos.proyectom7;
-
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+package es.gracia.marcos.proyectom7.ui.inicio;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +21,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.LinkedList;
 
+import es.gracia.marcos.proyectom7.AdapterAlimentos;
+import es.gracia.marcos.proyectom7.AdapterAlimentosDia;
+import es.gracia.marcos.proyectom7.AdapterAnadirDia;
+import es.gracia.marcos.proyectom7.AnadirAlimentoActivity;
+import es.gracia.marcos.proyectom7.CajaNavegacionActivity;
+import es.gracia.marcos.proyectom7.R;
 import es.gracia.marcos.proyectom7.ui.alimentos.Alimento;
 
 import static java.lang.Float.parseFloat;
@@ -28,25 +34,28 @@ import static java.lang.Integer.parseInt;
 
 public class AnadirAlimentoDiaActivity extends AppCompatActivity {
 
+
     private final LinkedList<Alimento> listaAlimentos = new LinkedList<>();
     private RecyclerView recyclerAlimentos;
-    private AdapterAlimentos aAdapter;
+    private AdapterAnadirDia aAdapter;
     private DatabaseReference mDatabase;
     private ProgressDialog mDialog;
-    View root;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        root = inflater.inflate(R.layout.fragment_alimentos, container, false);
-        mDatabase = FirebaseDatabase.getInstance().getReference("Users/" + CajaNavegacionActivity.getUser().getUid());
+
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_anadir_alimento_dia);
         mDialog = new ProgressDialog(AnadirAlimentoDiaActivity.this);
 
+
+        //View root = inflater.inflate(R.layout.activity_anadir_alimento_dia, container, false);
+        mDatabase = FirebaseDatabase.getInstance().getReference("Users/" + CajaNavegacionActivity.getUser().getUid());
 
         mDialog.setMessage("Espera un momento...");
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.show();
 
-                mDatabase.addValueEventListener(new ValueEventListener() {
+        mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String nombre;
@@ -73,20 +82,20 @@ public class AnadirAlimentoDiaActivity extends AppCompatActivity {
                     } else {
                         acaba++;
                     }
+                    mDialog.dismiss();
+
                 }
-                recyclerAlimentos = root.findViewById(R.id.listadoAlimentos);
-                aAdapter = new AdapterAlimentos(AnadirAlimentoDiaActivity.this, listaAlimentos);
+                recyclerAlimentos = findViewById(R.id.listadoAlimentos);
+                aAdapter = new AdapterAnadirDia(AnadirAlimentoDiaActivity.this, listaAlimentos);
                 recyclerAlimentos.setAdapter(aAdapter);
                 recyclerAlimentos.setLayoutManager(new LinearLayoutManager(AnadirAlimentoDiaActivity.this));
-                mDialog.dismiss();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 mDialog.dismiss();
-
             }
         });
-        return root;
     }
+
 }

@@ -21,9 +21,16 @@
     <string name="user">Nom d\'usuari</string>
     <string name="logout">Tancar sessió</string>
     <string name="consejos_fragment">Consells</string>
-    <string name="dialog_message" >Vols eliminar aquest aliment?</string>
-    <string name="dialog_title" >Gestió d\'aliments</string>
-    <string name="ok" >Eliminar</string>
-    <string name="cancel" >Cancel·lar</string>
+    <string name="dialog_message">Vols eliminar aquest aliment?</string>
+    <string name="dialog_message_add">Vols afegir aquest aliment?</string>
+    <string name="dialog_quantity">Introdueixi quantitat ingerida:</string>
+
+    <string name="quantity">Quantitat Ingerida</string>
+
+
+
+    <string name="dialog_title">Gestió d\'aliments</string>
+    <string name="ok">Eliminar</string>
+    <string name="cancel">Cancel·lar</string>
 
 </resources>

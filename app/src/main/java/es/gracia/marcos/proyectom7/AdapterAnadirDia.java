@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,48 +20,55 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 import java.util.LinkedList;
+import java.util.zip.Inflater;
 
 import es.gracia.marcos.proyectom7.ui.alimentos.Alimento;
 import es.gracia.marcos.proyectom7.ui.alimentos.ItemClickListener;
-import es.gracia.marcos.proyectom7.ui.inicio.InicioFragment;
+
+public class AdapterAnadirDia extends RecyclerView.Adapter<AdapterAnadirDia.ViewHolderAlimentos> {
 
 
-public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDia.ViewHolderAlimentos> {
     private final LinkedList<Alimento> listaAlimentos;
     private Context context;
     private DatabaseReference mDatabase;
     String diaActual;
     Calendar currentTime;
-    int pos=0;
+    int pos = 0;
 
 
-    public AdapterAlimentosDia(Context context, LinkedList<Alimento> listaAlimentos) {
+    public AdapterAnadirDia(Context context, LinkedList<Alimento> listaAlimentos) {
         this.context = context;
         this.listaAlimentos = listaAlimentos;
         mDatabase = FirebaseDatabase.getInstance().getReference("Users/" + CajaNavegacionActivity.getUser().getUid());
         currentTime = Calendar.getInstance();
+
         diaActual = currentTime.get(Calendar.DAY_OF_MONTH) + "-" + (currentTime.get(Calendar.MONTH) + 1) + "-" + currentTime.get(Calendar.YEAR);
     }
 
+    @NonNull
     @Override
-    public ViewHolderAlimentos onCreateViewHolder(ViewGroup parent,
-                                                  int viewType) {
-        return new ViewHolderAlimentos(LayoutInflater.from(context).
-                inflate(R.layout.item_list_alimentos, parent, false));
+    public AdapterAnadirDia.ViewHolderAlimentos onCreateViewHolder(ViewGroup parent,
+                                                                   int viewType) {
+        return new AdapterAnadirDia.ViewHolderAlimentos(LayoutInflater.from(context).inflate(R.layout.item_list_alimentos, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(ViewHolderAlimentos holder, int position) {
+    public void onBindViewHolder(@NonNull AdapterAnadirDia.ViewHolderAlimentos holder, int position) {
         Alimento currentAlimento = listaAlimentos.get(position);
         holder.bindTo(currentAlimento);
 
         holder.setItemClickListener(new ItemClickListener() {
+
             @Override
             public void onItemClickListener(View v, int position) {
                 pos= position;
+                View mView = LayoutInflater.from(context).inflate(R.layout.dialog_alimento,null);
+
                 new AlertDialog.Builder(context)
                         .setTitle(R.string.dialog_title)
-                        .setMessage(R.string.dialog_message)
+                        .setMessage(R.string.dialog_quantity)
+                        .setView(mView)
+                        //.setMessage(R.string.dialog_message_add)
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -70,14 +76,7 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
                                 mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        int  posicion = pos;
-
-                                        for (Long i = 0l; i <= posicion; i++) {
-                                            if (!dataSnapshot.child("calendario").child(diaActual).child(i + "").exists()) {
-                                                posicion++;
-                                            }
-                                        }
-                                        mDatabase.child("calendario").child(diaActual).child(posicion + "").removeValue();
+                                        return;
                                     }
 
                                     @Override
@@ -94,6 +93,8 @@ public class AdapterAlimentosDia extends RecyclerView.Adapter<AdapterAlimentosDi
                             }
                         })
                         .show();
+
+
             }
         });
     }

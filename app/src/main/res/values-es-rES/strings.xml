@@ -25,4 +25,7 @@
     <string name="dialog_title">Gestión de Alimentos</string>
     <string name="ok">Eliminar</string>
     <string name="cancel">Cancelar</string>
+    <string name="dialog_message_add">Quieres añadir este alimento?</string>
+    <string name="quantity">Cantidad Ingerida</string>
+    <string name="dialog_quantity">Introduzca cantidad ingerida:</string>
 </resources>
