@@ -157,44 +157,93 @@ public class ConfiguracionFragment extends Fragment{
         catalan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Locale localizacion = new Locale("en", "GB");
+                new AlertDialog.Builder(getContext())
+                        .setTitle("")
+                        .setMessage("Vols canviar al Català?")
+                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Locale localizacion = new Locale("cat", "ES");
 
-                Locale.setDefault(localizacion);
-                Configuration config = new Configuration();
-                config.locale = localizacion;
-                getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());*/
+                                Locale.setDefault(localizacion);
+                                Configuration config = new Configuration();
+                                config.locale = localizacion;
+                                getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
+                                Intent intent = getActivity().getIntent();
+                                getActivity().finish();
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
-                Toast.makeText(getContext(), "catalan", Toast.LENGTH_LONG).show();
+                            }
+                        }).show();
             }
         });
         castellano = root.findViewById(R.id.linearLayoutCastellano);
         castellano.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Locale localizacion = new Locale("en", "GB");
+                new AlertDialog.Builder(getContext())
+                        .setTitle("")
+                        .setMessage("Vols canviar al Castellà?")
+                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Locale localizacion = new Locale("es", "ES");
 
-                Locale.setDefault(localizacion);
-                Configuration config = new Configuration();
-                config.locale = localizacion;
-                getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());*/
+                                Locale.setDefault(localizacion);
+                                Configuration config = new Configuration();
+                                config.locale = localizacion;
+                                getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
+                                Intent intent = getActivity().getIntent();
+                                getActivity().finish();
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
-                Toast.makeText(getContext(), "castellano", Toast.LENGTH_LONG).show();
+                            }
+                        }).show();
             }
         });
         ingles = root.findViewById(R.id.linearLayoutIngles);
         ingles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Locale localizacion = new Locale("en", "GB");
+                new AlertDialog.Builder(getContext())
+                        .setTitle("")
+                        .setMessage("Vols canviar al Anglès?")
+                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Locale localizacion = new Locale("en", "GB");
 
-                Locale.setDefault(localizacion);
-                Configuration config = new Configuration();
-                config.locale = localizacion;
-                getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());*/
+                                Locale.setDefault(localizacion);
+                                Configuration config = new Configuration();
+                                config.locale = localizacion;
+                                getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
+                                Intent intent = getActivity().getIntent();
+                                getActivity().finish();
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
-                Toast.makeText(getContext(), "ingles", Toast.LENGTH_LONG).show();
+                            }
+                        }).show();
             }
         });
         return root;
+    }
+
+    private void cambiarCatalan(){
+
     }
 }

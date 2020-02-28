@@ -95,7 +95,6 @@ public class RegistroActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        Log.d(TAG, "createUserWithEmail:success");
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         Map<String, String> map = new HashMap<>();
                                         map.put("nombre", nombre);
@@ -111,7 +110,6 @@ public class RegistroActivity extends AppCompatActivity {
                                         btnRegistrar.setEnabled(true);
                                     } else {
                                         mDialog.dismiss();
-                                        Log.w(TAG, "createUserWithEmail:failure", task.getException());
                                         Toast.makeText(RegistroActivity.this, "No se ha podido crear el usuario",
                                                 Toast.LENGTH_SHORT).show();
                                         btnRegistrar.setEnabled(true);
