@@ -91,6 +91,13 @@ public class AdapterAnadirDia extends RecyclerView.Adapter<AdapterAnadirDia.View
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         int posicion = pos;
 
+                                        if (et.getText().toString().isEmpty()){
+                                            Toast.makeText(context, "Por favor, introduzca una cantidad.", Toast.LENGTH_SHORT).show();
+                                            return;
+
+
+                                        }
+
                                         for (Long i = 0l; i <= posicion; i++) {
                                             if (!dataSnapshot.child("alimentos").child(i + "").exists()) {
                                                 posicion++;
