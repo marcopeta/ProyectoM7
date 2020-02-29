@@ -43,6 +43,7 @@ import android.widget.Toast;
 
 import es.gracia.marcos.proyectom7.ui.alimentos.AlimentosFragment;
 
+
 public class CajaNavegacionActivity extends AppCompatActivity {
 
 
