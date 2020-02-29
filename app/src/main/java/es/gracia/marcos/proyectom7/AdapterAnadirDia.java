@@ -96,16 +96,27 @@ public class AdapterAnadirDia extends RecyclerView.Adapter<AdapterAnadirDia.View
                                                 posicion++;
                                             }
                                         }
+                                        Float  grasas, hidratos, proteinas;
+                                        int calorias;
+
                                         Map<String, Object> map = new HashMap<>();
                                         if (!dataSnapshot.child("calendario").child(diaActual).child(posicion + "").exists()) {
+
+
+
+                                            grasas=(parseFloat(dataSnapshot.child("alimentos").child(posicion + "").child("grasas").getValue().toString()) *  parseFloat(et.getText().toString()));;
+                                            hidratos=(parseFloat(dataSnapshot.child("alimentos").child(posicion + "").child("hidratos").getValue().toString()) *  parseFloat(et.getText().toString()));;
+                                            proteinas=(parseFloat(dataSnapshot.child("alimentos").child(posicion + "").child("proteinas").getValue().toString()) *  parseFloat(et.getText().toString()));;
+                                            calorias=(parseInt(dataSnapshot.child("alimentos").child(posicion + "").child("calorias").getValue().toString()) *  parseInt(et.getText().toString()));;
+
                                             map.put("nombre", dataSnapshot.child("alimentos").child(posicion + "").child("nombre").getValue().toString());
                                             map.put("marca", dataSnapshot.child("alimentos").child(posicion + "").child("marca").getValue().toString());
                                             map.put("cantidad", parseFloat(et.getText().toString()));
                                             map.put("unidad", dataSnapshot.child("alimentos").child(posicion + "").child("unidad").getValue().toString());
-                                            map.put("grasas", parseFloat(dataSnapshot.child("alimentos").child(posicion + "").child("grasas").getValue().toString()));
-                                            map.put("hidratos", parseFloat(dataSnapshot.child("alimentos").child(posicion + "").child("hidratos").getValue().toString()));
-                                            map.put("proteinas", parseFloat(dataSnapshot.child("alimentos").child(posicion + "").child("proteinas").getValue().toString()));
-                                            map.put("calorias", parseInt(dataSnapshot.child("alimentos").child(posicion + "").child("calorias").getValue().toString()));
+                                            map.put("grasas", grasas );
+                                            map.put("hidratos", hidratos);
+                                            map.put("proteinas", proteinas);
+                                            map.put("calorias", calorias);
                                             //listaAlimentos.add(new Alimento(nombre, marca, cantidad, unidad, grasas, hidratos, proteinas, calorias));
                                             mDatabase.child("calendario").child(diaActual).child(posicion + "").setValue(map);
                                         } else{
