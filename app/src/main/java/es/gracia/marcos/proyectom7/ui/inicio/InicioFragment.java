@@ -40,6 +40,8 @@ public class InicioFragment extends Fragment {
     String diaActual;
     View root;
     private AdapterAlimentosDia aAdapter;
+    private TextView tvGrasas, tvHidratos, tvProteinas, tvCalorias;
+
 
     Calendar currentTime;
 
@@ -54,6 +56,10 @@ public class InicioFragment extends Fragment {
         currentTime = Calendar.getInstance();
         diaActual = currentTime.get(Calendar.DAY_OF_MONTH) + "-" + (currentTime.get(Calendar.MONTH) + 1) + "-" + currentTime.get(Calendar.YEAR);
         tvDia.setText(currentTime.get(Calendar.DAY_OF_MONTH) + "/" + (currentTime.get(Calendar.MONTH) + 1) + "/" + currentTime.get(Calendar.YEAR));
+        tvCalorias = root.findViewById(R.id.caloriasT);
+        tvGrasas = root.findViewById(R.id.grasasT);
+        tvHidratos = root.findViewById(R.id.hidratosT);
+        tvProteinas = root.findViewById(R.id.proteinasT);
 
         mDialog.setMessage("Espera un momento...");
         mDialog.setCanceledOnTouchOutside(false);
@@ -62,6 +68,8 @@ public class InicioFragment extends Fragment {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Float grasasTotal = 0.00f,hidratosTotal = 0.00f,proteinasTotal = 0.00f;
+                int caloriasTotal = 0;
                 String nombre;
                 String marca;
                 Float cantidad;
@@ -83,11 +91,22 @@ public class InicioFragment extends Fragment {
                         hidratos = parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("hidratos").getValue().toString());
                         proteinas = parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("proteinas").getValue().toString());
                         calorias = parseInt(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("calorias").getValue().toString());
+
+                        grasasTotal += parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i+"").child("grasas").getValue().toString());
+                        hidratosTotal += parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("hidratos").getValue().toString());
+                        proteinasTotal += parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("proteinas").getValue().toString());
+                        caloriasTotal += parseInt(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("calorias").getValue().toString());
+
+
                         listadoAlimentos.add(new Alimento(nombre, marca, cantidad, unidad, grasas, hidratos, proteinas, calorias));
                     } else {
                         acaba++;
                     }
                 }
+                tvGrasas.setText("G: " + grasasTotal.toString());
+                tvHidratos.setText("H: " + hidratosTotal.toString());
+                tvProteinas.setText("P: " + proteinasTotal.toString());
+                tvCalorias.setText("Kcal: " + caloriasTotal);
                 recyclerAlimentos = root.findViewById(R.id.listadoAlimentosDia);
                 aAdapter = new AdapterAlimentosDia(getContext(), listadoAlimentos);
                 recyclerAlimentos.setAdapter(aAdapter);
