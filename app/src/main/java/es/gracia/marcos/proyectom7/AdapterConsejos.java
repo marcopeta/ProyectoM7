@@ -46,6 +46,14 @@ public class AdapterConsejos extends RecyclerView.Adapter<AdapterConsejos.ViewHo
                 String text = listaConsejos.get(position).getTextConsejo();
                 String autor = listaConsejos.get(position).getAutor();
                 String trastorno = listaConsejos.get(position).getTrastorno();
+
+                Intent intent = new Intent(v.getContext(), ModificarConsejoActivity.class);
+                intent.putExtra("titol", titol);
+                intent.putExtra("text", text);
+                intent.putExtra("autor", autor);
+                intent.putExtra("trastorno", trastorno);
+                intent.putExtra("posicion", position);
+                v.getContext().startActivity(intent);
             }
         });
 

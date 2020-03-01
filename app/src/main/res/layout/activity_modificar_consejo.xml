@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.consejos.AnadirConsejoActivity">
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvModificarTitol"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/title" />
+
+            <EditText
+                android:id="@+id/etModificarTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/tvModificarText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/advice" />
+
+            <EditText
+                android:id="@+id/etModificarText"
+                android:layout_width="match_parent"
+                android:layout_height="207dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="204dp">
+
+                <RadioButton
+                    android:id="@+id/rb_anorexiaModificar"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:text="Anorexia"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/gray"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/rb_bulimiaModificar"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:text="Bulimia"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/gray"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/rb_sobrepesoModificar"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="Sobrepeso"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/gray"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/rb_noModificar"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:checked="true"
+                    android:text="No / Prefiero no contestar"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/gray"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabAceptarModificacionConsejo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    app:backgroundTint="#76C91B"
+                    app:fabSize="normal"
+                    app:srcCompat="@android:drawable/ic_menu_save" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabDenegarModificacionConsejo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|start"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:layout_marginStart="339dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    app:backgroundTint="#EB0202"
+                    app:fabSize="normal"
+                    app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:orientation="horizontal"
+                android:paddingRight="10dp">
+
+            </LinearLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabEliminarConsejo"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/fab_margin"
+                android:layout_marginStart="339dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                app:backgroundTint="#EB0202"
+                app:fabSize="normal"
+                app:srcCompat="@android:drawable/ic_menu_delete" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
