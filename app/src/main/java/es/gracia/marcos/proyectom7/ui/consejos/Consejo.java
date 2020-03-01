@@ -1,13 +1,14 @@
 package es.gracia.marcos.proyectom7.ui.consejos;
 
 public class Consejo {
-    private String titol, text, autor;
+    private String titol, text, autor,trastorno;
     private int id;
 
-    public Consejo(String titol, String text, String autor) {
+    public Consejo(String titol, String text, String autor, String trastorno) {
         this.titol = titol;
         this.text = text;
         this.autor = autor;
+        this.trastorno = trastorno;
     }
 
     public int getId() {
@@ -42,12 +43,21 @@ public class Consejo {
         this.titol = titol;
     }
 
+    public String getTrastorno() {
+        return trastorno;
+    }
+
+    public void setTrastorno(String trastorno) {
+        this.trastorno = trastorno;
+    }
+
     @Override
     public String toString() {
         return "Consejo{" +
                 "titol='" + titol + '\'' +
                 ", text='" + text + '\'' +
                 ", autor=" + autor +
+                ", trastorno=" + trastorno + '\''+
                 '}';
     }
 }

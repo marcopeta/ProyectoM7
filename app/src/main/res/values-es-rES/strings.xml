@@ -28,4 +28,7 @@
     <string name="dialog_message_add">Quieres añadir este alimento?</string>
     <string name="quantity">Cantidad Ingerida</string>
     <string name="dialog_quantity">Introduzca cantidad ingerida:</string>
+    <string name="title">Título</string>
+    <string name="advice">Consejo</string>
+    <string name="introduce_name">Introduzca su nombre:</string>
 </resources>

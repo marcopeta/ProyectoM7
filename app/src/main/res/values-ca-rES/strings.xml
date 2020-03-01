@@ -28,5 +28,8 @@
     <string name="dialog_message_add">Vols afegir aquest aliment?</string>
     <string name="quantity">Quantitat Ingerida</string>
     <string name="dialog_quantity">Introdueixi quantitat ingerida:</string>
+    <string name="title">Títol</string>
+    <string name="advice">Consell</string>
+    <string name="introduce_name">Introdueixi el seu nom:</string>
 
 </resources>

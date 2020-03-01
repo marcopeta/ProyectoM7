@@ -28,9 +28,11 @@
     <string name="quantity">Quantitat Ingerida</string>
 
 
-
     <string name="dialog_title">Gestió d\'aliments</string>
     <string name="ok">Eliminar</string>
     <string name="cancel">Cancel·lar</string>
+    <string name="title">Títol</string>
+    <string name="advice">Consell</string>
+    <string name="introduce_name">Introdueixi el seu nom:</string>
 
 </resources>

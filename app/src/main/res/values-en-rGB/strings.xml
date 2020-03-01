@@ -28,4 +28,7 @@
     <string name="dialog_message_add">Do you want to add this aliment?</string>
     <string name="quantity">Amount Ingested</string>
     <string name="dialog_quantity">Introduce amount ingested:</string>
+    <string name="title">Title</string>
+    <string name="advice">Advice</string>
+    <string name="introduce_name">Introduce your name:</string>
 </resources>

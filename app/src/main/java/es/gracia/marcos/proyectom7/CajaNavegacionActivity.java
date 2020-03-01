@@ -57,6 +57,7 @@ public class CajaNavegacionActivity extends AppCompatActivity {
         return user;
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

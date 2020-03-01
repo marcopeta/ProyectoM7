@@ -10,6 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.LinkedList;
 
 import es.gracia.marcos.proyectom7.ui.alimentos.Alimento;
@@ -42,6 +45,7 @@ public class AdapterConsejos extends RecyclerView.Adapter<AdapterConsejos.ViewHo
                 String titol = listaConsejos.get(position).getTitol();
                 String text = listaConsejos.get(position).getTextConsejo();
                 String autor = listaConsejos.get(position).getAutor();
+                String trastorno = listaConsejos.get(position).getTrastorno();
             }
         });
 
