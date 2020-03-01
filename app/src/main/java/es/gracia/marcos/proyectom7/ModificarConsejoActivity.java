@@ -69,11 +69,12 @@ public class ModificarConsejoActivity extends AppCompatActivity {
         posicion = intent.getIntExtra("posicion", 0);
 
 
-
         FloatingActionButton fab1 = (FloatingActionButton) findViewById(R.id.fabAceptarModificacionConsejo);
+
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -85,31 +86,33 @@ public class ModificarConsejoActivity extends AppCompatActivity {
                             }
                         }
 
-                        if (!etTitle.getText().toString().isEmpty() && !etText.getText().toString().isEmpty() ) {
-                            if (!existe) {
-                                Map<String, Object> map = new HashMap<>();
-                                String trastorno;
-                                mDatabase.child(posicion + "").child("titol").setValue(etTitle.getText().toString());
-                                mDatabase.child(posicion + "").child("text").setValue(etText.getText().toString());
-                                mDatabase.child(posicion + "").child("autor").setValue(CajaNavegacionActivity.getNom());
-                                if (rb_anorexia.isChecked()) {
-                                    trastorno = "1";
-                                } else if (rb_bulimia.isChecked()) {
-                                    trastorno = "2";
-                                } else if (rb_sobrepeso.isChecked()) {
-                                    trastorno = "3";
-                                } else {
-                                    trastorno = "0";
+                            if (!etTitle.getText().toString().isEmpty() && !etText.getText().toString().isEmpty()) {
+                                if (!existe) {
+                                    Map<String, Object> map = new HashMap<>();
+                                    String trastorno;
+                                    mDatabase.child(posicion + "").child("titol").setValue(etTitle.getText().toString());
+                                    mDatabase.child(posicion + "").child("text").setValue(etText.getText().toString());
+                                    mDatabase.child(posicion + "").child("autor").setValue(CajaNavegacionActivity.getNom());
+                                    if (rb_anorexia.isChecked()) {
+                                        trastorno = "1";
+                                    } else if (rb_bulimia.isChecked()) {
+                                        trastorno = "2";
+                                    } else if (rb_sobrepeso.isChecked()) {
+                                        trastorno = "3";
+                                    } else {
+                                        trastorno = "0";
+                                    }
+                                    mDatabase.child(posicion + "").child("trastorno").setValue(trastorno);
+                                    backEnabled = true;
+                                    onBackPressed();
                                 }
-                                mDatabase.child(posicion + "").child("trastorno").setValue(trastorno);
-                                backEnabled = true;
-                                onBackPressed();
+                            } else {
+                                Toast.makeText(ModificarConsejoActivity.this, "Hay campos vacios", Toast.LENGTH_SHORT).show();
                             }
-                        } else {
-                            Toast.makeText(ModificarConsejoActivity.this, "Hay campos vacios", Toast.LENGTH_SHORT).show();
+
                         }
 
-                    }
+
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -117,6 +120,8 @@ public class ModificarConsejoActivity extends AppCompatActivity {
                     }
                 });
             }
+
+
         });
 
         FloatingActionButton fab2 = (FloatingActionButton) findViewById(R.id.fabDenegarModificacionConsejo);

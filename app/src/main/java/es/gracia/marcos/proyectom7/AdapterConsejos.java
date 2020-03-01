@@ -10,8 +10,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.LinkedList;
 
@@ -22,10 +25,13 @@ import es.gracia.marcos.proyectom7.ui.consejos.Consejo;
 public class AdapterConsejos extends RecyclerView.Adapter<AdapterConsejos.ViewHolderConsejos> {
     private final LinkedList<Consejo> listaConsejos;
     private Context context;
+    DatabaseReference mDatabase;
 
     public AdapterConsejos(Context context, LinkedList<Consejo> listaConsejos) {
         this.context = context;
         this.listaConsejos = listaConsejos;
+        mDatabase = FirebaseDatabase.getInstance().getReference("Consejos/");
+
     }
 
     @NonNull
@@ -41,19 +47,27 @@ public class AdapterConsejos extends RecyclerView.Adapter<AdapterConsejos.ViewHo
         holder.bindTo(currentConsejo);
         holder.setItemClickListener(new ItemClickListener() {
             @Override
-            public void onItemClickListener(View v, int position) {
+            public void onItemClickListener(View v, final int position) {
                 String titol = listaConsejos.get(position).getTitol();
                 String text = listaConsejos.get(position).getTextConsejo();
-                String autor = listaConsejos.get(position).getAutor();
+                final String autor = listaConsejos.get(position).getAutor();
                 String trastorno = listaConsejos.get(position).getTrastorno();
+                 boolean isAutor = false;
+                        if (CajaNavegacionActivity.getNom().equals(autor)) {
+                            isAutor = true;
+                        }
 
-                Intent intent = new Intent(v.getContext(), ModificarConsejoActivity.class);
-                intent.putExtra("titol", titol);
-                intent.putExtra("text", text);
-                intent.putExtra("autor", autor);
-                intent.putExtra("trastorno", trastorno);
-                intent.putExtra("posicion", position);
-                v.getContext().startActivity(intent);
+
+
+                if (isAutor) {
+                    Intent intent = new Intent(v.getContext(), ModificarConsejoActivity.class);
+                    intent.putExtra("titol", titol);
+                    intent.putExtra("text", text);
+                    intent.putExtra("autor", autor);
+                    intent.putExtra("trastorno", trastorno);
+                    intent.putExtra("posicion", position);
+                    v.getContext().startActivity(intent);
+                }
             }
         });
 
