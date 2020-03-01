@@ -52,12 +52,10 @@ public class AdapterConsejos extends RecyclerView.Adapter<AdapterConsejos.ViewHo
                 String text = listaConsejos.get(position).getTextConsejo();
                 final String autor = listaConsejos.get(position).getAutor();
                 String trastorno = listaConsejos.get(position).getTrastorno();
-                 boolean isAutor = false;
-                        if (CajaNavegacionActivity.getNom().equals(autor)) {
-                            isAutor = true;
-                        }
-
-
+                boolean isAutor = false;
+                if (CajaNavegacionActivity.getNom().equals(autor)) {
+                    isAutor = true;
+                }
 
                 if (isAutor) {
                     Intent intent = new Intent(v.getContext(), ModificarConsejoActivity.class);
