@@ -34,7 +34,7 @@ public class ModificarConsejoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modificar_consejo);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        getSupportActionBar().setTitle("Modificar Consejo");
+        getSupportActionBar().setTitle(R.string.modify_advice);
 
         mDatabase = FirebaseDatabase.getInstance().getReference("Consejos/");
         etText = findViewById(R.id.etModificarText);

@@ -25,7 +25,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="20dp"
-                    android:text="Añade los valores nutricionales:"
+                    android:text="@string/add_values_n"
                     android:textAlignment="center"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -38,7 +38,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="10dp"
                     android:ems="10"
-                    android:hint="Nombre"
+                    android:hint="@string/name"
                     android:inputType="textPersonName"
                     android:maxLength="4"
                     android:selectAllOnFocus="false" />
@@ -51,7 +51,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="50dp"
                     android:ems="10"
-                    android:hint="Marca"
+                    android:hint="@string/brand"
                     android:inputType="textPersonName" />
 
                 <LinearLayout
@@ -68,7 +68,7 @@
                         android:layout_marginRight="20dp"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:hint="Cantidad"
+                        android:hint="@string/quantity"
                         android:inputType="number"
                         android:maxLength="4" />
 
@@ -80,7 +80,7 @@
                         android:layout_marginRight="20dp"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:hint="Unidad"
+                        android:hint="@string/unity"
                         android:inputType="textPersonName"
                         android:maxLength="2" />
 
@@ -94,7 +94,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="10dp"
                     android:ems="10"
-                    android:hint="Grasas"
+                    android:hint="@string/grease"
                     android:inputType="number|numberDecimal"
                     android:maxLength="6" />
 
@@ -106,7 +106,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="10dp"
                     android:ems="10"
-                    android:hint="Hidratos de Carbono"
+                    android:hint="@string/carbohydrate"
                     android:inputType="numberDecimal"
                     android:maxLength="6" />
 
@@ -118,7 +118,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="50dp"
                     android:ems="10"
-                    android:hint="Proteinas"
+                    android:hint="@string/protein"
                     android:inputType="numberDecimal"
                     android:maxLength="6" />
 
@@ -129,7 +129,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="40dp"
-                    android:hint="Valor Energetico (Kcal)"
+                    android:hint="@string/energy_value"
                     android:inputType="number"
                     android:maxLength="4" />
 

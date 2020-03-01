@@ -43,7 +43,7 @@ public class AnadirAlimentoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anadir_alimento);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        getSupportActionBar().setTitle("Añadir Alimento");
+        getSupportActionBar().setTitle(R.string.add_aliment);
         mDatabase = FirebaseDatabase.getInstance().getReference("Users/" + CajaNavegacionActivity.getUser().getUid());
         etNombre = findViewById(R.id.etAnadirNombre);
         etMarca = findViewById(R.id.etAnadirMarca);

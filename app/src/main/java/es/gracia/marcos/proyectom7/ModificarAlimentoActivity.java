@@ -41,7 +41,7 @@ public class ModificarAlimentoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modificar_alimento);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        getSupportActionBar().setTitle("Modificar Alimento");
+        getSupportActionBar().setTitle(R.string.modify_aliment);
         mDatabase = FirebaseDatabase.getInstance().getReference("Users/" + CajaNavegacionActivity.getUser().getUid());
         etNombre = findViewById(R.id.tvModificarNombre);
         etMarca = findViewById(R.id.tvModificarMarca);

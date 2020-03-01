@@ -78,10 +78,8 @@ public class AdapterAnadirDia extends RecyclerView.Adapter<AdapterAnadirDia.View
                 et = mView.findViewById(R.id.etQuantity);
                 new AlertDialog.Builder(context)
                         .setTitle(R.string.dialog_title)
-                        //.setMessage(R.string.dialog_quantity)
-                        .setMessage(position+"")
+                        .setMessage(R.string.dialog_quantity)
                         .setView(mView)
-                        //.setMessage(R.string.dialog_message_add)
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

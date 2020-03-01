@@ -25,7 +25,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp"
-                android:text="Añade tus Cambios:"
+                android:text="@string/add_changes"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:paddingBottom="20dp"
-                android:text="Nombre"
+                android:text="@string/name"
                 android:textSize="20sp" />
 
             <TextView
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:paddingBottom="50dp"
-                android:text="Marca"
+                android:text="@string/brand"
                 android:textSize="20sp" />
 
             <LinearLayout
@@ -62,7 +62,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="Cantidad"
+                    android:hint="@string/quantity"
                     android:inputType="number"
                     android:maxLength="4" />
 
@@ -74,7 +74,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="Unidad"
+                    android:hint="@string/unity"
                     android:inputType="textPersonName"
                     android:maxLength="2" />
 
@@ -85,7 +85,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="Grasas:"
+                android:text="@string/grease"
                 android:textSize="20sp" />
 
             <EditText
@@ -104,7 +104,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="Hidratos de Carbono:"
+                android:text="@string/carbohydrate"
                 android:textSize="20sp" />
 
             <EditText
@@ -123,7 +123,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="Proteinas:"
+                android:text="@string/protein"
                 android:textSize="20sp" />
 
             <EditText
@@ -142,7 +142,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="Valor Energetico (Kcal):"
+                android:text="@string/energy_value"
                 android:textSize="20sp" />
 
             <EditText

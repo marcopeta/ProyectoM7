@@ -45,7 +45,7 @@ public class AnadirConsejoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anadir_consejo);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        getSupportActionBar().setTitle("Añadir Consejo");
+        getSupportActionBar().setTitle(R.string.add_advice);
         mDatabase = FirebaseDatabase.getInstance().getReference("Consejos/");
         etTitle = findViewById(R.id.etTitle);
         etText = findViewById(R.id.etText);

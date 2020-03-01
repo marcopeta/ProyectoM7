@@ -13,7 +13,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:ems="10"
-        android:hint="Afegeix el teu IMC"
+        android:hint="@string/add_IMC"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toStartOf="@+id/btnAnadir"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/btn_redondeado_white"
-        android:text="Afegir"
+        android:text="@string/add"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
