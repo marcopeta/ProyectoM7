@@ -1,5 +1,6 @@
 package es.gracia.marcos.proyectom7.ui.consejos;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -38,6 +39,7 @@ public class ConsejosFragment extends Fragment {
     private AdapterConsejos aAdapter;
     private DatabaseReference mDatabase;
     private DatabaseReference mUser;
+    private ProgressDialog mDialog;
 
     View root;
 
@@ -46,6 +48,12 @@ public class ConsejosFragment extends Fragment {
         root = inflater.inflate(R.layout.fragment_consejos, container, false);
         mDatabase = FirebaseDatabase.getInstance().getReference("Consejos/");
         mUser = FirebaseDatabase.getInstance().getReference("Users/" + CajaNavegacionActivity.getUser().getUid());
+        mDialog = new ProgressDialog(getContext());
+
+
+        mDialog.setMessage("Espera un momento...");
+        mDialog.setCanceledOnTouchOutside(false);
+        mDialog.show();
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -64,7 +72,7 @@ public class ConsejosFragment extends Fragment {
                         text = dataSnapshot.child(i + "").child("text").getValue().toString();
                         autor = dataSnapshot.child(i + "").child("autor").getValue().toString();
                         trastorno = dataSnapshot.child(i + "").child("trastorno").getValue().toString();
-                            listaConsejos.add(new Consejo(titol, text, autor, trastorno));
+                        if (trastorno.equals(CajaNavegacionActivity.getTrastorno())) listaConsejos.add(new Consejo(titol, text, autor, trastorno));
                     } else {
                         acaba++;
                     }
@@ -74,12 +82,14 @@ public class ConsejosFragment extends Fragment {
                 aAdapter = new AdapterConsejos(getContext(), listaConsejos);
                 recyclerConsejos.setAdapter(aAdapter);
                 recyclerConsejos.setLayoutManager(new LinearLayoutManager(getContext()));
+                mDialog.dismiss();
+
             }
 
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                mDialog.dismiss();
             }
         });
 
