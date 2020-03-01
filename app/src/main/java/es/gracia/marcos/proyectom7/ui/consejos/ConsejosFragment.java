@@ -26,6 +26,7 @@ import es.gracia.marcos.proyectom7.AdapterConsejos;
 import es.gracia.marcos.proyectom7.AnadirAlimentoActivity;
 import es.gracia.marcos.proyectom7.CajaNavegacionActivity;
 import es.gracia.marcos.proyectom7.R;
+import es.gracia.marcos.proyectom7.RegistroActivity;
 import es.gracia.marcos.proyectom7.ui.alimentos.Alimento;
 
 import static java.lang.Float.parseFloat;
@@ -41,10 +42,10 @@ public class ConsejosFragment extends Fragment {
     View root;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+                             final ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_consejos, container, false);
-        mDatabase = FirebaseDatabase.getInstance().getReference("Consejos/" );
-        mUser = FirebaseDatabase.getInstance().getReference("Users/"+CajaNavegacionActivity.getUser().getUid());
+        mDatabase = FirebaseDatabase.getInstance().getReference("Consejos/");
+        mUser = FirebaseDatabase.getInstance().getReference("Users/" + CajaNavegacionActivity.getUser().getUid());
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -57,13 +58,13 @@ public class ConsejosFragment extends Fragment {
 
                 listaConsejos.clear();
                 Long acaba = dataSnapshot.getChildrenCount();
-                for (int i = 0; i < acaba; i++){
-                    if (dataSnapshot.child(i+"").exists()){
-                        titol = dataSnapshot.child(i+"").child("titol").getValue().toString();
-                        text = dataSnapshot.child(i+"").child("text").getValue().toString();
-                        autor =  dataSnapshot.child(i+"").child("autor").getValue().toString();
-                        trastorno =  dataSnapshot.child(i+"").child("trastorno").getValue().toString();
-                        listaConsejos.add(new Consejo(titol,text,autor,trastorno));
+                for (int i = 0; i < acaba; i++) {
+                    if (dataSnapshot.child(i + "").exists()) {
+                        titol = dataSnapshot.child(i + "").child("titol").getValue().toString();
+                        text = dataSnapshot.child(i + "").child("text").getValue().toString();
+                        autor = dataSnapshot.child(i + "").child("autor").getValue().toString();
+                        trastorno = dataSnapshot.child(i + "").child("trastorno").getValue().toString();
+                            listaConsejos.add(new Consejo(titol, text, autor, trastorno));
                     } else {
                         acaba++;
                     }
@@ -74,7 +75,6 @@ public class ConsejosFragment extends Fragment {
                 recyclerConsejos.setAdapter(aAdapter);
                 recyclerConsejos.setLayoutManager(new LinearLayoutManager(getContext()));
             }
-
 
 
             @Override
