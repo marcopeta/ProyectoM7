@@ -72,7 +72,7 @@ public class ConsejosFragment extends Fragment {
                         text = dataSnapshot.child(i + "").child("text").getValue().toString();
                         autor = dataSnapshot.child(i + "").child("autor").getValue().toString();
                         trastorno = dataSnapshot.child(i + "").child("trastorno").getValue().toString();
-                        if (trastorno.equals(CajaNavegacionActivity.getTrastorno())) listaConsejos.add(new Consejo(titol, text, autor, trastorno));
+                        if (trastorno.equals(CajaNavegacionActivity.getTrastorno()) || autor.equals(CajaNavegacionActivity.getNom())) listaConsejos.add(new Consejo(titol, text, autor, trastorno));
                     } else {
                         acaba++;
                     }
