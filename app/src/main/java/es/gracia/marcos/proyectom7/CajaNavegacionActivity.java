@@ -47,6 +47,7 @@ import es.gracia.marcos.proyectom7.ui.alimentos.AlimentosFragment;
 public class CajaNavegacionActivity extends AppCompatActivity {
 
 
+    private static String nombre;
     TextView usuario, correo;
     private AppBarConfiguration mAppBarConfiguration;
     private FirebaseAuth mAuth;
@@ -55,6 +56,10 @@ public class CajaNavegacionActivity extends AppCompatActivity {
 
     public static FirebaseUser getUser() {
         return user;
+    }
+
+    public static String getNom() {
+        return nombre;
     }
 
 
@@ -68,6 +73,7 @@ public class CajaNavegacionActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         usuario = header.findViewById(R.id.tv_usuario);
+        nombre = null;
         correo = header.findViewById(R.id.tv_correo);
         user = MainActivity.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -86,6 +92,7 @@ public class CajaNavegacionActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     String fbNombre = dataSnapshot.child("nombre").getValue().toString();
+                    nombre= fbNombre;
                     String fbCorreo = dataSnapshot.child("correo").getValue().toString();
                     usuario.setText(fbNombre);
                     correo.setText(fbCorreo);

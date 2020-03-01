@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -33,8 +34,8 @@ public class AnadirConsejoActivity extends AppCompatActivity {
     private final LinkedList<Consejo> listaConsejos = new LinkedList<>();
     private RecyclerView recyclerConsejos;
     private AdapterConsejos aAdapter;
-    private DatabaseReference mDatabase, mUser;
-    EditText etTitle, etText, etAutor;
+    private DatabaseReference mDatabase;
+    EditText etTitle, etText;
     RadioButton rb_anorexia, rb_bulimia, rb_sobrepeso, rb_no;
     private boolean backEnabled = false;
 
@@ -46,10 +47,8 @@ public class AnadirConsejoActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         getSupportActionBar().setTitle("Añadir Consejo");
         mDatabase = FirebaseDatabase.getInstance().getReference("Consejos/");
-        mUser = FirebaseDatabase.getInstance().getReference("Users/"+CajaNavegacionActivity.getUser().getUid());
         etTitle = findViewById(R.id.etTitle);
         etText = findViewById(R.id.etText);
-        etAutor = findViewById(R.id.etNomConsell);
         final String[] autor = new String[1];
         rb_anorexia = (RadioButton) findViewById(R.id.rb_anorexia);
         rb_bulimia = (RadioButton) findViewById(R.id.rb_bulimia);
@@ -83,9 +82,8 @@ public class AnadirConsejoActivity extends AppCompatActivity {
                             if (!existe) {
                                 Map<String, Object> map = new HashMap<>();
                                 String trastorno;
-                                final String autor = new String();
 
-                                map.put("autor", CajaNavegacionActivity.getUser().toString() );
+                                map.put("autor", CajaNavegacionActivity.getNom() );
                                 map.put("text", etText.getText().toString());
                                 map.put("titol", etTitle.getText().toString());
 
@@ -98,13 +96,8 @@ public class AnadirConsejoActivity extends AppCompatActivity {
                                 } else {
                                     trastorno = "0";
                                 }
-
-
                                 map.put("trastorno", trastorno);
-
-
                                 mDatabase.child(posicion + "").setValue(map);
-
                                 backEnabled = true;
                                 onBackPressed();
                             }

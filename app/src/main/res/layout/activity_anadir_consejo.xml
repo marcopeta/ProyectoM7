@@ -9,7 +9,7 @@
     <ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -21,19 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvNomConsell"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/introduce_name" />
-
-            <EditText
-                android:id="@+id/etNomConsell"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/tvTitol"
@@ -64,12 +51,12 @@
 
             <RadioGroup
                 android:layout_width="match_parent"
-                android:layout_height="292dp">
+                android:layout_height="204dp">
 
                 <RadioButton
                     android:id="@+id/rb_anorexia"
                     android:layout_width="match_parent"
-                    android:layout_height="78dp"
+                    android:layout_height="58dp"
                     android:text="Anorexia"
                     android:textAlignment="viewStart"
                     android:textColor="@color/gray"
@@ -79,7 +66,7 @@
                 <RadioButton
                     android:id="@+id/rb_bulimia"
                     android:layout_width="match_parent"
-                    android:layout_height="64dp"
+                    android:layout_height="46dp"
                     android:text="Bulimia"
                     android:textAlignment="viewStart"
                     android:textColor="@color/gray"
@@ -89,7 +76,7 @@
                 <RadioButton
                     android:id="@+id/rb_sobrepeso"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
+                    android:layout_height="48dp"
                     android:text="Sobrepeso"
                     android:textAlignment="viewStart"
                     android:textColor="@color/gray"
@@ -99,7 +86,7 @@
                 <RadioButton
                     android:id="@+id/rb_no"
                     android:layout_width="match_parent"
-                    android:layout_height="96dp"
+                    android:layout_height="48dp"
                     android:checked="true"
                     android:text="No / Prefiero no contestar"
                     android:textAlignment="viewStart"
@@ -109,8 +96,8 @@
             </RadioGroup>
 
             <LinearLayout
-                android:layout_width="329dp"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
