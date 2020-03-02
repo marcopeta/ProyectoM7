@@ -48,7 +48,7 @@ public class RecuperarContrasenaActivity extends AppCompatActivity {
     }
 
     private void resetPassword(String mail) {
-        mAuth.setLanguageCode("es");
+        mAuth.setLanguageCode("cat");
         mAuth.sendPasswordResetEmail(mail).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

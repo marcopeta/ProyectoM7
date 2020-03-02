@@ -169,6 +169,8 @@ public class ConfiguracionFragment extends Fragment{
                                 Configuration config = new Configuration();
                                 config.locale = localizacion;
                                 getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
+                                MainActivity.preferences.edit().putString("idioma", "cat").apply();
+                                MainActivity.preferences.edit().putString("pais", "ES").apply();
                                 Intent intent = getActivity().getIntent();
                                 getActivity().finish();
                                 startActivity(intent);
@@ -198,6 +200,8 @@ public class ConfiguracionFragment extends Fragment{
                                 Configuration config = new Configuration();
                                 config.locale = localizacion;
                                 getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
+                                MainActivity.preferences.edit().putString("idioma", "es").apply();
+                                MainActivity.preferences.edit().putString("pais", "ES").apply();
                                 Intent intent = getActivity().getIntent();
                                 getActivity().finish();
                                 startActivity(intent);
@@ -227,6 +231,8 @@ public class ConfiguracionFragment extends Fragment{
                                 Configuration config = new Configuration();
                                 config.locale = localizacion;
                                 getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
+                                MainActivity.preferences.edit().putString("idioma", "en").apply();
+                                MainActivity.preferences.edit().putString("pais", "GB").apply();
                                 Intent intent = getActivity().getIntent();
                                 getActivity().finish();
                                 startActivity(intent);
