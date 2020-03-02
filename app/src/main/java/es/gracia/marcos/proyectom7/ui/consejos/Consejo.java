@@ -51,6 +51,16 @@ public class Consejo {
         this.trastorno = trastorno;
     }
 
+    public String getTextCurt(){
+
+        int len = text.length();
+        if (len > 15){
+            len = 15;
+        }
+        String textCurt = text.substring(0,len);
+        return textCurt;
+    }
+
     @Override
     public String toString() {
         return "Consejo{" +

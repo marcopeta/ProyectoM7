@@ -109,11 +109,7 @@ public class ModificarConsejoActivity extends AppCompatActivity {
                             } else {
                                 Toast.makeText(ModificarConsejoActivity.this, "Hay campos vacios", Toast.LENGTH_SHORT).show();
                             }
-
                         }
-
-
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
