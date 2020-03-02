@@ -166,31 +166,35 @@ public class ConfiguracionFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 try {
-                    new AlertDialog.Builder(getContext())
-                            .setTitle("")
-                            .setMessage("Vols canviar al Català?")
-                            .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Locale localizacion = new Locale("cat", "ES");
+                    if (!Locale.getDefault().getLanguage().equals("cat")) {
+                        new AlertDialog.Builder(getContext())
+                                .setTitle("")
+                                .setMessage("Vols canviar al Català?")
+                                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Locale localizacion = new Locale("cat", "ES");
 
-                                    Locale.setDefault(localizacion);
-                                    Configuration config = new Configuration();
-                                    config.locale = localizacion;
-                                    getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
-                                    MainActivity.preferences.edit().putString("idioma", "cat").apply();
-                                    MainActivity.preferences.edit().putString("pais", "ES").apply();
-                                    Intent intent = getActivity().getIntent();
-                                    getActivity().finish();
-                                    startActivity(intent);
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
+                                        Locale.setDefault(localizacion);
+                                        Configuration config = new Configuration();
+                                        config.locale = localizacion;
+                                        getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
+                                        MainActivity.preferences.edit().putString("idioma", "cat").apply();
+                                        MainActivity.preferences.edit().putString("pais", "ES").apply();
+                                        Intent intent = getActivity().getIntent();
+                                        getActivity().finish();
+                                        startActivity(intent);
+                                    }
+                                })
+                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
 
-                                }
-                            }).show();
+                                    }
+                                }).show();
+                    } else {
+                        Toast.makeText(getContext(), "La aplicació ja esta en Català", Toast.LENGTH_LONG).show();
+                    }
                 } catch (Exception ex) {
 
                 }
@@ -201,9 +205,10 @@ public class ConfiguracionFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 try {
+                    if (!Locale.getDefault().getLanguage().equals("es")) {
                     new AlertDialog.Builder(getContext())
                             .setTitle("")
-                            .setMessage("Vols canviar al Castellà?")
+                            .setMessage("¿Quieres cambiar al Castellano?")
                             .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -226,6 +231,9 @@ public class ConfiguracionFragment extends Fragment{
 
                                 }
                             }).show();
+                    } else {
+                        Toast.makeText(getContext(), "La aplicación ya esta en Casellano", Toast.LENGTH_LONG).show();
+                    }
                 } catch (Exception ex) {
 
                 }
@@ -236,9 +244,10 @@ public class ConfiguracionFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 try {
+                    if (!Locale.getDefault().getLanguage().equals("en")) {
                     new AlertDialog.Builder(getContext())
                             .setTitle("")
-                            .setMessage("Vols canviar al Anglès?")
+                            .setMessage("Do you want to change to English?")
                             .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -261,6 +270,9 @@ public class ConfiguracionFragment extends Fragment{
 
                                 }
                             }).show();
+                    } else {
+                        Toast.makeText(getContext(), "The application is already in English", Toast.LENGTH_LONG).show();
+                    }
                 } catch (Exception ex) {
 
                 }
