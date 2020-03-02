@@ -87,7 +87,7 @@ public class AdapterAnadirDia extends RecyclerView.Adapter<AdapterAnadirDia.View
                                 mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        int posicion = pos;
+                                        int posicionAlimento = pos;
 
                                         if (et.getText().toString().isEmpty()){
                                             Toast.makeText(context, "Por favor, introduzca una cantidad.", Toast.LENGTH_SHORT).show();
@@ -96,37 +96,47 @@ public class AdapterAnadirDia extends RecyclerView.Adapter<AdapterAnadirDia.View
 
                                         }
 
-                                        for (Long i = 0l; i <= posicion; i++) {
-                                            if (!dataSnapshot.child("alimentos").child(i + "").exists()) {
-                                                posicion++;
-                                            }
-                                        }
+                                        Long posicion = dataSnapshot.child("calendario").child(diaActual).getChildrenCount();
+
+
                                         Float  grasas, hidratos, proteinas;
                                         int calorias;
-
+                                       // posicion++;
                                         Map<String, Object> map = new HashMap<>();
-                                        if (!dataSnapshot.child("calendario").child(diaActual).child(posicion + "").exists()) {
+
+                                        for (Long i = 0l; i <= posicionAlimento; i++) {
+                                            if (!dataSnapshot.child("alimentos").child(i + "").exists()) {
+                                                posicionAlimento++;
+                                            }
+                                        }
 
 
 
-                                            grasas=(parseFloat(dataSnapshot.child("alimentos").child(posicion + "").child("grasas").getValue().toString()) *  parseFloat(et.getText().toString())/100f);;
-                                            hidratos=(parseFloat(dataSnapshot.child("alimentos").child(posicion + "").child("hidratos").getValue().toString()) *  parseFloat(et.getText().toString())/100f);;
-                                            proteinas=(parseFloat(dataSnapshot.child("alimentos").child(posicion + "").child("proteinas").getValue().toString()) *  parseFloat(et.getText().toString())/100f);;
-                                            calorias=(parseInt(dataSnapshot.child("alimentos").child(posicion + "").child("calorias").getValue().toString()) *  parseInt(et.getText().toString()) /100);;
+                                            grasas=(parseFloat(dataSnapshot.child("alimentos").child(posicionAlimento + "").child("grasas").getValue().toString()) *  parseFloat(et.getText().toString())/100f);;
+                                            hidratos=(parseFloat(dataSnapshot.child("alimentos").child(posicionAlimento + "").child("hidratos").getValue().toString()) *  parseFloat(et.getText().toString())/100f);;
+                                            proteinas=(parseFloat(dataSnapshot.child("alimentos").child(posicionAlimento + "").child("proteinas").getValue().toString()) *  parseFloat(et.getText().toString())/100f);;
+                                            calorias=(parseInt(dataSnapshot.child("alimentos").child(posicionAlimento + "").child("calorias").getValue().toString()) *  parseInt(et.getText().toString()) /100);;
 
-                                            map.put("nombre", dataSnapshot.child("alimentos").child(posicion + "").child("nombre").getValue().toString());
-                                            map.put("marca", dataSnapshot.child("alimentos").child(posicion + "").child("marca").getValue().toString());
+                                            map.put("nombre", dataSnapshot.child("alimentos").child(posicionAlimento + "").child("nombre").getValue().toString());
+                                            map.put("marca", dataSnapshot.child("alimentos").child(posicionAlimento + "").child("marca").getValue().toString());
                                             map.put("cantidad", parseFloat(et.getText().toString()));
-                                            map.put("unidad", dataSnapshot.child("alimentos").child(posicion + "").child("unidad").getValue().toString());
+                                            map.put("unidad", dataSnapshot.child("alimentos").child(posicionAlimento + "").child("unidad").getValue().toString());
                                             map.put("grasas", grasas );
                                             map.put("hidratos", hidratos);
                                             map.put("proteinas", proteinas);
                                             map.put("calorias", calorias);
                                             //listaAlimentos.add(new Alimento(nombre, marca, cantidad, unidad, grasas, hidratos, proteinas, calorias));
-                                            mDatabase.child("calendario").child(diaActual).child(posicion + "").setValue(map);
-                                        } else{
-                                            Toast.makeText(context, "Este alimento ya esta en la lista", Toast.LENGTH_SHORT).show();
-                                        }
+
+
+                                            //mDatabase.child("calendario").child(diaActual).child(posicion + "").setValue(map);
+
+                                            if (dataSnapshot.child("calendario").child(diaActual).child(posicion + "").exists()){
+                                                posicion++;
+                                                mDatabase.child("calendario").child(diaActual).child(posicion + "").setValue(map);
+                                            } else {
+                                                mDatabase.child("calendario").child(diaActual).child(posicion + "").setValue(map);
+
+                                            }
 
 
                                     }
