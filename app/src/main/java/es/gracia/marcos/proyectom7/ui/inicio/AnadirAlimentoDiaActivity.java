@@ -51,7 +51,7 @@ public class AnadirAlimentoDiaActivity extends AppCompatActivity {
         //View root = inflater.inflate(R.layout.activity_anadir_alimento_dia, container, false);
         mDatabase = FirebaseDatabase.getInstance().getReference("Users/" + CajaNavegacionActivity.getUser().getUid());
 
-        mDialog.setMessage("Espera un momento...");
+        mDialog.setMessage(getApplicationContext().getResources().getString(R.string.wait_dialog));
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.show();
 

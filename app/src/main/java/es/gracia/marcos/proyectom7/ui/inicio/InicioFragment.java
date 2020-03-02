@@ -61,7 +61,7 @@ public class InicioFragment extends Fragment {
         tvHidratos = root.findViewById(R.id.hidratosT);
         tvProteinas = root.findViewById(R.id.proteinasT);
 
-        mDialog.setMessage("Espere un momento...");
+        mDialog.setMessage(root.getResources().getString(R.string.wait_dialog));
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.show();
 

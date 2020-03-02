@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void iniciadoSesion() {
         try {
-            mDialog.setMessage("Espera un momento...");
+            mDialog.setMessage(getApplicationContext().getResources().getString(R.string.wait_dialog));
             mDialog.setCanceledOnTouchOutside(false);
             mDialog.show();
             mAuth.signInWithEmailAndPassword(correo.getText().toString().trim(), contraseña.getText().toString().trim())

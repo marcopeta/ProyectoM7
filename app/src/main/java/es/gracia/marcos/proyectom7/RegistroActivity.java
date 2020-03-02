@@ -64,7 +64,7 @@ public class RegistroActivity extends AppCompatActivity {
 
     public void registrarUsuario(View view) {
         btnRegistrar.setEnabled(false);
-        mDialog.setMessage("Espera un momento...");
+        mDialog.setMessage(getApplicationContext().getResources().getString(R.string.wait_dialog));
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.show();
         final String correo = campoCorreo.getText().toString();

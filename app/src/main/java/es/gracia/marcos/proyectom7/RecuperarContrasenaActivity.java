@@ -37,7 +37,7 @@ public class RecuperarContrasenaActivity extends AppCompatActivity {
         String mail = correo.getText().toString();
 
         if (!mail.isEmpty()) {
-            mDialog.setMessage("Espera un momento");
+            mDialog.setMessage(getApplicationContext().getResources().getString(R.string.wait_dialog));
             mDialog.setCanceledOnTouchOutside(false);
             mDialog.show();
             resetPassword(mail);

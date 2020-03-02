@@ -51,7 +51,7 @@ public class ConsejosFragment extends Fragment {
         mDialog = new ProgressDialog(getContext());
 
 
-        mDialog.setMessage("Espera un momento...");
+        mDialog.setMessage(root.getResources().getString(R.string.wait_dialog));
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.show();
 
