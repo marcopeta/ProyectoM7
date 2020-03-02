@@ -135,7 +135,6 @@ public class AdapterAnadirDia extends RecyclerView.Adapter<AdapterAnadirDia.View
                                                 mDatabase.child("calendario").child(diaActual).child(posicion + "").setValue(map);
                                             } else {
                                                 mDatabase.child("calendario").child(diaActual).child(posicion + "").setValue(map);
-
                                             }
 
 
@@ -206,4 +205,5 @@ public class AdapterAnadirDia extends RecyclerView.Adapter<AdapterAnadirDia.View
             this.itemClickListener = ic;
         }
     }
+
 }
