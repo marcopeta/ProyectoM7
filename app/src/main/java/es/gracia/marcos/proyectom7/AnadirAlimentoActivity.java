@@ -61,40 +61,44 @@ public class AnadirAlimentoActivity extends AppCompatActivity {
                 mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (!etNombre.getText().toString().isEmpty() && !etMarca.getText().toString().isEmpty() && !etUnidad.getText().toString().isEmpty() && !etCantidad.getText().toString().isEmpty() && !etGrasas.getText().toString().isEmpty() && !etHidratos.getText().toString().isEmpty() && !etProteinas.getText().toString().isEmpty() && !etCalorias.getText().toString().isEmpty()) {
-                                    Boolean existe = false;
-                                    Long posicion = dataSnapshot.child("alimentos").getChildrenCount();
-                                    Long acaba = dataSnapshot.child("alimentos").getChildrenCount();
-                                    for (Long i = 0l; i < acaba; i++) {
-                                        if (!dataSnapshot.child("alimentos").child(i + "").exists()) {
-                                            posicion = i;
-                                            acaba++;
-                                        } else {
-                                            if (etNombre.getText().toString().equals(dataSnapshot.child("alimentos").child(i + "").child("nombre").getValue().toString())) {
-                                                Toast.makeText(AnadirAlimentoActivity.this, "Este alimento ya esta en la lista", Toast.LENGTH_SHORT).show();
-                                                existe = true;
-                                                break;
-                                            }
+                        try {
+                            if (!etNombre.getText().toString().isEmpty() && !etMarca.getText().toString().isEmpty() && !etUnidad.getText().toString().isEmpty() && !etCantidad.getText().toString().isEmpty() && !etGrasas.getText().toString().isEmpty() && !etHidratos.getText().toString().isEmpty() && !etProteinas.getText().toString().isEmpty() && !etCalorias.getText().toString().isEmpty()) {
+                                Boolean existe = false;
+                                Long posicion = dataSnapshot.child("alimentos").getChildrenCount();
+                                Long acaba = dataSnapshot.child("alimentos").getChildrenCount();
+                                for (Long i = 0l; i < acaba; i++) {
+                                    if (!dataSnapshot.child("alimentos").child(i + "").exists()) {
+                                        posicion = i;
+                                        acaba++;
+                                    } else {
+                                        if (etNombre.getText().toString().equals(dataSnapshot.child("alimentos").child(i + "").child("nombre").getValue().toString())) {
+                                            Toast.makeText(AnadirAlimentoActivity.this, "Este alimento ya esta en la lista", Toast.LENGTH_SHORT).show();
+                                            existe = true;
+                                            break;
                                         }
                                     }
-                                    if (!existe) {
-                                        Map<String, Object> map = new HashMap<>();
-                                        map.put("nombre", etNombre.getText().toString());
-                                        map.put("marca", etMarca.getText().toString());
-                                        map.put("cantidad", etCantidad.getText().toString());
-                                        map.put("unidad", etUnidad.getText().toString());
-                                        map.put("grasas", etGrasas.getText().toString());
-                                        map.put("hidratos", etHidratos.getText().toString());
-                                        map.put("proteinas", etProteinas.getText().toString());
-                                        map.put("calorias", etCalorias.getText().toString());
+                                }
+                                if (!existe) {
+                                    Map<String, Object> map = new HashMap<>();
+                                    map.put("nombre", etNombre.getText().toString());
+                                    map.put("marca", etMarca.getText().toString());
+                                    map.put("cantidad", etCantidad.getText().toString());
+                                    map.put("unidad", etUnidad.getText().toString());
+                                    map.put("grasas", etGrasas.getText().toString());
+                                    map.put("hidratos", etHidratos.getText().toString());
+                                    map.put("proteinas", etProteinas.getText().toString());
+                                    map.put("calorias", etCalorias.getText().toString());
 
-                                        mDatabase.child("alimentos").child(posicion + "").setValue(map);
+                                    mDatabase.child("alimentos").child(posicion + "").setValue(map);
 
-                                        backEnabled = true;
-                                        onBackPressed();
-                                    }
-                        } else {
-                            Toast.makeText(AnadirAlimentoActivity.this, "Hay campos vacios", Toast.LENGTH_SHORT).show();
+                                    backEnabled = true;
+                                    onBackPressed();
+                                }
+                            } else {
+                                Toast.makeText(AnadirAlimentoActivity.this, "Hay campos vacios", Toast.LENGTH_SHORT).show();
+                            }
+                        }catch(Exception ex){
+
                         }
                     }
 

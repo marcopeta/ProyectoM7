@@ -68,50 +68,54 @@ public class InicioFragment extends Fragment {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Float grasasTotal = 0.00f,hidratosTotal = 0.00f,proteinasTotal = 0.00f;
-                int caloriasTotal = 0;
-                String nombre;
-                String marca;
-                Float cantidad;
-                String unidad;
-                Float grasas;
-                Float hidratos;
-                Float proteinas;
-                int calorias;
-                listadoAlimentos.clear();
-                Long acaba = dataSnapshot.child("calendario").child(diaActual).getChildrenCount();
-                for (int i = 0; i < acaba; i++) {
-                    if (dataSnapshot.child("calendario").child(diaActual).child(i + "").exists()) {
-                        nombre = dataSnapshot.child("calendario").child(diaActual).child(i + "").child("nombre").getValue().toString();
-                        marca = dataSnapshot.child("calendario").child(diaActual).child(i + "").child("marca").getValue().toString();
-                        cantidad = parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("cantidad").getValue().toString());
-                        unidad = dataSnapshot.child("calendario").child(diaActual).child(i + "").child("unidad").getValue().toString();
-                        grasas = parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("grasas").getValue().toString());
+                try {
+                    Float grasasTotal = 0.00f, hidratosTotal = 0.00f, proteinasTotal = 0.00f;
+                    int caloriasTotal = 0;
+                    String nombre;
+                    String marca;
+                    Float cantidad;
+                    String unidad;
+                    Float grasas;
+                    Float hidratos;
+                    Float proteinas;
+                    int calorias;
+                    listadoAlimentos.clear();
+                    Long acaba = dataSnapshot.child("calendario").child(diaActual).getChildrenCount();
+                    for (int i = 0; i < acaba; i++) {
+                        if (dataSnapshot.child("calendario").child(diaActual).child(i + "").exists()) {
+                            nombre = dataSnapshot.child("calendario").child(diaActual).child(i + "").child("nombre").getValue().toString();
+                            marca = dataSnapshot.child("calendario").child(diaActual).child(i + "").child("marca").getValue().toString();
+                            cantidad = parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("cantidad").getValue().toString());
+                            unidad = dataSnapshot.child("calendario").child(diaActual).child(i + "").child("unidad").getValue().toString();
+                            grasas = parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("grasas").getValue().toString());
 
-                        hidratos = parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("hidratos").getValue().toString());
-                        proteinas = parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("proteinas").getValue().toString());
-                        calorias = parseInt(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("calorias").getValue().toString());
+                            hidratos = parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("hidratos").getValue().toString());
+                            proteinas = parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("proteinas").getValue().toString());
+                            calorias = parseInt(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("calorias").getValue().toString());
 
-                        grasasTotal += parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i+"").child("grasas").getValue().toString());
-                        hidratosTotal += parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("hidratos").getValue().toString());
-                        proteinasTotal += parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("proteinas").getValue().toString());
-                        caloriasTotal += parseInt(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("calorias").getValue().toString());
+                            grasasTotal += parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("grasas").getValue().toString());
+                            hidratosTotal += parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("hidratos").getValue().toString());
+                            proteinasTotal += parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("proteinas").getValue().toString());
+                            caloriasTotal += parseInt(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("calorias").getValue().toString());
 
 
-                        listadoAlimentos.add(new Alimento(nombre, marca, cantidad, unidad, grasas, hidratos, proteinas, calorias));
-                    } else {
-                        acaba++;
+                            listadoAlimentos.add(new Alimento(nombre, marca, cantidad, unidad, grasas, hidratos, proteinas, calorias));
+                        } else {
+                            acaba++;
+                        }
                     }
+                    tvGrasas.setText("G: " + grasasTotal.toString());
+                    tvHidratos.setText("H: " + hidratosTotal.toString());
+                    tvProteinas.setText("P: " + proteinasTotal.toString());
+                    tvCalorias.setText("Kcal: " + caloriasTotal);
+                    recyclerAlimentos = root.findViewById(R.id.listadoAlimentosDia);
+                    aAdapter = new AdapterAlimentosDia(getContext(), listadoAlimentos);
+                    recyclerAlimentos.setAdapter(aAdapter);
+                    recyclerAlimentos.setLayoutManager(new LinearLayoutManager(getContext()));
+                    mDialog.dismiss();
+                } catch (Exception ex) {
+
                 }
-                tvGrasas.setText("G: " + grasasTotal.toString());
-                tvHidratos.setText("H: " + hidratosTotal.toString());
-                tvProteinas.setText("P: " + proteinasTotal.toString());
-                tvCalorias.setText("Kcal: " + caloriasTotal);
-                recyclerAlimentos = root.findViewById(R.id.listadoAlimentosDia);
-                aAdapter = new AdapterAlimentosDia(getContext(), listadoAlimentos);
-                recyclerAlimentos.setAdapter(aAdapter);
-                recyclerAlimentos.setLayoutManager(new LinearLayoutManager(getContext()));
-                mDialog.dismiss();
             }
 
             @Override

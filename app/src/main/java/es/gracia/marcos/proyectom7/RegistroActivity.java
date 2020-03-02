@@ -63,75 +63,79 @@ public class RegistroActivity extends AppCompatActivity {
     }
 
     public void registrarUsuario(View view) {
-        btnRegistrar.setEnabled(false);
-        mDialog.setMessage(getApplicationContext().getResources().getString(R.string.wait_dialog));
-        mDialog.setCanceledOnTouchOutside(false);
-        mDialog.show();
-        final String correo = campoCorreo.getText().toString();
-        final String nombre = campoNombre.getText().toString();
-        final String contraseña = campoContraseña.getText().toString();
-        final String telefono = campoTelefono.getText().toString();
-        final String trastorno;
+        try {
+            btnRegistrar.setEnabled(false);
+            mDialog.setMessage(getApplicationContext().getResources().getString(R.string.wait_dialog));
+            mDialog.setCanceledOnTouchOutside(false);
+            mDialog.show();
+            final String correo = campoCorreo.getText().toString();
+            final String nombre = campoNombre.getText().toString();
+            final String contraseña = campoContraseña.getText().toString();
+            final String telefono = campoTelefono.getText().toString();
+            final String trastorno;
 
-        if (rb_anorexia.isChecked() == true) {
-            trastorno = "1";
-        } else if (rb_bulimia.isChecked() == true) {
-            trastorno = "2";
-        } else if (rb_sobrepeso.isChecked() == true) {
-            trastorno = "3";
-        } else {
-            trastorno = "0";
-        }
+            if (rb_anorexia.isChecked() == true) {
+                trastorno = "1";
+            } else if (rb_bulimia.isChecked() == true) {
+                trastorno = "2";
+            } else if (rb_sobrepeso.isChecked() == true) {
+                trastorno = "3";
+            } else {
+                trastorno = "0";
+            }
 
 
-        //Comprobamos que el todos los campos tengan texto
-        if (!correo.equals("") && !nombre.equals("") && !contraseña.equals("") && !telefono.equals("")) {
-            Pattern pattern = Pattern.compile("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+");
-            Matcher mather = pattern.matcher(correo);
+            //Comprobamos que el todos los campos tengan texto
+            if (!correo.equals("") && !nombre.equals("") && !contraseña.equals("") && !telefono.equals("")) {
+                Pattern pattern = Pattern.compile("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+");
+                Matcher mather = pattern.matcher(correo);
 
-            //Comprobamos que el mail sea correcto
-            if (mather.find() && telefono.length() == 9) {
-                if (contraseña.length() >= 6) {
-                    mAuth.createUserWithEmailAndPassword(correo, contraseña)
-                            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        FirebaseUser user = mAuth.getCurrentUser();
-                                        Map<String, String> map = new HashMap<>();
-                                        map.put("nombre", nombre);
-                                        map.put("telefono", telefono);
-                                        map.put("trastorno", trastorno);
-                                        map.put("correo", correo);
-                                        mDatabase.child(user.getUid()).setValue(map);
-                                        mDialog.dismiss();
-                                        Toast toast = Toast.makeText(getApplicationContext(), "Usuario registrado correctamente", Toast.LENGTH_SHORT);
-                                        toast.show();
-                                        Intent intent = new Intent(RegistroActivity.this, MainActivity.class);
-                                        startActivity(intent);
-                                        btnRegistrar.setEnabled(true);
-                                    } else {
-                                        mDialog.dismiss();
-                                        Toast.makeText(RegistroActivity.this, "No se ha podido crear el usuario",
-                                                Toast.LENGTH_SHORT).show();
-                                        btnRegistrar.setEnabled(true);
+                //Comprobamos que el mail sea correcto
+                if (mather.find() && telefono.length() == 9) {
+                    if (contraseña.length() >= 6) {
+                        mAuth.createUserWithEmailAndPassword(correo, contraseña)
+                                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (task.isSuccessful()) {
+                                            FirebaseUser user = mAuth.getCurrentUser();
+                                            Map<String, String> map = new HashMap<>();
+                                            map.put("nombre", nombre);
+                                            map.put("telefono", telefono);
+                                            map.put("trastorno", trastorno);
+                                            map.put("correo", correo);
+                                            mDatabase.child(user.getUid()).setValue(map);
+                                            mDialog.dismiss();
+                                            Toast toast = Toast.makeText(getApplicationContext(), "Usuario registrado correctamente", Toast.LENGTH_SHORT);
+                                            toast.show();
+                                            Intent intent = new Intent(RegistroActivity.this, MainActivity.class);
+                                            startActivity(intent);
+                                            btnRegistrar.setEnabled(true);
+                                        } else {
+                                            mDialog.dismiss();
+                                            Toast.makeText(RegistroActivity.this, "No se ha podido crear el usuario",
+                                                    Toast.LENGTH_SHORT).show();
+                                            btnRegistrar.setEnabled(true);
+                                        }
                                     }
-                                }
-                            });
+                                });
+                    } else {
+                        Toast toast = Toast.makeText(getApplicationContext(), "La contraseña ha de tener mas de seis caracteres", Toast.LENGTH_SHORT);
+                        toast.show();
+                        btnRegistrar.setEnabled(true);
+                    }
                 } else {
-                    Toast toast = Toast.makeText(getApplicationContext(), "La contraseña ha de tener mas de seis caracteres", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), "El correo/telefono no es correcto", Toast.LENGTH_SHORT);
                     toast.show();
                     btnRegistrar.setEnabled(true);
                 }
             } else {
-                Toast toast = Toast.makeText(getApplicationContext(), "El correo/telefono no es correcto", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(getApplicationContext(), "Hay campos vacios", Toast.LENGTH_SHORT);
                 toast.show();
                 btnRegistrar.setEnabled(true);
             }
-        } else {
-            Toast toast = Toast.makeText(getApplicationContext(), "Hay campos vacios", Toast.LENGTH_SHORT);
-            toast.show();
-            btnRegistrar.setEnabled(true);
+        } catch (Exception ex) {
+
         }
     }
 

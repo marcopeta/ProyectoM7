@@ -78,13 +78,14 @@ public class ModificarConsejoActivity extends AppCompatActivity {
                 mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Boolean existe = false;
-                        Long acaba = dataSnapshot.getChildrenCount();
-                        for (Long i = 0l; i <= posicion; i++) {
-                            if (!dataSnapshot.child(i + "").exists()) {
-                                posicion++;
+                        try {
+                            Boolean existe = false;
+                            Long acaba = dataSnapshot.getChildrenCount();
+                            for (Long i = 0l; i <= posicion; i++) {
+                                if (!dataSnapshot.child(i + "").exists()) {
+                                    posicion++;
+                                }
                             }
-                        }
 
                             if (!etTitle.getText().toString().isEmpty() && !etText.getText().toString().isEmpty()) {
                                 if (!existe) {
@@ -109,7 +110,11 @@ public class ModificarConsejoActivity extends AppCompatActivity {
                             } else {
                                 Toast.makeText(ModificarConsejoActivity.this, "Hay campos vacios", Toast.LENGTH_SHORT).show();
                             }
+                        } catch (Exception ex) {
+
                         }
+                    }
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -136,17 +141,21 @@ public class ModificarConsejoActivity extends AppCompatActivity {
                 mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Long acaba = dataSnapshot.getChildrenCount();
-                        for (Long i = 0l; i <= posicion; i++) {
-                            if (!dataSnapshot.child(i + "").exists()) {
-                                posicion++;
+                        try {
+                            Long acaba = dataSnapshot.getChildrenCount();
+                            for (Long i = 0l; i <= posicion; i++) {
+                                if (!dataSnapshot.child(i + "").exists()) {
+                                    posicion++;
+                                }
                             }
+
+                            mDatabase.child(posicion + "").removeValue();
+
+                            backEnabled = true;
+                            onBackPressed();
+                        } catch (Exception ex) {
+
                         }
-
-                        mDatabase.child(posicion + "").removeValue();
-
-                        backEnabled = true;
-                        onBackPressed();
                     }
 
                     @Override

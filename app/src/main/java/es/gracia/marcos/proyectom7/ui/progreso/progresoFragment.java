@@ -71,41 +71,49 @@ public class progresoFragment extends Fragment {
         btnAnadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String prueba = etIMC.getText().toString();
-                if (!prueba.isEmpty()) {
-                    if (Double.parseDouble(prueba) > 10.0 && Double.parseDouble(prueba) < 55.0) {
-                        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                if (dataSnapshot.child("progreso").exists()) {
-                                    boolean existe = true;
-                                    int contador = 0;
-                                    long indice = dataSnapshot.child("progreso").getChildrenCount() - 1;
-                                    String datosDia = dataSnapshot.child("progreso").child(indice+"").child("dia").getValue().toString();
-                                    //Toast.makeText(getContext(), datosDia + " = " + (currentTime.get(Calendar.DAY_OF_MONTH) + "/" + (currentTime.get(Calendar.MONTH) + 1) + "/" + currentTime.get(Calendar.YEAR)), Toast.LENGTH_SHORT).show();
-                                    if (datosDia.equals(currentTime.get(Calendar.DAY_OF_MONTH) + "/" + (currentTime.get(Calendar.MONTH) + 1) + "/" + currentTime.get(Calendar.YEAR))) {
-                                        mDatabase.child("progreso").child((dataSnapshot.child("progreso").getChildrenCount()-1)+"").child("imc").setValue(parseFloat(etIMC.getText().toString()));
-                                        mostrarMensaje(etIMC.getText().toString());
-                                        etIMC.setText("");
-                                        cargarTabla();
-                                    } else {
-                                        anadirProgreso();
+                try {
+                    String prueba = etIMC.getText().toString();
+                    if (!prueba.isEmpty()) {
+                        if (Double.parseDouble(prueba) > 10.0 && Double.parseDouble(prueba) < 55.0) {
+                            mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    try {
+                                        if (dataSnapshot.child("progreso").exists()) {
+                                            boolean existe = true;
+                                            int contador = 0;
+                                            long indice = dataSnapshot.child("progreso").getChildrenCount() - 1;
+                                            String datosDia = dataSnapshot.child("progreso").child(indice + "").child("dia").getValue().toString();
+                                            //Toast.makeText(getContext(), datosDia + " = " + (currentTime.get(Calendar.DAY_OF_MONTH) + "/" + (currentTime.get(Calendar.MONTH) + 1) + "/" + currentTime.get(Calendar.YEAR)), Toast.LENGTH_SHORT).show();
+                                            if (datosDia.equals(currentTime.get(Calendar.DAY_OF_MONTH) + "/" + (currentTime.get(Calendar.MONTH) + 1) + "/" + currentTime.get(Calendar.YEAR))) {
+                                                mDatabase.child("progreso").child((dataSnapshot.child("progreso").getChildrenCount() - 1) + "").child("imc").setValue(parseFloat(etIMC.getText().toString()));
+                                                mostrarMensaje(etIMC.getText().toString());
+                                                etIMC.setText("");
+                                                cargarTabla();
+                                            } else {
+                                                anadirProgreso();
+                                            }
+                                        } else {
+                                            anadirProgreso();
+                                        }
+                                    } catch (Exception ex) {
+
                                     }
-                                } else {
-                                    anadirProgreso();
                                 }
-                            }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                            }
-                        });
+                                }
+                            });
+                        } else {
+                            Toast.makeText(getContext(), "Introduce un numero entre 10 y 55", Toast.LENGTH_SHORT).show();
+                        }
                     } else {
-                        Toast.makeText(getContext(), "Introduce un numero entre 10 y 55", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "El campo esta vacio", Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Toast.makeText(getContext(), "El campo esta vacio", Toast.LENGTH_SHORT).show();
+                } catch (Exception ex) {
+
                 }
             }
         });
@@ -124,33 +132,37 @@ public class progresoFragment extends Fragment {
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("progreso").getChildrenCount() > 14) {
-                    String dia;
-                    Float imc;
-                    for (int i = 1; i <= 14; i++) {
-                        dia = dataSnapshot.child("progreso").child("" + i).child("dia").getValue().toString();
-                        imc = parseFloat(dataSnapshot.child("progreso").child("" + i).child("imc").getValue().toString());
-                        mDatabase.child("progreso").child("" + (i - 1)).child("dia").setValue(dia);
-                        mDatabase.child("progreso").child("" + (i - 1)).child("imc").setValue(imc);
+                try {
+                    if (dataSnapshot.child("progreso").getChildrenCount() > 14) {
+                        String dia;
+                        Float imc;
+                        for (int i = 1; i <= 14; i++) {
+                            dia = dataSnapshot.child("progreso").child("" + i).child("dia").getValue().toString();
+                            imc = parseFloat(dataSnapshot.child("progreso").child("" + i).child("imc").getValue().toString());
+                            mDatabase.child("progreso").child("" + (i - 1)).child("dia").setValue(dia);
+                            mDatabase.child("progreso").child("" + (i - 1)).child("imc").setValue(imc);
+                        }
+                        dia = currentTime.get(Calendar.DAY_OF_MONTH) + "/" + (currentTime.get(Calendar.MONTH) + 1) + "/" + currentTime.get(Calendar.YEAR);
+                        imc = parseFloat(etIMC.getText().toString());
+                        mDatabase.child("progreso").child("" + (14)).child("dia").setValue(dia);
+                        mDatabase.child("progreso").child("" + (14)).child("imc").setValue(imc);
+                        mostrarMensaje(etIMC.getText().toString());
+                        etIMC.setText("");
+
+
+                    } else {
+                        Map<String, String> map = new HashMap<>();
+                        map.put("dia", currentTime.get(Calendar.DAY_OF_MONTH) + "/" + (currentTime.get(Calendar.MONTH) + 1) + "/" + currentTime.get(Calendar.YEAR));
+                        map.put("imc", etIMC.getText().toString());
+                        mostrarMensaje(etIMC.getText().toString());
+                        etIMC.setText("");
+                        long indice = dataSnapshot.child("progreso").getChildrenCount();
+                        mDatabase.child("progreso").child(indice + "").setValue(map);
                     }
-                    dia = currentTime.get(Calendar.DAY_OF_MONTH) + "/" + (currentTime.get(Calendar.MONTH) + 1) + "/" + currentTime.get(Calendar.YEAR);
-                    imc = parseFloat(etIMC.getText().toString());
-                    mDatabase.child("progreso").child("" + (14)).child("dia").setValue(dia);
-                    mDatabase.child("progreso").child("" + (14)).child("imc").setValue(imc);
-                    mostrarMensaje(etIMC.getText().toString());
-                    etIMC.setText("");
+                    cargarTabla();
+                } catch (Exception ex) {
 
-
-                } else {
-                    Map<String, String> map = new HashMap<>();
-                    map.put("dia", currentTime.get(Calendar.DAY_OF_MONTH) + "/" + (currentTime.get(Calendar.MONTH) + 1) + "/" + currentTime.get(Calendar.YEAR));
-                    map.put("imc", etIMC.getText().toString());
-                    mostrarMensaje(etIMC.getText().toString());
-                    etIMC.setText("");
-                    long indice = dataSnapshot.child("progreso").getChildrenCount();
-                    mDatabase.child("progreso").child(indice + "").setValue(map);
                 }
-                cargarTabla();
             }
 
             @Override
@@ -167,20 +179,24 @@ public class progresoFragment extends Fragment {
         mDatabase.child("progreso").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
-                    Float ultimoNum = 0f;
+                try {
+                    if (dataSnapshot.exists()) {
+                        Float ultimoNum = 0f;
 
-                    for (int i = 0; i < dataSnapshot.getChildrenCount(); i++){
-                        String dia = dataSnapshot.child(i+"").child("dia").getValue().toString();
-                        Float imc = parseFloat(dataSnapshot.child(i+"").child("imc").getValue().toString());
-                        theDates.add(dia);
-                        barEntries.add(new BarEntry(i, imc));
-                        ultimoNum = imc;
+                        for (int i = 0; i < dataSnapshot.getChildrenCount(); i++) {
+                            String dia = dataSnapshot.child(i + "").child("dia").getValue().toString();
+                            Float imc = parseFloat(dataSnapshot.child(i + "").child("imc").getValue().toString());
+                            theDates.add(dia);
+                            barEntries.add(new BarEntry(i, imc));
+                            ultimoNum = imc;
+                        }
+
+                        formatoTabla(dataSnapshot, ultimoNum);
+                    } else {
+                        barChart.setNoDataText("Aun no hay info");
                     }
+                } catch (Exception ex) {
 
-                    formatoTabla(dataSnapshot, ultimoNum);
-                } else {
-                    barChart.setNoDataText("Aun no hay info");
                 }
             }
 
@@ -262,26 +278,30 @@ public class progresoFragment extends Fragment {
         barChart.invalidate();
     }
 
-    private void mostrarMensaje(String sImc){
-        Float imc = parseFloat(sImc);
-        String mensaje = "";
-        if (imc > 18.5 && imc < 25) {
-            mensaje = "Estas en un IMC correcto, enhorabuena!";
-        } else {
-            if (imc < 18.5) {
-                if (imc > 16){
-                    mensaje = "Tu IMC esta un poco por debajo de lo normal, pero no es un problema";
-                } else {
-                    mensaje = "Tu IMC esta por debajo de lo normal, deberias intentar comer mas Hidratos de Carbono";
-                }
+    private void mostrarMensaje(String sImc) {
+        try {
+            Float imc = parseFloat(sImc);
+            String mensaje = "";
+            if (imc > 18.5 && imc < 25) {
+                mensaje = "Estas en un IMC correcto, enhorabuena!";
             } else {
-                if (imc < 35) {
-                    mensaje = "Tu IMC esta por encima de lo normal, deberia controlar los alimentos hipocaloricos que puedas consumir";
+                if (imc < 18.5) {
+                    if (imc > 16) {
+                        mensaje = "Tu IMC esta un poco por debajo de lo normal, pero no es un problema";
+                    } else {
+                        mensaje = "Tu IMC esta por debajo de lo normal, deberias intentar comer mas Hidratos de Carbono";
+                    }
                 } else {
-                    mensaje = "Tu IMC esta muy por encima de lo normal, deberias acudir a un especialista";
+                    if (imc < 35) {
+                        mensaje = "Tu IMC esta por encima de lo normal, deberia controlar los alimentos hipocaloricos que puedas consumir";
+                    } else {
+                        mensaje = "Tu IMC esta muy por encima de lo normal, deberias acudir a un especialista";
+                    }
                 }
             }
+            Toast.makeText(getContext(), mensaje, Toast.LENGTH_LONG).show();
+        } catch (Exception ex) {
+
         }
-        Toast.makeText(getContext(), mensaje, Toast.LENGTH_LONG).show();
     }
 }

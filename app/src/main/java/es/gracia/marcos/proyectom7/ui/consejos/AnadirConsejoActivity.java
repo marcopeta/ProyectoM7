@@ -62,47 +62,51 @@ public class AnadirConsejoActivity extends AppCompatActivity {
                 mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (!etTitle.getText().toString().isEmpty() && !etText.getText().toString().isEmpty()) {
-                            Boolean existe = false;
-                            Long posicion = dataSnapshot.getChildrenCount();
-                            Long acaba = dataSnapshot.getChildrenCount();
-                            for (Long i = 0l; i < acaba; i++) {
-                                if (!dataSnapshot.child(i + "").exists()) {
-                                    posicion = i;
-                                    acaba++;
+                        try {
+                            if (!etTitle.getText().toString().isEmpty() && !etText.getText().toString().isEmpty()) {
+                                Boolean existe = false;
+                                Long posicion = dataSnapshot.getChildrenCount();
+                                Long acaba = dataSnapshot.getChildrenCount();
+                                for (Long i = 0l; i < acaba; i++) {
+                                    if (!dataSnapshot.child(i + "").exists()) {
+                                        posicion = i;
+                                        acaba++;
 
-                                } else {
-                                    if (etTitle.getText().toString().equals(dataSnapshot.child(i + "").child("titol").getValue().toString())) {
-                                        Toast.makeText(AnadirConsejoActivity.this, "Este consejo ya está en la lista", Toast.LENGTH_SHORT).show();
-                                        existe = true;
-                                        break;
+                                    } else {
+                                        if (etTitle.getText().toString().equals(dataSnapshot.child(i + "").child("titol").getValue().toString())) {
+                                            Toast.makeText(AnadirConsejoActivity.this, "Este consejo ya está en la lista", Toast.LENGTH_SHORT).show();
+                                            existe = true;
+                                            break;
+                                        }
                                     }
                                 }
-                            }
-                            if (!existe) {
-                                Map<String, Object> map = new HashMap<>();
-                                String trastorno;
+                                if (!existe) {
+                                    Map<String, Object> map = new HashMap<>();
+                                    String trastorno;
 
-                                map.put("autor", CajaNavegacionActivity.getNom() );
-                                map.put("text", etText.getText().toString());
-                                map.put("titol", etTitle.getText().toString());
+                                    map.put("autor", CajaNavegacionActivity.getNom());
+                                    map.put("text", etText.getText().toString());
+                                    map.put("titol", etTitle.getText().toString());
 
-                                if (rb_anorexia.isChecked() == true) {
-                                    trastorno = "1";
-                                } else if (rb_bulimia.isChecked() == true) {
-                                    trastorno = "2";
-                                } else if (rb_sobrepeso.isChecked() == true) {
-                                    trastorno = "3";
-                                } else {
-                                    trastorno = "0";
+                                    if (rb_anorexia.isChecked() == true) {
+                                        trastorno = "1";
+                                    } else if (rb_bulimia.isChecked() == true) {
+                                        trastorno = "2";
+                                    } else if (rb_sobrepeso.isChecked() == true) {
+                                        trastorno = "3";
+                                    } else {
+                                        trastorno = "0";
+                                    }
+                                    map.put("trastorno", trastorno);
+                                    mDatabase.child(posicion + "").setValue(map);
+                                    backEnabled = true;
+                                    onBackPressed();
                                 }
-                                map.put("trastorno", trastorno);
-                                mDatabase.child(posicion + "").setValue(map);
-                                backEnabled = true;
-                                onBackPressed();
+                            } else {
+                                Toast.makeText(AnadirConsejoActivity.this, "Hay campos vacios", Toast.LENGTH_SHORT).show();
                             }
-                        } else {
-                            Toast.makeText(AnadirConsejoActivity.this, "Hay campos vacios", Toast.LENGTH_SHORT).show();
+                        } catch (Exception ex) {
+
                         }
                     }
 

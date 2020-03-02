@@ -58,32 +58,36 @@ public class ConsejosFragment extends Fragment {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String titol;
-                String text;
-                String autor;
-                String trastorno = null;
+                try {
+                    String titol;
+                    String text;
+                    String autor;
+                    String trastorno = null;
 
 
-                listaConsejos.clear();
-                Long acaba = dataSnapshot.getChildrenCount();
-                for (int i = 0; i < acaba; i++) {
-                    if (dataSnapshot.child(i + "").exists()) {
-                        titol = dataSnapshot.child(i + "").child("titol").getValue().toString();
-                        text = dataSnapshot.child(i + "").child("text").getValue().toString();
-                        autor = dataSnapshot.child(i + "").child("autor").getValue().toString();
-                        trastorno = dataSnapshot.child(i + "").child("trastorno").getValue().toString();
-                        if (trastorno.equals(CajaNavegacionActivity.getTrastorno()) || autor.equals(CajaNavegacionActivity.getNom())) listaConsejos.add(new Consejo(titol, text, autor, trastorno));
-                    } else {
-                        acaba++;
+                    listaConsejos.clear();
+                    Long acaba = dataSnapshot.getChildrenCount();
+                    for (int i = 0; i < acaba; i++) {
+                        if (dataSnapshot.child(i + "").exists()) {
+                            titol = dataSnapshot.child(i + "").child("titol").getValue().toString();
+                            text = dataSnapshot.child(i + "").child("text").getValue().toString();
+                            autor = dataSnapshot.child(i + "").child("autor").getValue().toString();
+                            trastorno = dataSnapshot.child(i + "").child("trastorno").getValue().toString();
+                            if (trastorno.equals(CajaNavegacionActivity.getTrastorno()) || autor.equals(CajaNavegacionActivity.getNom()))
+                                listaConsejos.add(new Consejo(titol, text, autor, trastorno));
+                        } else {
+                            acaba++;
+                        }
                     }
+
+                    recyclerConsejos = root.findViewById(R.id.listaConsejos);
+                    aAdapter = new AdapterConsejos(getContext(), listaConsejos);
+                    recyclerConsejos.setAdapter(aAdapter);
+                    recyclerConsejos.setLayoutManager(new LinearLayoutManager(getContext()));
+                    mDialog.dismiss();
+                } catch (Exception ex) {
+
                 }
-
-                recyclerConsejos = root.findViewById(R.id.listaConsejos);
-                aAdapter = new AdapterConsejos(getContext(), listaConsejos);
-                recyclerConsejos.setAdapter(aAdapter);
-                recyclerConsejos.setLayoutManager(new LinearLayoutManager(getContext()));
-                mDialog.dismiss();
-
             }
 
 

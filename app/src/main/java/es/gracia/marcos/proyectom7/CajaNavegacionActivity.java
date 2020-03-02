@@ -95,13 +95,17 @@ public class CajaNavegacionActivity extends AppCompatActivity {
         mDatabase.child("Users").child(user.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    String fbNombre = dataSnapshot.child("nombre").getValue().toString();
-                    nombre= fbNombre;
-                    trastorno = dataSnapshot.child("trastorno").getValue().toString();
-                    String fbCorreo = dataSnapshot.child("correo").getValue().toString();
-                    usuario.setText(fbNombre);
-                    correo.setText(fbCorreo);
+                try {
+                    if (dataSnapshot.exists()) {
+                        String fbNombre = dataSnapshot.child("nombre").getValue().toString();
+                        nombre = fbNombre;
+                        trastorno = dataSnapshot.child("trastorno").getValue().toString();
+                        String fbCorreo = dataSnapshot.child("correo").getValue().toString();
+                        usuario.setText(fbNombre);
+                        correo.setText(fbCorreo);
+                    }
+                } catch (Exception ex) {
+
                 }
             }
 

@@ -60,21 +60,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         preferences = getSharedPreferences("registro", Context.MODE_PRIVATE);
-        if (getStateSession()) {
-            if (!preferences.getString("idioma", "").isEmpty()) {
-                Locale localizacion = new Locale(preferences.getString("idioma", ""), preferences.getString("pais", ""));
-                Locale.setDefault(localizacion);
-                Configuration config = new Configuration();
-                config.locale = localizacion;
-                getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-                Intent intent = new Intent(MainActivity.this, CajaNavegacionActivity.class);
-                startActivity(intent);
-                finish();
-            } else {
-                Intent intent = new Intent(MainActivity.this, CajaNavegacionActivity.class);
-                startActivity(intent);
-                finish();
+        try {
+            if (getStateSession()) {
+                if (!preferences.getString("idioma", "").isEmpty()) {
+                    Locale localizacion = new Locale(preferences.getString("idioma", ""), preferences.getString("pais", ""));
+                    Locale.setDefault(localizacion);
+                    Configuration config = new Configuration();
+                    config.locale = localizacion;
+                    getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+                    Intent intent = new Intent(MainActivity.this, CajaNavegacionActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Intent intent = new Intent(MainActivity.this, CajaNavegacionActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
+        } catch (Exception ex) {
+
         }
 
         preferences.edit().putString("idioma", "").apply();
@@ -134,10 +138,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Algo ha salido mal...", Toast.LENGTH_SHORT).show();
         }
     }
-
-    /*public void iniciarSesion(View view) {
-        iniciadoSesion();
-    }*/
 
     public static void changeState(Context c, boolean b){
         SharedPreferences p = c.getSharedPreferences(STRING_PREFERENCES, MODE_PRIVATE);

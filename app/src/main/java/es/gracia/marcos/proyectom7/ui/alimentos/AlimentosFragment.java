@@ -44,35 +44,39 @@ public class AlimentosFragment extends Fragment {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String nombre;
-                String marca;
-                Float cantidad;
-                String unidad;
-                Float grasas;
-                Float hidratos;
-                Float proteinas;
-                int calorias;
-                listaAlimentos.clear();
-                Long acaba = dataSnapshot.child("alimentos").getChildrenCount();
-                for (int i = 0; i < acaba; i++){
-                    if (dataSnapshot.child("alimentos").child(i+"").exists()){
-                        nombre = dataSnapshot.child("alimentos").child(i+"").child("nombre").getValue().toString();
-                        marca = dataSnapshot.child("alimentos").child(i+"").child("marca").getValue().toString();
-                        cantidad = parseFloat(dataSnapshot.child("alimentos").child(i+"").child("cantidad").getValue().toString());
-                        unidad = dataSnapshot.child("alimentos").child(i+"").child("unidad").getValue().toString();
-                        grasas = parseFloat(dataSnapshot.child("alimentos").child(i+"").child("grasas").getValue().toString());
-                        hidratos = parseFloat(dataSnapshot.child("alimentos").child(i + "").child("hidratos").getValue().toString());
-                        proteinas = parseFloat(dataSnapshot.child("alimentos").child(i + "").child("proteinas").getValue().toString());
-                        calorias = parseInt(dataSnapshot.child("alimentos").child(i + "").child("calorias").getValue().toString());
-                        listaAlimentos.add(new Alimento(nombre,marca,cantidad,unidad,grasas,hidratos,proteinas,calorias));
-                    } else {
-                        acaba++;
+                try {
+                    String nombre;
+                    String marca;
+                    Float cantidad;
+                    String unidad;
+                    Float grasas;
+                    Float hidratos;
+                    Float proteinas;
+                    int calorias;
+                    listaAlimentos.clear();
+                    Long acaba = dataSnapshot.child("alimentos").getChildrenCount();
+                    for (int i = 0; i < acaba; i++) {
+                        if (dataSnapshot.child("alimentos").child(i + "").exists()) {
+                            nombre = dataSnapshot.child("alimentos").child(i + "").child("nombre").getValue().toString();
+                            marca = dataSnapshot.child("alimentos").child(i + "").child("marca").getValue().toString();
+                            cantidad = parseFloat(dataSnapshot.child("alimentos").child(i + "").child("cantidad").getValue().toString());
+                            unidad = dataSnapshot.child("alimentos").child(i + "").child("unidad").getValue().toString();
+                            grasas = parseFloat(dataSnapshot.child("alimentos").child(i + "").child("grasas").getValue().toString());
+                            hidratos = parseFloat(dataSnapshot.child("alimentos").child(i + "").child("hidratos").getValue().toString());
+                            proteinas = parseFloat(dataSnapshot.child("alimentos").child(i + "").child("proteinas").getValue().toString());
+                            calorias = parseInt(dataSnapshot.child("alimentos").child(i + "").child("calorias").getValue().toString());
+                            listaAlimentos.add(new Alimento(nombre, marca, cantidad, unidad, grasas, hidratos, proteinas, calorias));
+                        } else {
+                            acaba++;
+                        }
                     }
+                    recyclerAlimentos = root.findViewById(R.id.listadoAlimentosDia);
+                    aAdapter = new AdapterAlimentos(getContext(), listaAlimentos);
+                    recyclerAlimentos.setAdapter(aAdapter);
+                    recyclerAlimentos.setLayoutManager(new LinearLayoutManager(getContext()));
+                } catch (Exception ex) {
+
                 }
-                recyclerAlimentos = root.findViewById(R.id.listadoAlimentosDia);
-                aAdapter = new AdapterAlimentos(getContext(), listaAlimentos);
-                recyclerAlimentos.setAdapter(aAdapter);
-                recyclerAlimentos.setLayoutManager(new LinearLayoutManager(getContext()));
             }
 
             @Override
