@@ -59,18 +59,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        preferences = getSharedPreferences("registro", Context.MODE_PRIVATE);
         if (getStateSession()) {
-            //Mirar si el usuario tiene algun idioma gurdado en el firebase
-            /*Locale localizacion = new Locale("cat", "ES");
-            Locale.setDefault(localizacion);
-            Configuration config = new Configuration();
-            config.locale = localizacion;
-            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-*/
-            Intent intent = new Intent(MainActivity.this, CajaNavegacionActivity.class);
-            startActivity(intent);
-            finish();
+            if (!preferences.getString("idioma", "").isEmpty()) {
+                Locale localizacion = new Locale(preferences.getString("idioma", ""), preferences.getString("pais", ""));
+                Locale.setDefault(localizacion);
+                Configuration config = new Configuration();
+                config.locale = localizacion;
+                getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+                Intent intent = new Intent(MainActivity.this, CajaNavegacionActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                Intent intent = new Intent(MainActivity.this, CajaNavegacionActivity.class);
+                startActivity(intent);
+                finish();
+            }
         }
+
+        preferences.edit().putString("idioma", "").apply();
+        preferences.edit().putString("pais", "").apply();
 
         getSupportActionBar().hide();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -89,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //Le damos un valor a las SharedPreferences
-        preferences = getSharedPreferences("registro", Context.MODE_PRIVATE);
         editor = preferences.edit();
         mAuth = FirebaseAuth.getInstance();
         btnIniciarSesion.setOnClickListener(new View.OnClickListener() {
