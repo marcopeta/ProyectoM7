@@ -65,6 +65,19 @@ public class AdapterConsejos extends RecyclerView.Adapter<AdapterConsejos.ViewHo
                     intent.putExtra("trastorno", trastorno);
                     intent.putExtra("posicion", position);
                     v.getContext().startActivity(intent);
+                } else {
+                    Intent intent = new Intent(v.getContext(), VerConsejoActivity.class);
+
+                    intent.putExtra("titol", titol);
+                    intent.putExtra("text", text);
+                    intent.putExtra("posicion", position);
+                    intent.putExtra("autor", autor);
+
+                    v.getContext().startActivity(intent);
+
+
+
+
                 }
             }
         });
@@ -96,7 +109,7 @@ public class AdapterConsejos extends RecyclerView.Adapter<AdapterConsejos.ViewHo
 
         void bindTo(Consejo currentConsejo) {
             TitolItemView.setText(currentConsejo.getTitol());
-            TextItemView.setText(currentConsejo.getTextConsejo());
+            TextItemView.setText("");
             AutorItemView.setText(" -" + currentConsejo.getAutor());
         }
 
