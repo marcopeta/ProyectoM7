@@ -109,10 +109,10 @@ public class AdapterAnadirDia extends RecyclerView.Adapter<AdapterAnadirDia.View
 
 
 
-                                            grasas=(parseFloat(dataSnapshot.child("alimentos").child(posicion + "").child("grasas").getValue().toString()) *  parseFloat(et.getText().toString()));;
-                                            hidratos=(parseFloat(dataSnapshot.child("alimentos").child(posicion + "").child("hidratos").getValue().toString()) *  parseFloat(et.getText().toString()));;
-                                            proteinas=(parseFloat(dataSnapshot.child("alimentos").child(posicion + "").child("proteinas").getValue().toString()) *  parseFloat(et.getText().toString()));;
-                                            calorias=(parseInt(dataSnapshot.child("alimentos").child(posicion + "").child("calorias").getValue().toString()) *  parseInt(et.getText().toString()));;
+                                            grasas=(parseFloat(dataSnapshot.child("alimentos").child(posicion + "").child("grasas").getValue().toString()) *  parseFloat(et.getText().toString())/100f);;
+                                            hidratos=(parseFloat(dataSnapshot.child("alimentos").child(posicion + "").child("hidratos").getValue().toString()) *  parseFloat(et.getText().toString())/100f);;
+                                            proteinas=(parseFloat(dataSnapshot.child("alimentos").child(posicion + "").child("proteinas").getValue().toString()) *  parseFloat(et.getText().toString())/100f);;
+                                            calorias=(parseInt(dataSnapshot.child("alimentos").child(posicion + "").child("calorias").getValue().toString()) *  parseInt(et.getText().toString()) /100);;
 
                                             map.put("nombre", dataSnapshot.child("alimentos").child(posicion + "").child("nombre").getValue().toString());
                                             map.put("marca", dataSnapshot.child("alimentos").child(posicion + "").child("marca").getValue().toString());
