@@ -65,6 +65,7 @@
     <string name="report">Reportar</string>
     <string name="report_advice">Usuari Reportat</string>
     <string name="no_feed">No has creat aliments encara</string>
+    <string name="pls_quantity">Si us plau, introdueixi una quantitat.</string>
 
 
 </resources>
