@@ -43,6 +43,8 @@ public class AdapterAnadirDia extends RecyclerView.Adapter<AdapterAnadirDia.View
     Calendar currentTime;
     int pos = 0;
     EditText et;
+    public static boolean volver =  false;
+
 
 
     public AdapterAnadirDia(Context context, LinkedList<Alimento> listaAlimentos) {
@@ -50,6 +52,7 @@ public class AdapterAnadirDia extends RecyclerView.Adapter<AdapterAnadirDia.View
         this.listaAlimentos = listaAlimentos;
         mDatabase = FirebaseDatabase.getInstance().getReference("Users/" + CajaNavegacionActivity.getUser().getUid());
         currentTime = Calendar.getInstance();
+        volver = false;
         diaActual = currentTime.get(Calendar.DAY_OF_MONTH) + "-" + (currentTime.get(Calendar.MONTH) + 1) + "-" + currentTime.get(Calendar.YEAR);
     }
 
@@ -63,6 +66,7 @@ public class AdapterAnadirDia extends RecyclerView.Adapter<AdapterAnadirDia.View
     @Override
     public void onBindViewHolder(@NonNull AdapterAnadirDia.ViewHolderAlimentos holder, int position) {
         Alimento currentAlimento = listaAlimentos.get(position);
+        volver = false;
         holder.bindTo(currentAlimento);
 
         holder.setItemClickListener(new ItemClickListener() {
@@ -123,8 +127,10 @@ public class AdapterAnadirDia extends RecyclerView.Adapter<AdapterAnadirDia.View
                                         if (dataSnapshot.child("calendario").child(diaActual).child(posicion + "").exists()) {
                                             posicion++;
                                             mDatabase.child("calendario").child(diaActual).child(posicion + "").setValue(map);
+                                            volver=true;
                                         } else {
                                             mDatabase.child("calendario").child(diaActual).child(posicion + "").setValue(map);
+                                            volver = true;
                                         }
                                     }
 
@@ -150,6 +156,7 @@ public class AdapterAnadirDia extends RecyclerView.Adapter<AdapterAnadirDia.View
     public int getItemCount() {
         return listaAlimentos.size();
     }
+
 
     static class ViewHolderAlimentos extends RecyclerView.ViewHolder implements View.OnClickListener {
 

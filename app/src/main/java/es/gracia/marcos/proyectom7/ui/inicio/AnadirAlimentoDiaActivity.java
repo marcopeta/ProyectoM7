@@ -70,6 +70,9 @@ public class AnadirAlimentoDiaActivity extends AppCompatActivity {
                     int calorias;
                     listaAlimentos.clear();
                     Long acaba = dataSnapshot.child("alimentos").getChildrenCount();
+                    if (AdapterAnadirDia.volver){
+                        onBackPressed();
+                    }
                     if (acaba == 0) {
                         mDialog.dismiss();
                         Toast toast = Toast.makeText(getApplicationContext(),R.string.no_feed, Toast.LENGTH_SHORT);
@@ -108,5 +111,7 @@ public class AnadirAlimentoDiaActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
 }
