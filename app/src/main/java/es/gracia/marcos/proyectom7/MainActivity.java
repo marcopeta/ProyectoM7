@@ -63,12 +63,14 @@ public class MainActivity extends AppCompatActivity {
         try {
             if (getStateSession()) {
                 if (!preferences.getString("idioma", "").isEmpty()) {
+                    preferences.edit().putString("prueba", "funciona").apply();
                     Locale localizacion = new Locale(preferences.getString("idioma", ""), preferences.getString("pais", ""));
                     Locale.setDefault(localizacion);
                     Configuration config = new Configuration();
                     config.locale = localizacion;
                     getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
                     Intent intent = new Intent(MainActivity.this, CajaNavegacionActivity.class);
+                    intent.putExtra("idioma", preferences.getString("idioma", ""));
                     startActivity(intent);
                     finish();
                 } else {

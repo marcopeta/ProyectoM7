@@ -1,8 +1,10 @@
 package es.gracia.marcos.proyectom7.ui.configuracion;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
@@ -169,7 +171,7 @@ public class ConfiguracionFragment extends Fragment{
                     if (!Locale.getDefault().getLanguage().equals("cat")) {
                         new AlertDialog.Builder(getContext())
                                 .setTitle("")
-                                .setMessage("Vols canviar al Català?")
+                                .setMessage("Vols canviar al  Català?")
                                 .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
@@ -181,6 +183,7 @@ public class ConfiguracionFragment extends Fragment{
                                         getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
                                         MainActivity.preferences.edit().putString("idioma", "cat").apply();
                                         MainActivity.preferences.edit().putString("pais", "ES").apply();
+                                        MainActivity.preferences.edit().commit();
                                         Intent intent = getActivity().getIntent();
                                         getActivity().finish();
                                         startActivity(intent);
@@ -205,34 +208,36 @@ public class ConfiguracionFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 try {
-                    if (!Locale.getDefault().getLanguage().equals("es")) {
-                    new AlertDialog.Builder(getContext())
-                            .setTitle("")
-                            .setMessage("¿Quieres cambiar al Castellano?")
-                            .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Locale localizacion = new Locale("es", "ES");
+                    if (!MainActivity.preferences.getString("idioma", "").equals("es")) {
+                        new AlertDialog.Builder(getContext())
+                                .setTitle("")
+                                .setMessage("¿Quieres cambiar al Castellano?")
+                                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Locale localizacion = new Locale("es", "ES");
 
-                                    Locale.setDefault(localizacion);
-                                    Configuration config = new Configuration();
-                                    config.locale = localizacion;
-                                    getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
-                                    MainActivity.preferences.edit().putString("idioma", "es").apply();
-                                    MainActivity.preferences.edit().putString("pais", "ES").apply();
-                                    Intent intent = getActivity().getIntent();
-                                    getActivity().finish();
-                                    startActivity(intent);
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
+                                        Locale.setDefault(localizacion);
+                                        Configuration config = new Configuration();
+                                        config.locale = localizacion;
+                                        getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
+                                        MainActivity.preferences.edit().putString("idioma", "es").apply();
+                                        MainActivity.preferences.edit().putString("pais", "ES").apply();
+                                        MainActivity.preferences.edit().commit();
+                                        Intent intent = getActivity().getIntent();
+                                        getActivity().finish();
+                                        startActivity(intent);
+                                    }
+                                })
+                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
 
-                                }
-                            }).show();
+                                    }
+                                }).show();
+
                     } else {
-                        Toast.makeText(getContext(), "La aplicación ya esta en Casellano", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "La aplicación ya esta en Castellano", Toast.LENGTH_LONG).show();
                     }
                 } catch (Exception ex) {
 
@@ -259,6 +264,7 @@ public class ConfiguracionFragment extends Fragment{
                                     getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
                                     MainActivity.preferences.edit().putString("idioma", "en").apply();
                                     MainActivity.preferences.edit().putString("pais", "GB").apply();
+                                    MainActivity.preferences.edit().commit();
                                     Intent intent = getActivity().getIntent();
                                     getActivity().finish();
                                     startActivity(intent);

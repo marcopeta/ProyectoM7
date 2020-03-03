@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -40,6 +41,8 @@ import android.view.Menu;
 import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Locale;
 
 import es.gracia.marcos.proyectom7.ui.alimentos.AlimentosFragment;
 
@@ -121,7 +124,16 @@ public class CajaNavegacionActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.logout:
+                MainActivity.preferences.edit().putString("idioma", "").apply();
+                MainActivity.preferences.edit().putString("pais", "").apply();
                 MainActivity.changeState(this,false);
+                Locale localizacion = new Locale(Locale.getDefault().getLanguage(), Locale.getDefault().getCountry());
+
+                Locale.setDefault(localizacion);
+                Configuration config = new Configuration();
+                config.locale = localizacion;
+                getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+
                 finish();
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
