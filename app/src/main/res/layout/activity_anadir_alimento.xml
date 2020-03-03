@@ -26,7 +26,8 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="20dp"
                     android:text="@string/add_values_n"
-                    android:textAlignment="center"
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/secondary_text_light"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -41,7 +42,8 @@
                     android:hint="@string/name"
                     android:inputType="textPersonName"
                     android:maxLength="4"
-                    android:selectAllOnFocus="false" />
+                    android:selectAllOnFocus="false"
+                    android:textColor="@android:color/secondary_text_light" />
 
                 <EditText
                     android:id="@+id/etAnadirMarca"
@@ -52,7 +54,8 @@
                     android:layout_marginBottom="50dp"
                     android:ems="10"
                     android:hint="@string/brand"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:textColor="@android:color/secondary_text_light" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -70,7 +73,8 @@
                         android:ems="10"
                         android:hint="@string/quantity"
                         android:inputType="number"
-                        android:maxLength="4" />
+                        android:maxLength="4"
+                        android:textColor="@android:color/secondary_text_light" />
 
                     <EditText
                         android:id="@+id/etAnadirUnidad"
@@ -82,7 +86,8 @@
                         android:ems="10"
                         android:hint="@string/unity"
                         android:inputType="textPersonName"
-                        android:maxLength="2" />
+                        android:maxLength="2"
+                        android:textColor="@android:color/secondary_text_light" />
 
                 </LinearLayout>
 
@@ -96,7 +101,8 @@
                     android:ems="10"
                     android:hint="@string/grease"
                     android:inputType="number|numberDecimal"
-                    android:maxLength="6" />
+                    android:maxLength="6"
+                    android:textColor="@android:color/secondary_text_light" />
 
                 <EditText
                     android:id="@+id/etAnadirHidratos"
@@ -108,7 +114,8 @@
                     android:ems="10"
                     android:hint="@string/carbohydrate"
                     android:inputType="numberDecimal"
-                    android:maxLength="6" />
+                    android:maxLength="6"
+                    android:textColor="@android:color/secondary_text_light" />
 
                 <EditText
                     android:id="@+id/etAnadirProteinas"
@@ -131,7 +138,8 @@
                     android:layout_marginBottom="40dp"
                     android:hint="@string/energy_value"
                     android:inputType="number"
-                    android:maxLength="4" />
+                    android:maxLength="4"
+                    android:textColor="@android:color/secondary_text_light" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
