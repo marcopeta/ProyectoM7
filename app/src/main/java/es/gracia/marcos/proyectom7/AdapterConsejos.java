@@ -51,9 +51,10 @@ public class AdapterConsejos extends RecyclerView.Adapter<AdapterConsejos.ViewHo
                 String titol = listaConsejos.get(position).getTitol();
                 String text = listaConsejos.get(position).getTextConsejo();
                 final String autor = listaConsejos.get(position).getAutor();
+                final String uid = listaConsejos.get(position).getId();
                 String trastorno = listaConsejos.get(position).getTrastorno();
                 boolean isAutor = false;
-                if (CajaNavegacionActivity.getNom().equals(autor)) {
+                if (CajaNavegacionActivity.getUser().getUid().equals(uid)) {
                     isAutor = true;
                 }
 

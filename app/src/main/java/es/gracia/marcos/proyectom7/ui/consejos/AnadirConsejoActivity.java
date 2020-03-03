@@ -87,6 +87,8 @@ public class AnadirConsejoActivity extends AppCompatActivity {
                                     map.put("autor", CajaNavegacionActivity.getNom());
                                     map.put("text", etText.getText().toString());
                                     map.put("titol", etTitle.getText().toString());
+                                    map.put("uid", CajaNavegacionActivity.getUser().getUid());
+
 
                                     if (rb_anorexia.isChecked() == true) {
                                         trastorno = "1";
