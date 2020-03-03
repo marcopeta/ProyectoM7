@@ -39,7 +39,7 @@ public class CalculadoraFragment extends Fragment implements AdapterView.OnItemS
         resultado = (TextView) root.findViewById(R.id.tv_resultado);
 
         String[] tipoSistema = {"Sistema Metrico", "Sistema Ingles"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, tipoSistema);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, tipoSistema);
         sistema.setAdapter(adapter);
         sistema.setOnItemSelectedListener(this);
 
