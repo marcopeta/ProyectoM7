@@ -11,7 +11,9 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
-        app:cardBackgroundColor="@color/gray">
+        android:paddingLeft="10dp"
+        app:cardBackgroundColor="@color/green"
+        app:cardCornerRadius="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,15 +43,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/idText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="#FFF7F7"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/idAutor"
