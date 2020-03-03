@@ -67,17 +67,11 @@ public class AdapterConsejos extends RecyclerView.Adapter<AdapterConsejos.ViewHo
                     v.getContext().startActivity(intent);
                 } else {
                     Intent intent = new Intent(v.getContext(), VerConsejoActivity.class);
-
                     intent.putExtra("titol", titol);
                     intent.putExtra("text", text);
                     intent.putExtra("posicion", position);
                     intent.putExtra("autor", autor);
-
                     v.getContext().startActivity(intent);
-
-
-
-
                 }
             }
         });

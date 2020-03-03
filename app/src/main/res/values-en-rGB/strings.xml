@@ -63,4 +63,5 @@
     <string name="back_password">RECOVER PASSWORD</string>
     <string name="report">Report</string>
     <string name="report_advice">Reported User</string>
+    <string name="no_feed">Aún no has creado alimentos</string>
 </resources>

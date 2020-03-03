@@ -81,6 +81,9 @@ public class InicioFragment extends Fragment {
                     int calorias;
                     listadoAlimentos.clear();
                     Long acaba = dataSnapshot.child("calendario").child(diaActual).getChildrenCount();
+                    if (acaba == 0){
+                        mDialog.dismiss();
+                    }
                     for (int i = 0; i < acaba; i++) {
                         if (dataSnapshot.child("calendario").child(diaActual).child(i + "").exists()) {
                             nombre = dataSnapshot.child("calendario").child(diaActual).child(i + "").child("nombre").getValue().toString();
@@ -97,7 +100,6 @@ public class InicioFragment extends Fragment {
                             hidratosTotal += parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("hidratos").getValue().toString());
                             proteinasTotal += parseFloat(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("proteinas").getValue().toString());
                             caloriasTotal += parseInt(dataSnapshot.child("calendario").child(diaActual).child(i + "").child("calorias").getValue().toString());
-
 
                             listadoAlimentos.add(new Alimento(nombre, marca, cantidad, unidad, grasas, hidratos, proteinas, calorias));
                         } else {
