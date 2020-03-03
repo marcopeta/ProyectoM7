@@ -92,7 +92,7 @@ public class AdapterAnadirDia extends RecyclerView.Adapter<AdapterAnadirDia.View
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         int posicionAlimento = pos;
                                         if (et.getText().toString().isEmpty()) {
-                                            Toast.makeText(context, "Por favor, introduzca una cantidad.", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(context, R.string.pls_quantity, Toast.LENGTH_SHORT).show();
                                             return;
                                         }
                                         Long posicion = dataSnapshot.child("calendario").child(diaActual).getChildrenCount();
