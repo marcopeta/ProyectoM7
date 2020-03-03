@@ -5,10 +5,14 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -19,6 +23,7 @@ public class VerConsejoActivity extends AppCompatActivity {
     TextView tvTitle, tvText,tvAutor;
     private boolean backEnabled = false;
     private int posicion;
+    FloatingActionButton btnReport;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,7 @@ public class VerConsejoActivity extends AppCompatActivity {
         tvText = findViewById(R.id.tvTextV);
         tvTitle = findViewById(R.id.tvTitleV);
         tvAutor = findViewById(R.id.tvAutorV);
+        btnReport = findViewById(R.id.btnReport);
 
 
         Intent intent = getIntent();
@@ -36,6 +42,14 @@ public class VerConsejoActivity extends AppCompatActivity {
         tvTitle.setText(intent.getStringExtra("titol"));
         tvText.setText(intent.getStringExtra("text"));
         tvAutor.setText("-"+intent.getStringExtra("autor"));
+        btnReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast = Toast.makeText(getApplicationContext(), R.string.report_advice, Toast.LENGTH_SHORT);
+                toast.show();
+                btnReport.setEnabled(false);
+            }
+        });
         posicion = intent.getIntExtra("posicion", 0);
     }
 }

@@ -61,4 +61,6 @@
     <string name="mail">e-Mail</string>
     <string name="write_mail">Write your e-mail</string>
     <string name="back_password">RECOVER PASSWORD</string>
+    <string name="report">Report</string>
+    <string name="report_advice">Reported User</string>
 </resources>

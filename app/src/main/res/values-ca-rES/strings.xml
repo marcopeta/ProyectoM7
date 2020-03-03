@@ -61,5 +61,7 @@
     <string name="language">Idioma</string>
     <string name="write_mail">Escriu el teu correu</string>
     <string name="back_password">RECUPERAR CONTRASENYA</string>
+    <string name="report">Reportar</string>
+    <string name="report_advice">Uuari Reportat</string>
 
 </resources>

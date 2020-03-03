@@ -61,4 +61,6 @@
     <string name="mail">Correo electrónico</string>
     <string name="write_mail">Escribe tu correo</string>
     <string name="back_password">RECUPERAR CONTRASEÑA</string>
+    <string name="report">Reportar</string>
+    <string name="report_advice">Usuario Reportado</string>
 </resources>
