@@ -2,20 +2,21 @@ package es.gracia.marcos.proyectom7.ui.consejos;
 
 public class Consejo {
     private String titol, text, autor,trastorno;
-    private int id;
+    private String id;
 
-    public Consejo(String titol, String text, String autor, String trastorno) {
+    public Consejo(String titol, String text, String autor, String trastorno, String uid) {
         this.titol = titol;
         this.text = text;
         this.autor = autor;
         this.trastorno = trastorno;
+        this.id = uid;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
