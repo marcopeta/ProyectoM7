@@ -26,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 import java.util.LinkedList;
+import java.util.Locale;
 
 import es.gracia.marcos.proyectom7.AdapterAlimentos;
 import es.gracia.marcos.proyectom7.AdapterAlimentosCalendario;
@@ -98,9 +99,9 @@ public class CalendarioFragment extends Fragment {
                                     acaba++;
                                 }
                             }
-                            tvGrasas.setText("G: " + grasasTotal.toString());
-                            tvHidratos.setText("H: " + hidratosTotal.toString());
-                            tvProteinas.setText("P: " + proteinasTotal.toString());
+                            tvGrasas.setText("G: " + String.format(Locale.US, "%.2f", grasasTotal));
+                            tvHidratos.setText("H: " + String.format(Locale.US, "%.2f", hidratosTotal));
+                            tvProteinas.setText("P: " + String.format(Locale.US, "%.2f", proteinasTotal));
                             tvCalorias.setText("Kcal: " + caloriasTotal);
                             recyclerAlimentos = root.findViewById(R.id.listadoAlimentosCalendario);
                             aAdapter = new AdapterAlimentosCalendario(getContext(), listaAlimentos);
@@ -159,9 +160,9 @@ public class CalendarioFragment extends Fragment {
                             acaba++;
                         }
                     }
-                    tvGrasas.setText("G: " + grasasTotal.toString());
-                    tvHidratos.setText("H: " + hidratosTotal.toString());
-                    tvProteinas.setText("P: " + proteinasTotal.toString());
+                    tvGrasas.setText("G: " + String.format(Locale.US, "%.2f", grasasTotal));
+                    tvHidratos.setText("H: " + String.format(Locale.US, "%.2f", hidratosTotal));
+                    tvProteinas.setText("P: " + String.format(Locale.US, "%.2f", proteinasTotal));
                     tvCalorias.setText("Kcal: " + caloriasTotal);
                     recyclerAlimentos = root.findViewById(R.id.listadoAlimentosCalendario);
                     aAdapter = new AdapterAlimentosCalendario(getContext(), listaAlimentos);

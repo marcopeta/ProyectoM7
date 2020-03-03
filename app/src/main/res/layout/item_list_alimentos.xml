@@ -12,12 +12,13 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
-        app:cardBackgroundColor="@color/gray">
+        android:paddingLeft="10dp"
+        app:cardBackgroundColor="@color/green"
+        app:cardCornerRadius="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/items_alimento"
             android:orientation="vertical"
             android:paddingLeft="10dp"
             android:paddingTop="10dp"

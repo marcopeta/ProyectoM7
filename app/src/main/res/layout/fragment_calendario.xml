@@ -27,7 +27,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -72,6 +74,7 @@
                 android:id="@+id/listadoAlimentosCalendario"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
                 app:layout_constraintHorizontal_bias="1.0"
                 tools:layout_editor_absoluteY="218dp">
 
