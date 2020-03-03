@@ -41,7 +41,7 @@
                     android:ems="10"
                     android:hint="@string/name"
                     android:inputType="textPersonName"
-                    android:maxLength="4"
+                    android:maxLength="30"
                     android:selectAllOnFocus="false"
                     android:textColor="@android:color/secondary_text_light" />
 
@@ -55,6 +55,7 @@
                     android:ems="10"
                     android:hint="@string/brand"
                     android:inputType="textPersonName"
+                    android:maxLength="30"
                     android:textColor="@android:color/secondary_text_light" />
 
                 <LinearLayout
