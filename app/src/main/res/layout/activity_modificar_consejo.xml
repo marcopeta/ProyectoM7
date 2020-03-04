@@ -123,47 +123,66 @@
             </RadioGroup>
 
             <LinearLayout
-                android:layout_width="405dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="horizontal"
-                android:paddingLeft="20dp">
+                android:paddingLeft="10dp">
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/fabDenegarModificacionConsejo"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|start"
-                    android:layout_margin="@dimen/fab_margin"
-                    android:layout_marginStart="339dp"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    app:backgroundTint="#EB0202"
-                    app:fabSize="normal"
-                    app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+                    android:layout_weight="0.5"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp">
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/fabAceptarModificacionConsejo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    android:layout_margin="@dimen/fab_margin"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    app:backgroundTint="#76C91B"
-                    app:fabSize="normal"
-                    app:srcCompat="@android:drawable/ic_menu_save" />
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fabDenegarModificacionConsejo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|start"
+                        android:layout_margin="@dimen/fab_margin"
+                        android:layout_marginStart="339dp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        app:backgroundTint="#EB0202"
+                        app:fabSize="normal"
+                        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/fabEliminarConsejo"
-                    android:layout_width="45dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    android:layout_margin="@dimen/fab_margin"
-                    android:layout_marginStart="20dp"
-                    android:clickable="true"
-                    app:backgroundTint="#EB0202"
-                    app:fabSize="normal"
-                    app:srcCompat="@android:drawable/ic_menu_delete" />
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fabAceptarModificacionConsejo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|end"
+                        android:layout_margin="@dimen/fab_margin"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        app:backgroundTint="#76C91B"
+                        app:fabSize="normal"
+                        app:srcCompat="@android:drawable/ic_menu_save" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:orientation="horizontal"
+                    android:paddingRight="10dp">
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fabEliminarConsejo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|end"
+                        android:layout_margin="@dimen/fab_margin"
+                        android:layout_marginStart="339dp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        app:backgroundTint="#EB0202"
+                        app:fabSize="normal"
+                        app:srcCompat="@android:drawable/ic_menu_delete" />
+
+                </LinearLayout>
 
             </LinearLayout>
 

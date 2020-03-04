@@ -23,7 +23,7 @@ public class VerConsejoActivity extends AppCompatActivity {
     TextView tvTitle, tvText,tvAutor;
     private boolean backEnabled = false;
     private int posicion;
-    FloatingActionButton btnReport;
+    Button btnReport;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

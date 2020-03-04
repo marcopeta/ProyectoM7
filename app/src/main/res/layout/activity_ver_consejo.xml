@@ -10,9 +10,9 @@
         android:id="@+id/tvTitleV"
         android:layout_width="0dp"
         android:layout_height="64dp"
-        android:layout_marginStart="43dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="42dp"
+        android:layout_marginEnd="20dp"
         android:fontFamily="sans-serif-black"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -27,7 +27,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnReport"
+        app:layout_constraintBottom_toTopOf="@+id/tvAutorV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTitleV" />
@@ -36,33 +36,22 @@
         android:id="@+id/tvAutorV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="34dp"
         android:paddingRight="20dp"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/tvTextV"
-        app:layout_constraintTop_toBottomOf="@+id/tvTextV" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
-        android:layout_marginBottom="34dp"
-        android:text="@string/report"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnReport" />
+        app:layout_constraintEnd_toEndOf="@+id/tvTextV" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <Button
         android:id="@+id/btnReport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="20dp"
-        android:clickable="true"
-        android:focusable="auto"
-        app:layout_constraintBottom_toBottomOf="@+id/textView8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
-        app:srcCompat="@mipmap/report" />
+        android:layout_marginStart="2dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/btn_redondeado_white"
+        android:text="@string/report"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvTextV" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
