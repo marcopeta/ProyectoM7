@@ -27,6 +27,7 @@
                     android:layout_marginBottom="20dp"
                     android:text="@string/add_values_n"
                     android:textAlignment="textStart"
+                    android:maxLength="30"
                     android:textColor="@android:color/secondary_text_light"
                     android:textSize="24sp"
                     android:textStyle="bold" />
