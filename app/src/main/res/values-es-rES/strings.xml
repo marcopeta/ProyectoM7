@@ -63,6 +63,6 @@
     <string name="back_password">RECUPERAR CONTRASEÑA</string>
     <string name="report">Reportar</string>
     <string name="report_advice">Usuario Reportado</string>
-    <string name="no_feed">There\'s no aliments yet</string>
     <string name="pls_quantity">Por favor, introduzca una cantidad.</string>
+    <string name="no_feed">Aún no has creado alimentos</string>
 </resources>
