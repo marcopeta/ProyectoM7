@@ -27,7 +27,6 @@
                     android:layout_marginBottom="20dp"
                     android:text="@string/add_values_n"
                     android:textAlignment="textStart"
-                    android:maxLength="30"
                     android:textColor="@android:color/secondary_text_light"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -42,8 +41,7 @@
                     android:ems="10"
                     android:hint="@string/name"
                     android:inputType="textPersonName"
-                    android:selectAllOnFocus="false"
-                    android:textColor="@android:color/secondary_text_light" />
+                    android:maxLength="30" />
 
                 <EditText
                     android:id="@+id/etAnadirMarca"
@@ -55,6 +53,7 @@
                     android:ems="10"
                     android:hint="@string/brand"
                     android:inputType="textPersonName"
+                    android:maxLength="30"
                     android:textColor="@android:color/secondary_text_light" />
 
                 <LinearLayout
