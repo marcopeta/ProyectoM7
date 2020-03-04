@@ -41,7 +41,6 @@
                     android:ems="10"
                     android:hint="@string/name"
                     android:inputType="textPersonName"
-                    android:maxLength="4"
                     android:selectAllOnFocus="false"
                     android:textColor="@android:color/secondary_text_light" />
 
