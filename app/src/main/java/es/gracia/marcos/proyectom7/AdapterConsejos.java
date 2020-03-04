@@ -87,7 +87,7 @@ public class AdapterConsejos extends RecyclerView.Adapter<AdapterConsejos.ViewHo
     class ViewHolderConsejos extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public final TextView TitolItemView;
-        public final TextView TextItemView;
+        //public final TextView TextItemView;
         public final TextView AutorItemView;
 
         ItemClickListener itemClickListener;
@@ -95,7 +95,7 @@ public class AdapterConsejos extends RecyclerView.Adapter<AdapterConsejos.ViewHo
         ViewHolderConsejos(View itemView) {
             super(itemView);
             TitolItemView = itemView.findViewById(R.id.idTitol);
-            TextItemView = itemView.findViewById(R.id.idText);
+            //TextItemView = itemView.findViewById(R.id.idText);
             AutorItemView = itemView.findViewById(R.id.idAutor);
 
             //this.mAdapter = adapter;
@@ -104,7 +104,7 @@ public class AdapterConsejos extends RecyclerView.Adapter<AdapterConsejos.ViewHo
 
         void bindTo(Consejo currentConsejo) {
             TitolItemView.setText(currentConsejo.getTitol());
-            TextItemView.setText("");
+            //TextItemView.setText("");
             AutorItemView.setText(" -" + currentConsejo.getAutor());
         }
 

@@ -26,25 +26,44 @@
                 android:id="@+id/tvTitol"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/title" />
+                android:paddingLeft="20dp"
+                android:paddingTop="20dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="20dp"
+                android:text="@string/title"
+                android:textColor="@android:color/secondary_text_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/etTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:maxLength="50" />
 
             <TextView
                 android:id="@+id/tvText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/advice" />
+                android:paddingLeft="20dp"
+                android:paddingTop="20dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="20dp"
+                android:text="@string/advice"
+                android:textColor="@android:color/secondary_text_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/etText"
                 android:layout_width="match_parent"
                 android:layout_height="207dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:ems="10"
                 android:gravity="start|top"
                 android:inputType="textMultiLine" />
@@ -57,41 +76,45 @@
                     android:id="@+id/rb_anorexia"
                     android:layout_width="match_parent"
                     android:layout_height="58dp"
+                    android:layout_marginLeft="20dp"
                     android:text="@string/anorexy"
                     android:textAlignment="viewStart"
-                    android:textColor="@color/gray"
-                    android:textSize="16dp"
+                    android:textColor="@android:color/secondary_text_light"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <RadioButton
                     android:id="@+id/rb_bulimia"
                     android:layout_width="match_parent"
-                    android:layout_height="46dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
                     android:text="@string/bulimia"
                     android:textAlignment="viewStart"
-                    android:textColor="@color/gray"
-                    android:textSize="16dp"
+                    android:textColor="@android:color/secondary_text_light"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <RadioButton
                     android:id="@+id/rb_sobrepeso"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
+                    android:layout_marginLeft="20dp"
                     android:text="@string/overweight"
                     android:textAlignment="viewStart"
-                    android:textColor="@color/gray"
-                    android:textSize="16dp"
+                    android:textColor="@android:color/secondary_text_light"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <RadioButton
                     android:id="@+id/rb_no"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
+                    android:layout_marginLeft="20dp"
                     android:checked="true"
                     android:text="@string/prefer_no"
                     android:textAlignment="viewStart"
-                    android:textColor="@color/gray"
-                    android:textSize="16dp"
+                    android:textColor="@android:color/secondary_text_light"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
             </RadioGroup>
 

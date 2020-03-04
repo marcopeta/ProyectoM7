@@ -81,11 +81,13 @@ public class ModificarConsejoActivity extends AppCompatActivity {
                         try {
                             Boolean existe = false;
                             Long acaba = dataSnapshot.getChildrenCount();
-                            for (Long i = 0l; i <= posicion; i++) {
+                            /*for (Long i = 0l; i <= posicion; i++) {
                                 if (!dataSnapshot.child(i + "").exists()) {
                                     posicion++;
                                 }
-                            }
+                            }*/
+                            mDatabase.child(posicion + "").removeValue();
+
 
                             if (!etTitle.getText().toString().isEmpty() && !etText.getText().toString().isEmpty()) {
                                 if (!existe) {
@@ -94,6 +96,10 @@ public class ModificarConsejoActivity extends AppCompatActivity {
                                     mDatabase.child(posicion + "").child("titol").setValue(etTitle.getText().toString());
                                     mDatabase.child(posicion + "").child("text").setValue(etText.getText().toString());
                                     mDatabase.child(posicion + "").child("autor").setValue(CajaNavegacionActivity.getNom());
+                                    map.put("autor", CajaNavegacionActivity.getNom());
+                                    map.put("text", etText.getText().toString());
+                                    map.put("titol", etTitle.getText().toString());
+                                    map.put("uid", CajaNavegacionActivity.getUser().getUid());
                                     if (rb_anorexia.isChecked()) {
                                         trastorno = "1";
                                     } else if (rb_bulimia.isChecked()) {
@@ -103,7 +109,8 @@ public class ModificarConsejoActivity extends AppCompatActivity {
                                     } else {
                                         trastorno = "0";
                                     }
-                                    mDatabase.child(posicion + "").child("trastorno").setValue(trastorno);
+                                    map.put("trastorno", trastorno);
+                                    mDatabase.child(posicion + "").setValue(map);
                                     backEnabled = true;
                                     onBackPressed();
                                 }

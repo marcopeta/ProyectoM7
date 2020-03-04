@@ -9,8 +9,11 @@
         android:id="@+id/tvDia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="**/**/****"
         android:textAlignment="center"
+        android:textColor="@android:color/secondary_text_light"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,30 +33,40 @@
             android:id="@+id/grasasT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:layout_weight="1"
-            android:text="G: 0.00" />
+            android:text="G: 0.00"
+            android:textColor="@android:color/secondary_text_light"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/hidratosT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="H: 0.00" />
+            android:text="H: 0.00"
+            android:textColor="@android:color/secondary_text_light"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/proteinasT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="P: 0.00" />
+            android:text="P: 0.00"
+            android:textColor="@android:color/secondary_text_light"
+            android:textSize="18sp"/>
 
         <TextView
             android:id="@+id/caloriasT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:text="Kcal: 0"
-            android:textAlignment="textEnd" />
+            android:textAlignment="textEnd"
+            android:textColor="@android:color/secondary_text_light"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <ScrollView
