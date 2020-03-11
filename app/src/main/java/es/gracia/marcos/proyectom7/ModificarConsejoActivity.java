@@ -93,9 +93,6 @@ public class ModificarConsejoActivity extends AppCompatActivity {
                                 if (!existe) {
                                     Map<String, Object> map = new HashMap<>();
                                     String trastorno;
-                                    mDatabase.child(posicion + "").child("titol").setValue(etTitle.getText().toString());
-                                    mDatabase.child(posicion + "").child("text").setValue(etText.getText().toString());
-                                    mDatabase.child(posicion + "").child("autor").setValue(CajaNavegacionActivity.getNom());
                                     map.put("autor", CajaNavegacionActivity.getNom());
                                     map.put("text", etText.getText().toString());
                                     map.put("titol", etTitle.getText().toString());
