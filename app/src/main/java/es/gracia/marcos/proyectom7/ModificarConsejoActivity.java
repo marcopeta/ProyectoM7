@@ -81,12 +81,12 @@ public class ModificarConsejoActivity extends AppCompatActivity {
                         try {
                             Boolean existe = false;
                             Long acaba = dataSnapshot.getChildrenCount();
-                            /*for (Long i = 0l; i <= posicion; i++) {
+                            for (Long i = 0l; i <= posicion; i++) {
                                 if (!dataSnapshot.child(i + "").exists()) {
                                     posicion++;
                                 }
-                            }*/
-                            mDatabase.child(posicion + "").removeValue();
+                            }
+                            //mDatabase.child(posicion + "").removeValue();
 
 
                             if (!etTitle.getText().toString().isEmpty() && !etText.getText().toString().isEmpty()) {
